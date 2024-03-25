@@ -1404,7 +1404,7 @@ host-to-network direction.<a href="#section-3.1-4.12.1" class="pilcrow">¶</a></
             <p id="section-3.1-4.20.1">The following values are supported:<a href="#section-3.1-4.20.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.1-4.20.2.1">
-                <p id="section-3.1-4.20.2.1.1">"0": all traffic.<a href="#section-3.1-4.20.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-3.1-4.20.2.1.1">"0": all traffic<a href="#section-3.1-4.20.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-3.1-4.20.2.2">
                 <p id="section-3.1-4.20.2.2.1">"1":        Browsing<a href="#section-3.1-4.20.2.2.1" class="pilcrow">¶</a></p>
@@ -1438,7 +1438,7 @@ traffic category.<a href="#section-3.1-4.22.1" class="pilcrow">¶</a></p>
           <dd class="break"></dd>
 <dt id="section-3.1-4.25">burst bitrate (Mbps):</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-4.26">
-            <p id="section-3.1-4.26.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>.<a href="#section-3.1-4.26.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.26.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>. This field is optional.<a href="#section-3.1-4.26.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.1-4.27">burst duration:</dt>
@@ -1450,7 +1450,7 @@ only if a burst bitrate is present.<a href="#section-3.1-4.28.1" class="pilcrow"
 </dl>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-3.1-5.1">
-            <p id="section-3.1-5.1.1">Consider using rfc4115 (CIR/EIR).<a href="#section-3.1-5.1.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-5.1.1">Consider using <span>[<a href="#RFC4115" class="cite xref">RFC4115</a>]</span> (CIR/EIR).<a href="#section-3.1-5.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1498,7 +1498,7 @@ already advertized using RAs and those policies are consistent with the network 
           <p id="section-4-4.2.1">Increase the bitrate value: The attachment circuit will be overloaded, but still the rate-limit at the network will discard excess traffic.<a href="#section-4-4.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-4.3">
-          <p id="section-4-4.3.1">Drop the RA: This is similar to the current operations, where no NRLP RA is shared.<a href="#section-4-4.3.1" class="pilcrow">¶</a></p>
+          <p id="section-4-4.3.1">Drop RAs: This is similar to the current operations, where no NRLP RA is shared.<a href="#section-4-4.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-4.4">
           <p id="section-4-4.4.1">Inject fake RAs: The implications are similar to the impacts of tweaking the values of a legitimate RA.<a href="#section-4-4.4.1" class="pilcrow">¶</a></p>
@@ -1588,6 +1588,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <dt id="IANA-ND">[IANA-ND]</dt>
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"IPv6 Neighbor Discovery Option Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml">https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4115">[RFC4115]</dt>
+        <dd>
+<span class="refAuthor">Aboul-Magd, O.</span> and <span class="refAuthor">S. Rabie</span>, <span class="refTitle">"A Differentiated Service Two-Rate, Three-Color Marker with Efficient Handling of in-Profile Traffic"</span>, <span class="seriesInfo">RFC 4115</span>, <span class="seriesInfo">DOI 10.17487/RFC4115</span>, <time datetime="2005-07" class="refDate">July 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4115">https://www.rfc-editor.org/rfc/rfc4115</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6105">[RFC6105]</dt>
         <dd>

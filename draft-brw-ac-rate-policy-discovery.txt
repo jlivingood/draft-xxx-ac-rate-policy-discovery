@@ -269,7 +269,7 @@ Table of Contents
 
       The following values are supported:
 
-      *  "0": all traffic.
+      *  "0": all traffic
 
       *  "1": Browsing
 
@@ -288,13 +288,13 @@ Table of Contents
       See Section 5.1 of [I-D.rwbr-sconepro-flow-metadata].
 
    burst bitrate (Mbps):  See Section 5.1 of
-      [I-D.rwbr-sconepro-flow-metadata].
+      [I-D.rwbr-sconepro-flow-metadata].  This field is optional.
 
    burst duration:  See Section 5.1 of
       [I-D.rwbr-sconepro-flow-metadata].  This field MUST be present
       only if a burst bitrate is present.
 
-      Consider using rfc4115 (CIR/EIR).
+      Consider using [RFC4115] (CIR/EIR).
 
 3.2.  IPv6 Host Behavior
 
@@ -349,8 +349,8 @@ Table of Contents
       overloaded, but still the rate-limit at the network will discard
       excess traffic.
 
-   *  Drop the RA: This is similar to the current operations, where no
-      NRLP RA is shared.
+   *  Drop RAs: This is similar to the current operations, where no NRLP
+      RA is shared.
 
    *  Inject fake RAs: The implications are similar to the impacts of
       tweaking the values of a legitimate RA.
@@ -425,6 +425,11 @@ Table of Contents
    [IANA-ND]  IANA, "IPv6 Neighbor Discovery Option Formats",
               <https://www.iana.org/assignments/icmpv6-parameters/
               icmpv6-parameters.xhtml>.
+
+   [RFC4115]  Aboul-Magd, O. and S. Rabie, "A Differentiated Service
+              Two-Rate, Three-Color Marker with Efficient Handling of
+              in-Profile Traffic", RFC 4115, DOI 10.17487/RFC4115, July
+              2005, <https://www.rfc-editor.org/rfc/rfc4115>.
 
    [RFC6105]  Levy-Abegnoli, E., Van de Velde, G., Popoviciu, C., and J.
               Mohacsi, "IPv6 Router Advertisement Guard", RFC 6105,
