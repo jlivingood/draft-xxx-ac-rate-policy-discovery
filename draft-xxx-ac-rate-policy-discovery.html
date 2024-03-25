@@ -1185,35 +1185,29 @@ while the underlying link is referred to as "bearers".<a href="#section-1-1" cla
 <p id="section-1-2">Customer terminating points are also provided with a set of information (e.g., IP address/prefix) to successfully be
 able to send and receive traffic over an attachment circuits. To optimally deliver connectivity services, networks
 also advertize other information to connected hosts such as:<a href="#section-1-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-1-3.1">
-          <span class="break"></span><dl class="dlParallel" id="section-1-3.1.1">
-            <dt id="section-1-3.1.1.1">Link Maximum Transmission Unit (MTU) <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span> to avoid fragmentation:</dt>
-            <dd style="margin-left: 1.5em" id="section-1-3.1.1.2">
-              <p id="section-1-3.1.1.2.1">For example, the 3GPP <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span> specifies that "the link MTU size for IPv4 is sent to the UE by including it in the PCO (see TS 24.501). The link MTU size for IPv6 is sent to the UE by including it in the IPv6 Router Advertisement message (see RFC 4861)".<a href="#section-1-3.1.1.2.1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-1-3">
+        <dt id="section-1-3.1">Link Maximum Transmission Unit (MTU) <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span> to avoid fragmentation:</dt>
+        <dd style="margin-left: 1.5em" id="section-1-3.2">
+          <p id="section-1-3.2.1">For example, the 3GPP <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span> specifies that "the link MTU size for IPv4 is sent to the UE by including it in the PCO (see TS 24.501). The link MTU size for IPv6 is sent to the UE by including it in the IPv6 Router Advertisement message (see RFC 4861)".<a href="#section-1-3.2.1" class="pilcrow">¶</a></p>
 </dd>
-            <dd class="break"></dd>
-<dt id="section-1-3.1.1.3"></dt>
-            <dd style="margin-left: 1.5em" id="section-1-3.1.1.4">
-              <p id="section-1-3.1.1.4.1"><span><a href="https://rfc-editor.org/rfc/rfc7066#section-2.10" class="relref">Section 2.10</a> of [<a href="#RFC7066" class="cite xref">RFC7066</a>]</span> indicates that a cellular host should honor the MTU option in the Router Advertisement (<span><a href="https://rfc-editor.org/rfc/rfc4861#section-4.6.4" class="relref">Section 4.6.4</a> of [<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>) given that the 3GPP system
-architecture uses extensive tunneling in its packet core network below the 3GPP link, and this may lead to packet fragmentation issues.<a href="#section-1-3.1.1.4.1" class="pilcrow">¶</a></p>
+        <dd class="break"></dd>
+<dt id="section-1-3.3"></dt>
+        <dd style="margin-left: 1.5em" id="section-1-3.4">
+          <p id="section-1-3.4.1"><span><a href="https://rfc-editor.org/rfc/rfc7066#section-2.10" class="relref">Section 2.10</a> of [<a href="#RFC7066" class="cite xref">RFC7066</a>]</span> indicates that a cellular host should honor the MTU option in the Router Advertisement (<span><a href="https://rfc-editor.org/rfc/rfc4861#section-4.6.4" class="relref">Section 4.6.4</a> of [<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>) given that the 3GPP system
+architecture uses extensive tunneling in its packet core network below the 3GPP link, and this may lead to packet fragmentation issues.<a href="#section-1-3.4.1" class="pilcrow">¶</a></p>
 </dd>
-          <dd class="break"></dd>
+        <dd class="break"></dd>
+<dt id="section-1-3.5">Prefixes of Network Address and Protocol Translation from IPv6 clients to IPv4 servers (NAT64) <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:</dt>
+        <dd style="margin-left: 1.5em" id="section-1-3.6">
+          <p id="section-1-3.6.1">This option is useful to enable local DNSSEC validation, support networks with no DNS64, support IPv4 address literals on an IPv6-only host, etc.<a href="#section-1-3.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-1-3.7">Encrypted DNS option <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>:</dt>
+        <dd style="margin-left: 1.5em" id="section-1-3.8">
+          <p id="section-1-3.8.1">This option is used to discover encrypted DNS resolvers of a local network.<a href="#section-1-3.8.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
 </dl>
-</li>
-        <li class="normal" id="section-1-3.2">
-          <span class="break"></span><dl class="dlParallel" id="section-1-3.2.1">
-            <dt id="section-1-3.2.1.1">Prefixes of Network Address and Protocol Translation from IPv6 clients to IPv4 servers (NAT64) <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:</dt>
-            <dd style="margin-left: 1.5em" id="section-1-3.2.1.2">
-              <p id="section-1-3.2.1.2.1">This option is useful to enable local DNSSEC validation, support networks with no DNS64, support IPv4 address literals on an IPv6-only host, etc.<a href="#section-1-3.2.1.2.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-</dl>
-</li>
-        <li class="normal" id="section-1-3.3">
-          <p id="section-1-3.3.1">Encrypted DNS option <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span> to discover encrypted DNS resolvers of a local network.<a href="#section-1-3.3.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
 <p id="section-1-4"><span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> discusses some use cases where is beneficial to share policies to hosts. <strong>Given that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span></strong>, this document  specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. This option is called: Network Rate-Limit Policy (NRLP).<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">The main motivations for the use of ND for such a discovery are listed in <span><a href="https://rfc-editor.org/rfc/rfc8781#section-3" class="relref">Section 3</a> of [<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:<a href="#section-1-5" class="pilcrow">¶</a></p>
 <ul class="normal">
