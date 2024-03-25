@@ -143,7 +143,7 @@ Table of Contents
 
    *  *Does not require any data plane change*.
 
-   *  *Supports cascaded environments* where multiple levels to enforced
+   *  *Supports cascaded environments* where multiple levels to enforce
       rate limiting polices is required (e.g., WAN and LAN).
 
    Compared to proxy or encapsulation proposals, the solution defined in
