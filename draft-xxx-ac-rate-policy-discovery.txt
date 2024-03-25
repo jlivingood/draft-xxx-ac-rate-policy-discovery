@@ -1,0 +1,354 @@
+
+
+
+
+Network Working Group                                       M. Boucadair
+Internet-Draft                                                    Orange
+Intended status: Standards Track                           25 March 2024
+Expires: 26 September 2024
+
+
+   Discovery of Network Rate-Limit Policies in Router Advertisements
+               draft-xxx-ac-rate-policy-discovery-latest
+
+Abstract
+
+   Traffic exchanged over an attachment circuit may be subject to rate
+   limit policies.  These policies may be intentional policies (e.g.,
+   enforced as part of the activation of the attachment circuit) or be
+   reactive policies (e.g., enforced temporarily to manage an overload
+   or during a DDoS attack mitigation).
+
+   Networks already support mechanisms to advertize a set of network
+   properties to hosts using Neighbor Discovery options.  Examples of
+   such properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781).
+   This document complements these tools and specifies a Neighbor
+   Discovery option to be used in Router Advertisements (RAs) to
+   communicate these policies to hosts.
+
+Discussion Venues
+
+   This note is to be removed before publishing as an RFC.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/boucadair/draft-xxx-ac-rate-policy-discovery.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 26 September 2024.
+
+Copyright Notice
+
+   Copyright (c) 2024 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Generalized Use Case
+   4.  IPv6 RA Encrypted DNS Option
+     4.1.  Option Format
+     4.2.  IPv6 Host Behavior
+   5.  Security Considerations
+   6.  IANA Considerations
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
+   Acknowledgments
+   Author's Address
+
+1.  Introduction
+
+   Connectivity services are provided by networks to customers via
+   dedicated terminating points, such as customer edges (CEs) or User
+   Equipment (UE).  To facilitate data transfer via the provider
+   network, it is assumed that the appropriate setup is provisioned over
+   the links that connect customer terminating points and a provider
+   network (usually via a Provider Edge (PE)), allowing successfully
+   data exchanged over these links.  The required setup is referred to
+   in this document as Attachment Circuits (ACs), while the underlying
+   link is referred to as "bearers".
+
+   Customer terminating points are also provided with a set of
+   information (e.g., IP address/prefix) to successfully be able to send
+   and receive traffic over an attachment circuits.  To optimally
+   deliver connectivity services, networks also advertize other
+   information to connected hosts such as:
+
+   *  Link Maximum Transmission Unit (MTU) [RFC4861] to avoid
+      fragmentation:  For example, the 3GPP [TS-23.501] specifies that
+         "the link MTU size for IPv4 is sent to the UE by including it
+         in the PCO (see TS 24.501).  The link MTU size for IPv6 is sent
+         to the UE by including it in the IPv6 Router Advertisement
+         message (see RFC 4861)".
+
+         Section 2.10 of [RFC7066] indicates that a cellular host should
+         honor the MTU option in the Router Advertisement (Section 4.6.4
+         of [RFC4861]) given that the 3GPP system architecture uses
+         extensive tunneling in its packet core network below the 3GPP
+         link, and this may lead to packet fragmentation issues.
+
+   *  Prefixes of Network Address and Protocol Translation from IPv6
+      clients to IPv4 servers (NAT64) [RFC8781]:  This option is useful
+         to enable local DNSSEC validation, support networks with no
+         DNS64, support IPv4 address literals on an IPv6-only host, etc.
+
+   *  Encrypted DNS option [RFC9463] to discover encrypted DNS resolvers
+      of a local network.
+
+   [I-D.rwbr-tsvwg-signaling-use-cases] discusses some use cases where
+   is beneficial to share policies to hosts. *Given that all IPv6 hosts
+   and networks are required to support Neighbor Discovery [RFC4861]*,
+   this document specifies a Neighbor Discovery option to be used in
+   Router Advertisements (RAs) to communicate these policies to hosts.
+   The motivation for the use of ND for such a discovery is listed in
+   Section 3 of [RFC8781]:
+
+   *  Fate sharing
+
+   *  Atomic configuration
+
+   *  Updatability: change the policy at any time.
+
+   *  Deployability
+
+   The solution defined in this document:
+
+   *  *Does not require any data plane change*.
+
+   *  *Supports cascaded environments* where multiple levels to enforced
+      rate limiting polices is required (e.g., WAN and LAN).
+
+   Compared to proxy or encapsulation proposals, the solution defined in
+   this document:
+
+   *  *Does not impact the MTU tweaking*.
+
+   *  *Does not suffer from side effects of multi-layer encryption
+      schemes* on the packet processing and overall performance of
+      involved network nodes.
+
+   *  *Does not suffer from nested congestion control*.
+
+   *  *Requires a minor change to the network*: upgrade PE nodes to
+      support a new ND option.  Note that all IPv6 hosts and networks
+      are required to support Neighbor Discovery [RFC4861].
+
+   This document does not make any assumption about the type of the
+   network (fixed, cellular, etc.) that terminates an attachment
+   circuit.
+
+   Likewise, the document does not make assumption about the services or
+   applications that are delivered over an attachment circuit.  Whether
+   one or multiple services are bound to the same attachment circuit is
+   deployment specific.
+
+   This document does not specify how a receiving host uses the
+   discovered policy.  Readers should refer, e.g., to
+   [I-D.rwbr-tsvwg-signaling-use-cases] for some examples.
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   This document uses the terms defined in Section 2 of
+   [I-D.ietf-opsawg-ntw-attachment-circuit].
+
+   Also, this document makes use fo the following terms:
+
+   Reactive policy:  Treatment given to a flow when an exceptional event
+      occurs, such as diminished throughput to the host caused by radio
+      interference or weak radio signal, congestion on the network
+      caused by other users or other applications on the same host.
+
+   Intentional policy:  Configured bandwidth, pps, or similar throughput
+      constraints applied to a flow, application, host, or subscriber.
+
+3.  Generalized Use Case
+
+             +--rw service
+                +--rw mtu?                      uint32
+                +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
+                |  +--rw bandwidth* [bw-type]
+                |     +--rw bw-type      identityref
+                |     +--rw (type)?
+                |        +--:(per-cos)
+                |        |  +--rw cos* [cos-id]
+                |        |     +--rw cos-id    uint8
+                |        |     +--rw cir?      uint64
+                |        |     +--rw cbs?      uint64
+                |        |     +--rw eir?      uint64
+                |        |     +--rw ebs?      uint64
+                |        |     +--rw pir?      uint64
+                |        |     +--rw pbs?      uint64
+                |        +--:(other)
+                |           +--rw cir?   uint64
+                |           +--rw cbs?   uint64
+                |           +--rw eir?   uint64
+                |           +--rw ebs?   uint64
+                |           +--rw pir?   uint64
+                |           +--rw pbs?   uint64
+                +--rw svc-ce-to-pe-bandwidth {vpn-common:outbound-bw}?
+                |  +--rw bandwidth* [bw-type]
+                |     +--rw bw-type      identityref
+                |     +--rw (type)?
+                |        +--:(per-cos)
+                |        |  +--rw cos* [cos-id]
+                |        |     +--rw cos-id    uint8
+                |        |     +--rw cir?      uint64
+                |        |     +--rw cbs?      uint64
+                |        |     +--rw eir?      uint64
+                |        |     +--rw ebs?      uint64
+                |        |     +--rw pir?      uint64
+                |        |     +--rw pbs?      uint64
+                |        +--:(other)
+                |           +--rw cir?   uint64
+                |           +--rw cbs?   uint64
+                |           +--rw eir?   uint64
+                |           +--rw ebs?   uint64
+                |           +--rw pir?   uint64
+                |           +--rw pbs?   uint64
+
+4.  IPv6 RA Encrypted DNS Option
+
+4.1.  Option Format
+
+4.2.  IPv6 Host Behavior
+
+   The procedure for rate-limit configuration is the same as it is with
+   any other Neighbor Discovery option [RFC4861].  In addition, the host
+   XXXX.
+
+   The host MUST be prepared to receive multiple xxx options in RAs;
+   each with distinct scope and/or application group.
+
+5.  Security Considerations
+
+   As discussed in [RFC8781], because RAs are required in all IPv6
+   configuration scenarios, RAs must already be secured, e.g., by
+   deploying an RA-Guard [RFC6105].  Providing all configuration in RAs
+   reduces the attack surface to be targeted by malicious attackers
+   trying to provide hosts with invalid configuration, as compared to
+   distributing the configuration through multiple different mechanisms
+   that need to be secured independently.
+
+   XXXX
+
+6.  IANA Considerations
+
+   This document requests IANA to assign the following new IPv6 Neighbor
+   Discovery Option type in the "IPv6 Neighbor Discovery Option Formats"
+   subregistry under the "Internet Control Message Protocol version 6
+   (ICMPv6) Parameters" registry maintained at [IANA-ND].
+
+                  +======+=============+===============+
+                  | Type | Description | Reference     |
+                  +======+=============+===============+
+                  | TBD  | XXX Option  | This-Document |
+                  +------+-------------+---------------+
+
+                     Table 1: Neighbor Discovery xxxx
+                                  Option
+
+7.  References
+
+7.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC4861]  Narten, T., Nordmark, E., Simpson, W., and H. Soliman,
+              "Neighbor Discovery for IP version 6 (IPv6)", RFC 4861,
+              DOI 10.17487/RFC4861, September 2007,
+              <https://www.rfc-editor.org/rfc/rfc4861>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+7.2.  Informative References
+
+   [I-D.ietf-opsawg-ntw-attachment-circuit]
+              Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
+              and B. Wu, "A Network YANG Data Model for Attachment
+              Circuits", Work in Progress, Internet-Draft, draft-ietf-
+              opsawg-ntw-attachment-circuit-05, 9 February 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              ntw-attachment-circuit-05>.
+
+   [I-D.rwbr-tsvwg-signaling-use-cases]
+              Rajagopalan, S., Wing, D., Boucadair, M., and T. Reddy.K,
+              "Host to Network Signaling Use Cases for Collaborative
+              Traffic Differentiation", Work in Progress, Internet-
+              Draft, draft-rwbr-tsvwg-signaling-use-cases-02, 17 March
+              2024, <https://datatracker.ietf.org/doc/html/draft-rwbr-
+              tsvwg-signaling-use-cases-02>.
+
+   [IANA-ND]  IANA, "IPv6 Neighbor Discovery Option Formats",
+              <https://www.iana.org/assignments/icmpv6-parameters/
+              icmpv6-parameters.xhtml>.
+
+   [RFC6105]  Levy-Abegnoli, E., Van de Velde, G., Popoviciu, C., and J.
+              Mohacsi, "IPv6 Router Advertisement Guard", RFC 6105,
+              DOI 10.17487/RFC6105, February 2011,
+              <https://www.rfc-editor.org/rfc/rfc6105>.
+
+   [RFC7066]  Korhonen, J., Ed., Arkko, J., Ed., Savolainen, T., and S.
+              Krishnan, "IPv6 for Third Generation Partnership Project
+              (3GPP) Cellular Hosts", RFC 7066, DOI 10.17487/RFC7066,
+              November 2013, <https://www.rfc-editor.org/rfc/rfc7066>.
+
+   [RFC8781]  Colitti, L. and J. Linkova, "Discovering PREF64 in Router
+              Advertisements", RFC 8781, DOI 10.17487/RFC8781, April
+              2020, <https://www.rfc-editor.org/rfc/rfc8781>.
+
+   [RFC9463]  Boucadair, M., Ed., Reddy.K, T., Ed., Wing, D., Cook, N.,
+              and T. Jensen, "DHCP and Router Advertisement Options for
+              the Discovery of Network-designated Resolvers (DNR)",
+              RFC 9463, DOI 10.17487/RFC9463, November 2023,
+              <https://www.rfc-editor.org/rfc/rfc9463>.
+
+   [TS-23.501]
+              3GPP, "TS 23.501: System architecture for the 5G System
+              (5GS)", 2024,
+              <https://portal.3gpp.org/desktopmodules/Specifications/
+              SpecificationDetails.aspx?specificationId=3144>.
+
+Acknowledgments
+
+   TODO acknowledge.
+
+Author's Address
+
+   Mohamed Boucadair
+   Orange
+   Email: mohamed.boucadair@orange.com
