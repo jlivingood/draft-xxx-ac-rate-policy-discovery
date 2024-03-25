@@ -4,12 +4,15 @@
 
 Network Working Group                                       M. Boucadair
 Internet-Draft                                                    Orange
-Intended status: Standards Track                           25 March 2024
-Expires: 26 September 2024
+Intended status: Standards Track                                T. Reddy
+Expires: 26 September 2024                                         Nokia
+                                                                 D. Wing
+                                                    Cloud Software Group
+                                                           25 March 2024
 
 
    Discovery of Network Rate-Limit Policies in Router Advertisements
-               draft-xxx-ac-rate-policy-discovery-latest
+               draft-brw-ac-rate-policy-discovery-latest
 
 Abstract
 
@@ -77,7 +80,7 @@ Table of Contents
      6.1.  Normative References
      6.2.  Informative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -445,8 +448,20 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
    Mohamed Boucadair
    Orange
    Email: mohamed.boucadair@orange.com
+
+
+   Tirumaleswar Reddy
+   Nokia
+   India
+   Email: kondtir@gmail.com
+
+
+   Dan Wing
+   Cloud Software Group Holdings, Inc.
+   United States of America
+   Email: danwing@gmail.com

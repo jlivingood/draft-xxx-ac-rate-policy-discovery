@@ -6,6 +6,8 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>Discovery of Network Rate-Limit Policies in Router Advertisements</title>
 <meta content="Mohamed Boucadair" name="author">
+<meta content="Tirumaleswar Reddy" name="author">
+<meta content="Dan Wing" name="author">
 <meta content="
        Traffic exchanged over an attachment circuit may be subject to rate limit policies.
 These policies may be intentional policies (e.g., enforced as part of the activation of the attachment circuit)
@@ -16,7 +18,7 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
 <meta content="xml2rfc 3.20.1" name="generator">
 <meta content="collaborative networking" name="keyword">
 <meta content="adaptive application" name="keyword">
-<meta content="draft-xxx-ac-rate-policy-discovery-latest" name="ietf.draft">
+<meta content="draft-brw-ac-rate-policy-discovery-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.20.1
     Python 3.11.8
@@ -33,7 +35,7 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
     six 1.16.0
     wcwidth 0.2.13
 -->
-<link href="draft-xxx-ac-rate-policy-discovery.xml" rel="alternate" type="application/rfc+xml">
+<link href="draft-brw-ac-rate-policy-discovery.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@font-face {
   font-family: 'Lora';
@@ -1033,7 +1035,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <td class="right">March 2024</td>
 </tr></thead>
 <tfoot><tr>
-<td class="left">Boucadair</td>
+<td class="left">Boucadair, et al.</td>
 <td class="center">Expires 26 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
@@ -1044,7 +1046,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Network Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-xxx-ac-rate-policy-discovery-latest</dd>
+<dd class="internet-draft">draft-brw-ac-rate-policy-discovery-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2024-03-25" class="published">25 March 2024</time>
@@ -1053,11 +1055,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
 <dd class="expires"><time datetime="2024-09-26">26 September 2024</time></dd>
-<dt class="label-authors">Author:</dt>
+<dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
       <div class="author-name">M. Boucadair</div>
 <div class="org">Orange</div>
+</div>
+<div class="author">
+      <div class="author-name">T. Reddy</div>
+<div class="org">Nokia</div>
+</div>
+<div class="author">
+      <div class="author-name">D. Wing</div>
+<div class="org">Cloud Software Group</div>
 </div>
 </dd>
 </dl>
@@ -1165,7 +1175,7 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
             <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1609,8 +1619,8 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 </div>
 <div id="authors-addresses">
 <section id="appendix-B">
-      <h2 id="name-authors-address">
-<a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Mohamed Boucadair</span></div>
@@ -1618,6 +1628,24 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <div class="email">
 <span>Email:</span>
 <a href="mailto:mohamed.boucadair@orange.com" class="email">mohamed.boucadair@orange.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Tirumaleswar Reddy</span></div>
+<div dir="auto" class="left"><span class="org">Nokia</span></div>
+<div dir="auto" class="left"><span class="country-name">India</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:kondtir@gmail.com" class="email">kondtir@gmail.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Dan Wing</span></div>
+<div dir="auto" class="left"><span class="org">Cloud Software Group Holdings, Inc.</span></div>
+<div dir="auto" class="left"><span class="country-name">United States of America</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:danwing@gmail.com" class="email">danwing@gmail.com</a>
 </div>
 </address>
 </section>
