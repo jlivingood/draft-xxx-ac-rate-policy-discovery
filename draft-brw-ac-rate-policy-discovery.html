@@ -1218,7 +1218,7 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-1-4"><span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> discusses some use cases where is beneficial to share policies to hosts. <strong>Given that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span></strong>, this document  specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. This option is called: Network Rate-Limit Policy (NRLP).<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-4"><span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> discusses some use cases where it is beneficial to share policies to hosts. <strong>Given that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span></strong>, this document specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. This option is called: Network Rate-Limit Policy (NRLP).<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">The main motivations for the use of ND for such a discovery are listed in <span><a href="https://rfc-editor.org/rfc/rfc8781#section-3" class="relref">Section 3</a> of [<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:<a href="#section-1-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1-6.1">
@@ -1243,7 +1243,7 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
           <p id="section-1-8.2.1"><strong>Supports cascaded environments</strong> where multiple levels to enforce rate limiting polices is required (e.g., WAN and LAN).<a href="#section-1-8.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-1-9">Compared to proxy or encapsulation proposals, the solution defined in this document:<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-9">Compared to proxy or encapsulation proposals (e.g., <span>[<a href="#I-D.ihlar-masque-sconepro-mediabitrate" class="cite xref">I-D.ihlar-masque-sconepro-mediabitrate</a>]</span>), the solution defined in this document:<a href="#section-1-9" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1-10.1">
           <p id="section-1-10.1.1"><strong>Does not impact the MTU tweaking</strong>.<a href="#section-1-10.1.1" class="pilcrow">¶</a></p>
@@ -1264,10 +1264,10 @@ are bound to the same attachment circuit is deployment specific.<a href="#sectio
 <p id="section-1-13">This document does not specify how a receiving host uses the discovered policy. Readers should refer, e.g., to <span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> for some examples. Some deployment use cases for NRLP are provided below:<a href="#section-1-13" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1-14.1">
-          <p id="section-1-14.1.1">A network may advertize a NRP when it is overloaded, including when it is under attack. The rate limit policy is basically a reactive policy that is meant to adjust the behavior of connected hosts to better control the load during these exceptional events.<a href="#section-1-14.1.1" class="pilcrow">¶</a></p>
+          <p id="section-1-14.1.1">A network may advertize a NRLP when it is overloaded, including when it is under attack. The rate limit policy is basically a reactive policy that is meant to adjust the behavior of connected hosts to better control the load during these exceptional events.<a href="#section-1-14.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-14.2">
-          <p id="section-1-14.2.1">Discovery of rate (limit applied on attachment circuits (peering links, CE-PE links, etc.).<a href="#section-1-14.2.1" class="pilcrow">¶</a></p>
+          <p id="section-1-14.2.1">Discovery of rate limit applied on attachment circuits (peering links, CE-PE links, etc.).<a href="#section-1-14.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-14.3">
           <p id="section-1-14.3.1">A user may configure policies on the CPE such as securing some resources to a specific internal host used for gaming or video streaming. The CPE can use the RA NRLP to share these rate limit policies to each these connected hosts to adjust their forwarding behavior.<a href="#section-1-14.3.1" class="pilcrow">¶</a></p>
@@ -1576,6 +1576,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
         <dd>
 <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-05</span>, <time datetime="2024-02-09" class="refDate">9 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-05">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-05</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ihlar-masque-sconepro-mediabitrate">[I-D.ihlar-masque-sconepro-mediabitrate]</dt>
+        <dd>
+<span class="refAuthor">Ihlar, M.</span> and <span class="refAuthor">M. Kühlewind</span>, <span class="refTitle">"MASQUE extension for signaling media bitrate"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ihlar-masque-sconepro-mediabitrate-00</span>, <time datetime="2024-02-09" class="refDate">9 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ihlar-masque-sconepro-mediabitrate-00">https://datatracker.ietf.org/doc/html/draft-ihlar-masque-sconepro-mediabitrate-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.rwbr-tsvwg-signaling-use-cases">[I-D.rwbr-tsvwg-signaling-use-cases]</dt>
         <dd>

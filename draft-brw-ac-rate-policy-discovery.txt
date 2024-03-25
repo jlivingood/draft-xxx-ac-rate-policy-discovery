@@ -122,11 +122,11 @@ Table of Contents
       encrypted DNS resolvers of a local network.
 
    [I-D.rwbr-tsvwg-signaling-use-cases] discusses some use cases where
-   is beneficial to share policies to hosts. *Given that all IPv6 hosts
-   and networks are required to support Neighbor Discovery [RFC4861]*,
-   this document specifies a Neighbor Discovery option to be used in
-   Router Advertisements (RAs) to communicate these policies to hosts.
-   This option is called: Network Rate-Limit Policy (NRLP).
+   it is beneficial to share policies to hosts. *Given that all IPv6
+   hosts and networks are required to support Neighbor Discovery
+   [RFC4861]*, this document specifies a Neighbor Discovery option to be
+   used in Router Advertisements (RAs) to communicate these policies to
+   hosts.  This option is called: Network Rate-Limit Policy (NRLP).
 
    The main motivations for the use of ND for such a discovery are
    listed in Section 3 of [RFC8781]:
@@ -146,7 +146,8 @@ Table of Contents
    *  *Supports cascaded environments* where multiple levels to enforce
       rate limiting polices is required (e.g., WAN and LAN).
 
-   Compared to proxy or encapsulation proposals, the solution defined in
+   Compared to proxy or encapsulation proposals (e.g.,
+   [I-D.ihlar-masque-sconepro-mediabitrate]), the solution defined in
    this document:
 
    *  *Does not impact the MTU tweaking*.
@@ -175,12 +176,12 @@ Table of Contents
    [I-D.rwbr-tsvwg-signaling-use-cases] for some examples.  Some
    deployment use cases for NRLP are provided below:
 
-   *  A network may advertize a NRP when it is overloaded, including
+   *  A network may advertize a NRLP when it is overloaded, including
       when it is under attack.  The rate limit policy is basically a
       reactive policy that is meant to adjust the behavior of connected
       hosts to better control the load during these exceptional events.
 
-   *  Discovery of rate (limit applied on attachment circuits (peering
+   *  Discovery of rate limit applied on attachment circuits (peering
       links, CE-PE links, etc.).
 
    *  A user may configure policies on the CPE such as securing some
@@ -405,6 +406,13 @@ Table of Contents
               opsawg-ntw-attachment-circuit-05, 9 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
               ntw-attachment-circuit-05>.
+
+   [I-D.ihlar-masque-sconepro-mediabitrate]
+              Ihlar, M. and M. Kühlewind, "MASQUE extension for
+              signaling media bitrate", Work in Progress, Internet-
+              Draft, draft-ihlar-masque-sconepro-mediabitrate-00, 9
+              February 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ihlar-masque-sconepro-mediabitrate-00>.
 
    [I-D.rwbr-tsvwg-signaling-use-cases]
               Rajagopalan, S., Wing, D., Boucadair, M., and T. Reddy.K,
