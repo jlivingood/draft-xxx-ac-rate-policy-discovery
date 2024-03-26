@@ -236,12 +236,6 @@ Table of Contents
    *  *Does not impact the MTU tweaking*: No packet overhead is
       required.
 
-   *  *Does not suffer from side effects of multi-layer encryption
-      schemes* on the packet processing and overall performance of
-      involved network nodes.
-
-   *  *Does not suffer from nested congestion control*.
-
    *  *Does not suffer from the complications of IP address sharing
       [RFC6269]*. Such issues are likely to be experienced for proxy-
       based solutions that multiplex internal connections using one or

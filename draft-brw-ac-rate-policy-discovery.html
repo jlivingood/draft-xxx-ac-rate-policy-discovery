@@ -1409,17 +1409,13 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
 <li class="normal" id="section-1.4-7.1">
             <p id="section-1.4-7.1.1"><strong>Does not impact the MTU tweaking</strong>: No packet overhead is required.<a href="#section-1.4-7.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-1.4-7.2">
-            <p id="section-1.4-7.2.1"><strong>Does not suffer from side effects of multi-layer encryption schemes</strong> on the packet processing and overall performance of involved network nodes.<a href="#section-1.4-7.2.1" class="pilcrow">¶</a></p>
+        </ul>
+<ul class="normal">
+<li class="normal" id="section-1.4-8.1">
+            <p id="section-1.4-8.1.1"><strong>Does not suffer from the complications of IP address sharing <span>[<a href="#RFC6269" class="cite xref">RFC6269</a>]</span></strong>. Such issues are likely to be experienced for proxy-based solutions that multiplex internal connections using one or more external IP addresses.<a href="#section-1.4-8.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-1.4-7.3">
-            <p id="section-1.4-7.3.1"><strong>Does not suffer from nested congestion control</strong>.<a href="#section-1.4-7.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-1.4-7.4">
-            <p id="section-1.4-7.4.1"><strong>Does not suffer from the complications of IP address sharing <span>[<a href="#RFC6269" class="cite xref">RFC6269</a>]</span></strong>. Such issues are likely to be experienced for proxy-based solutions that multiplex internal connections using one or more external IP addresses.<a href="#section-1.4-7.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-1.4-7.5">
-            <p id="section-1.4-7.5.1"><strong>Requires a minor change to the network</strong>: For IPv6, upgrade PE nodes to support a new ND option. Note that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>. For IPv4, configure DHCP server to include new DHCP option.<a href="#section-1.4-7.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.4-8.2">
+            <p id="section-1.4-8.2.1"><strong>Requires a minor change to the network</strong>: For IPv6, upgrade PE nodes to support a new ND option. Note that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>. For IPv4, configure DHCP server to include new DHCP option.<a href="#section-1.4-8.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
