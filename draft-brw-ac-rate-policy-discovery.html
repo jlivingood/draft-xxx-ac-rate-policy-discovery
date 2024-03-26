@@ -1468,13 +1468,10 @@ host-to-network direction.<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
           <p id="section-3-2.10.1">The following values are supported:<a href="#section-3-2.10.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3-2.10.2.1">
-              <p id="section-3-2.10.2.1.1">"0": subscriber<a href="#section-3-2.10.2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3-2.10.2.1.1">"0": Subscriber<a href="#section-3-2.10.2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3-2.10.2.2">
-              <p id="section-3-2.10.2.2.1">"1": host<a href="#section-3-2.10.2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-3-2.10.2.3">
-              <p id="section-3-2.10.2.3.1">"2": application group<a href="#section-3-2.10.2.3.1" class="pilcrow">¶</a></p>
+              <p id="section-3-2.10.2.2.1">"1": Host<a href="#section-3-2.10.2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </dd>
@@ -1489,7 +1486,7 @@ host-to-network direction.<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
           <p id="section-3-2.14.1">The following values are supported:<a href="#section-3-2.14.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3-2.14.2.1">
-              <p id="section-3-2.14.2.1.1">"0": all traffic<a href="#section-3-2.14.2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3-2.14.2.1.1">"0": All traffic<a href="#section-3-2.14.2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3-2.14.2.2">
               <p id="section-3-2.14.2.2.1">"1":        Browsing<a href="#section-3-2.14.2.2.1" class="pilcrow">¶</a></p>
@@ -1504,7 +1501,7 @@ host-to-network direction.<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
               <p id="section-3-2.14.2.5.1">"4": Bulk<a href="#section-3-2.14.2.5.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3-2.14.2.6">
-              <p id="section-3-2.14.2.6.1">"5": background trafic<a href="#section-3-2.14.2.6.1" class="pilcrow">¶</a></p>
+              <p id="section-3-2.14.2.6.1">"5": Background trafic<a href="#section-3-2.14.2.6.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </dd>
@@ -1560,11 +1557,11 @@ only if a burst bitrate is present.<a href="#section-3-2.22.1" class="pilcrow">�
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |     Type      |     Length    |D|   Scope     |      TC       |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                         nominal bitrate                       |
+|                       nominal bitrate                         |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                           burst bitrate (optional)            |
+|                   burst bitrate (optional)                    |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                             duration   (optional)             |
+|                      duration (optional)                      |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </pre>
 </div>
@@ -1789,6 +1786,10 @@ already advertized using RAs and those policies are consistent with the network 
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
       </h2>
 <p id="section-6-1">NRLP senders should be configured with instructions about the type of network rate-limit policies to be shared with requesting hosts. These types can be provided using mechanisms such as <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">In contexts where the bitrate policies are known during the establishment of the underlying bearer (e.g., GBR PDU Sessions), sending NRLP signals over the attachment circuit may be redundant and should thus be disabled.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">In contexts where the (average) bitrate policies provided during the establishment of a bearer cannot be refreshed to echo network-specific conditions (e.g., overload) using bearer-specific mechanisms, sending NRLP signals over the attachment circuit would allow control the load at the source.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">When both bearer-specific policies and NRLP signals are communicated to a host, the NRLP signals takes precedence.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">Rate-limit policies enforced at the network are assumed to be consistent with the local jurisdictions.<a href="#section-6-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">

@@ -313,18 +313,16 @@ Table of Contents
 
       The following values are supported:
 
-      *  "0": subscriber
+      *  "0": Subscriber
 
-      *  "1": host
-
-      *  "2": application group
+      *  "1": Host
 
    TC:  8-bit field which specifies a traffic category to which this
       policy applies.
 
       The following values are supported:
 
-      *  "0": all traffic
+      *  "0": All traffic
 
       *  "1": Browsing
 
@@ -334,7 +332,7 @@ Table of Contents
 
       *  "4": Bulk
 
-      *  "5": background trafic
+      *  "5": Background trafic
 
    nominal bitrate (Mbps):  Specifies the maximum number of bits that a
       network can receive or send during one second over an attachment
@@ -362,11 +360,11 @@ Table of Contents
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |     Type      |     Length    |D|   Scope     |      TC       |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                         nominal bitrate                       |
+     |                       nominal bitrate                         |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                           burst bitrate (optional)            |
+     |                   burst bitrate (optional)                    |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                             duration   (optional)             |
+     |                      duration (optional)                      |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
                         Figure 2: NRLP Option Format
@@ -510,6 +508,23 @@ Table of Contents
    network rate-limit policies to be shared with requesting hosts.
    These types can be provided using mechanisms such as
    [I-D.ietf-opsawg-ntw-attachment-circuit].
+
+   In contexts where the bitrate policies are known during the
+   establishment of the underlying bearer (e.g., GBR PDU Sessions),
+   sending NRLP signals over the attachment circuit may be redundant and
+   should thus be disabled.
+
+   In contexts where the (average) bitrate policies provided during the
+   establishment of a bearer cannot be refreshed to echo network-
+   specific conditions (e.g., overload) using bearer-specific
+   mechanisms, sending NRLP signals over the attachment circuit would
+   allow control the load at the source.
+
+   When both bearer-specific policies and NRLP signals are communicated
+   to a host, the NRLP signals takes precedence.
+
+   Rate-limit policies enforced at the network are assumed to be
+   consistent with the local jurisdictions.
 
 7.  Security Considerations
 
