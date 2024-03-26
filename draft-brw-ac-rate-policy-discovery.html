@@ -1597,7 +1597,7 @@ traffic category that is out of profile.<a href="#section-3-2.42.1" class="pilcr
         <dd class="break"></dd>
 <dt id="section-3-2.47">Excess Burst Size (EBS) (bytes):</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.48">
-          <p id="section-3-2.48.1"><span class="bcp14">MUST</span> be greated than zero, if present.<a href="#section-3-2.48.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.48.1"><span class="bcp14">MUST</span> be present only if EIR is also present.<a href="#section-3-2.48.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.49"></dt>
@@ -1607,42 +1607,47 @@ traffic category that is out of profile.<a href="#section-3-2.42.1" class="pilcr
         <dd class="break"></dd>
 <dt id="section-3-2.51"></dt>
         <dd style="margin-left: 1.5em" id="section-3-2.52">
-          <p id="section-3-2.52.1">This parameter is optional.<a href="#section-3-2.52.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.52.1"><span class="bcp14">MUST</span> be greater than zero, if present.<a href="#section-3-2.52.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.53">Peak Information Rate (PIR) (Mbps):</dt>
+<dt id="section-3-2.53"></dt>
         <dd style="margin-left: 1.5em" id="section-3-2.54">
-          <p id="section-3-2.54.1"><span class="bcp14">MUST</span> be present only if P flag is set to '1'.<a href="#section-3-2.54.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.54.1">This parameter is optional.<a href="#section-3-2.54.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.55"></dt>
+<dt id="section-3-2.55">Peak Information Rate (PIR) (Mbps):</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.56">
-          <p id="section-3-2.56.1">Traffic that exceeds the CIR and the CBS is metered to the PIR.<a href="#section-3-2.56.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.56.1"><span class="bcp14">MUST</span> be present only if P flag is set to '1'.<a href="#section-3-2.56.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.57"></dt>
         <dd style="margin-left: 1.5em" id="section-3-2.58">
-          <p id="section-3-2.58.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>.<a href="#section-3-2.58.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.58.1">Traffic that exceeds the CIR and the CBS is metered to the PIR.<a href="#section-3-2.58.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.59"></dt>
         <dd style="margin-left: 1.5em" id="section-3-2.60">
-          <p id="section-3-2.60.1">This parameter is optional.<a href="#section-3-2.60.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.60.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>.<a href="#section-3-2.60.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.61">Peak Burst Size (PBS) (bytes):</dt>
+<dt id="section-3-2.61"></dt>
         <dd style="margin-left: 1.5em" id="section-3-2.62">
-          <p id="section-3-2.62.1"><span class="bcp14">MUST</span> be present only if PIR is also present.<a href="#section-3-2.62.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.62.1">This parameter is optional.<a href="#section-3-2.62.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.63"></dt>
+<dt id="section-3-2.63">Peak Burst Size (PBS) (bytes):</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.64">
-          <p id="section-3-2.64.1"><span class="bcp14">MUST</span> be greater than zero.<a href="#section-3-2.64.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.64.1"><span class="bcp14">MUST</span> be present only if PIR is also present.<a href="#section-3-2.64.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.65"></dt>
         <dd style="margin-left: 1.5em" id="section-3-2.66">
           <p id="section-3-2.66.1">Specifies the maximum burst size that can be transmitted at PIR.<a href="#section-3-2.66.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.67"></dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.68">
+          <p id="section-3-2.68.1"><span class="bcp14">MUST</span> be greater than zero, if present.<a href="#section-3-2.68.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
