@@ -210,7 +210,7 @@ Table of Contents
 
    *  Atomic configuration
 
-   *  Updatability: change the policy at any time.
+   *  Updatability: change the policy at any time
 
    *  Deployability
 
@@ -247,9 +247,10 @@ Table of Contents
       based solutions that multiplex internal connections using one or
       more external IP addresses.
 
-   *  *Requires a minor change to the network*: upgrade PE nodes to
-      support a new ND option.  Note that all IPv6 hosts and networks
-      are required to support Neighbor Discovery [RFC4861].
+   *  *Requires a minor change to the network*: For IPv6, upgrade PE
+      nodes to support a new ND option.  Note that all IPv6 hosts and
+      networks are required to support Neighbor Discovery [RFC4861].
+      For IPv4, configure DHCP server to include new DHCP option.
 
 1.5.  What's Out?
 
@@ -532,6 +533,10 @@ Table of Contents
    document.
 
 5.  DHCP NRLP Option
+
+      Note that DHCP can only signal a rate policy change when the
+      client first joins the network or renews its lease, whereas IPv6
+      ND can update the rate policy at the network's discretion.
 
 5.1.  Option Format
 
