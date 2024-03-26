@@ -270,7 +270,7 @@ Table of Contents
 
    Some deployment use cases for NRLP are provided below:
 
-   *  A network may advertize a NRLP when it is overloaded, including
+   *  A network may advertize an NRLP when it is overloaded, including
       when it is under attack.  The rate limit policy is basically a
       reactive policy that is meant to adjust the behavior of connected
       hosts to better control the load during these exceptional events.
@@ -311,7 +311,7 @@ Table of Contents
    NRLP blob:
 
    D:  1-bit flag which indicates the direction on which to apply the
-      enclosed polciy.
+      enclosed policy.
 
       When set to "1", this flag indicates that this policy is for
       network-to-host direction.
@@ -319,7 +319,19 @@ Table of Contents
       When set to "0", this flag indicates that this policy is for host-
       to-network direction.
 
-   Scope:  7-bit field which specifies whether the policy is per host,
+   E:  When set to "1", this flag indicates the presence of Excess
+      Information Rate (EIR).
+
+      When set to "0", this flag indicates that EIR is not present.
+
+   P:  When set to "1", this flag indicates the presence of Peak
+      Information Rate (PIR).
+
+      When set to "0", this flag indicates that PIR is not present.
+
+   U:  Unassigned bit.
+
+   Scope:  4-bit field which specifies whether the policy is per host,
       per subscriber, etc.
 
       The following values are supported:
@@ -345,20 +357,47 @@ Table of Contents
 
       *  "5": Background trafic
 
-   nominal bitrate (Mbps):  Specifies the maximum number of bits that a
-      network can receive or send during one second over an attachment
-      circuit for a traffic category.
+   Committed Information Rate (CIR) (Mbps):  Specifies the maximum
+      number of bits that a network can receive or send during one
+      second over an attachment circuit for a traffic category.
 
       See Section 5.1 of [I-D.rwbr-sconepro-flow-metadata].
 
-   burst bitrate (Mbps):  See Section 5.1 of
-      [I-D.rwbr-sconepro-flow-metadata].  This field is optional.
+   Committed Burst Size (CBS) (bytes):  Specifies the maximum burst size
+      that can be transmitted at CIR.
 
-   burst duration:  See Section 5.1 of
-      [I-D.rwbr-sconepro-flow-metadata].  This field MUST be present
-      only if a burst bitrate is present.
+      MUST be greated than zero.
 
-      Consider using [RFC4115] (CIR/EIR).
+   Excess Information Rate (EIR) (Mbps):  MUST be present only if the E
+      flag is set to '1'.
+
+      Specifies the maximum number of bits that a network can receive or
+      send during one second over an attachment circuit for a traffic
+      category that is out of profile.
+
+      See Section 5.1 of [I-D.rwbr-sconepro-flow-metadata].
+
+   Excess Burst Size (EBS) (bytes):  MUST be present only if EIR is also
+      present.
+
+      MUST be greated than zero.
+
+      Indicates that maximum excess burst size that is allowed while not
+      complying with the CIR.
+
+   Peak Information Rate (PIR) (Mbps):  MUST be present only if P flag
+      is set to '1'.
+
+      Traffic that exceeds the CIR and the CBS is metered to the PIR.
+
+      See Section 5.1 of [I-D.rwbr-sconepro-flow-metadata].
+
+   Peak Burst Size (PBS) (bytes):  MUST be present only if PIR is also
+      present.
+
+      MUST be greater than zero.
+
+      Specifies the maximum burst size that can be transmitted at PIR.
 
 4.  IPv6 RA NRLP Option
 
@@ -369,13 +408,19 @@ Table of Contents
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Type      |     Length    |D|   Scope     |      TC       |
+     |     Type      |     Length    |D|E|P|U| Scope |      TC       |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                       nominal bitrate                         |
+     |                  Committed Information Rate                   |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                   burst bitrate (optional)                    |
+     |                  Committed Burst Size (CBS)                   |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                      duration (optional)                      |
+     |               Excess Information Rate (EIR) (optional)        |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                  Excess Burst Size (CBS) (optional)           |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |               Peak Information Rate (PIR) (optional)          |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                  Peak Burst Size (CBS) (optional)             |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
                         Figure 2: NRLP Option Format
@@ -388,20 +433,29 @@ Table of Contents
    Length:  8-bit unsigned integer.  The length of the option (including
       the Type and Length fields) is in units of 8 octets.
 
-      If the "Length" is set to "8", this indicates that only the
-      nominal bitrate is provided.
-
    D:  See Section 3.
+
+   E:  See Section 3.
+
+   P:  See Section 3.
+
+   U:  Unassigned bit.
 
    Scope:  See Section 3.
 
    TC:  See Section 3.
 
-   nominal bitrate (Mbps):  See Section 3.
+   Committed Information Rate (CIR) (Mbps):  See Section 3.
 
-   burst bitrate (Mbps):  See Section 3.
+   Committed Burst Size (CBS) (bytes):  See Section 3.
 
-   burst duration:  See Section 3.
+   Excess Information Rate (EIR) (Mbps):  See Section 3.
+
+   Excess Burst Size (EBS) (bytes):  See Section 3.
+
+   Peak Information Rate (PIR) (Mbps):  See Section 3.
+
+   Peak Burst Size (PBS) (bytes):  See Section 3.
 
 4.2.  IPv6 Host Behavior
 
@@ -464,21 +518,31 @@ Table of Contents
       When several NRLPs are to be included, the "NRLP Instance Data"
       field is repeated.
 
-                      0                   1
-                      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                     |   NRLP Instance Data Length   |
-                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                     |D|   Scope     |      TC       |
-                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                     |      nominal bitrate          |
-                     |                               |
-                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                     |  burst bitrate (optional)     |
-                     |                               |
-                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                     |  duration   (optional)        |
-                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                    0                   1
+                    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                   |   NRLP Instance Data Length   |
+                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                   |D|E|P|U| Scope |      TC       |
+                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                   |  Committed Information Rate   |
+                   |              (CIR)            |
+                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                   |  Committed Burst Size (CBS)   |
+                   |                               |
+                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ---
+                   |  Excess Information Rate      |  |
+                   |             (EIR)             |  O
+                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  P
+                   |    Excess Burst Size (CBS)    |  T
+                   |                               |  I
+                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  O
+                   |    Peak Information Rate      |  N
+                   |             (PIR)             |  A
+                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  L
+                   |      Peak Burst Size (PBS)    |  |
+                   |                               |  |
+                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ---
 
                     Figure 4: NRLP Instance Data Format
 
@@ -490,15 +554,27 @@ Table of Contents
 
    D:  See Section 3.
 
+   E:  See Section 3.
+
+   P:  See Section 3.
+
+   U:  Unassigned bit.
+
    Scope:  See Section 3.
 
    TC:  See Section 3.
 
-   nominal bitrate (Mbps):  See Section 3.
+   Committed Information Rate (CIR) (Mbps):  See Section 3.
 
-   burst bitrate (Mbps):  See Section 3.
+   Committed Burst Size (CBS) (bytes):  See Section 3.
 
-   burst duration:  See Section 3.
+   Excess Information Rate (EIR) (Mbps):  See Section 3.
+
+   Excess Burst Size (EBS) (bytes):  See Section 3.
+
+   Peak Information Rate (PIR) (Mbps):  See Section 3.
+
+   Peak Burst Size (PBS) (bytes):  See Section 3.
 
    OPTION_V4_NRLP is a concatenation-requiring option.  As such, the
    mechanism specified in [RFC3396] MUST be used if OPTION_V4_NRLP
@@ -689,11 +765,6 @@ Table of Contents
 
    [IANA-ND]  IANA, "IPv6 Neighbor Discovery Option Formats",
               <https://www.iana.org/assignments/icmpv6-parameters/>.
-
-   [RFC4115]  Aboul-Magd, O. and S. Rabie, "A Differentiated Service
-              Two-Rate, Three-Color Marker with Efficient Handling of
-              in-Profile Traffic", RFC 4115, DOI 10.17487/RFC4115, July
-              2005, <https://www.rfc-editor.org/rfc/rfc4115>.
 
    [RFC6105]  Levy-Abegnoli, E., Van de Velde, G., Popoviciu, C., and J.
               Mohacsi, "IPv6 Router Advertisement Guard", RFC 6105,
