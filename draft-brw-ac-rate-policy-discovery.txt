@@ -79,22 +79,23 @@ Table of Contents
      1.5.  What's Out?
      1.6.  Sample Deployment Cases
    2.  Conventions and Definitions
-     2.1.  NRLP Blob
-   3.  IPv6 RA NRLP Option
-     3.1.  Option Format
-     3.2.  IPv6 Host Behavior
-   4.  DHCP NRLP Option
+   3.  NRLP Blob
+   4.  IPv6 RA NRLP Option
      4.1.  Option Format
-     4.2.  DHCPv4 Client Behavior
-   5.  Security Considerations
-     5.1.  ND
-     5.2.  DHCP
-   6.  IANA Considerations
-     6.1.  Neighbor Discovery Option
-     6.2.  DHCP Option
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
+     4.2.  IPv6 Host Behavior
+   5.  DHCP NRLP Option
+     5.1.  Option Format
+     5.2.  DHCPv4 Client Behavior
+   6.  Operational Considerations
+   7.  Security Considerations
+     7.1.  ND
+     7.2.  DHCP
+   8.  IANA Considerations
+     8.1.  Neighbor Discovery Option
+     8.2.  DHCP Option
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -105,12 +106,16 @@ Table of Contents
    Connectivity services are provided by networks to customers via
    dedicated terminating points, such as customer edges (CEs) or User
    Equipment (UE) (see Figure 1).  To facilitate data transfer via the
-   provider network, it is assumed that the appropriate setup is
-   provisioned over the links that connect customer terminating points
-   and a provider network (usually via a Provider Edge (PE)), allowing
-   successfully data exchanged over these links.  The required setup is
+   provider network, it is assumed that appropriate setup is provisioned
+   over the links that connect customer terminating points and a
+   provider network (usually via a Provider Edge (PE)), allowing
+   successfully data exchange over these links.  The required setup is
    referred to in this document as Attachment Circuits (ACs), while the
    underlying link is referred to as "bearers".
+
+   The bearer can be a physical or logical link that connects a customer
+   device to a provider network.  A bearer can be a wireless or wired
+   link.
 
        .-------.                .--------------------.         .-------.
        |       +------.         |                    +---AC----+       |
@@ -127,12 +132,20 @@ Table of Contents
 
                    Figure 1: Sample Attachment Circuits
 
-   Customer terminating points are also provided with a set of
-   information (e.g., IP address/prefix) to successfully be able to send
-   and receive traffic over an attachment circuit.  A comprehensive list
-   of provisioning parameters that are available on the PE-side of an
+   Customer terminating points are provided with a set of information
+   (e.g., IP address/prefix) to successfully be able to send and receive
+   traffic over an attachment circuit.  A comprehensive list of
+   provisioning parameters that are available on the PE-side of an
    attachment circuit is documented in
    [I-D.ietf-opsawg-ntw-attachment-circuit].
+
+   The required set of parameters is a function of the service offering.
+   For example, a very limited set of parameters is required for mass-
+   market service offering while a more elaborated set is required for
+   Enterprise services (e.g., Layer 2 or Layer 3 VPN services).  This
+   document *leverages access control, authorization, and authentication
+   mechanisms that are already in place for the delivery of services
+   over these attachment circuits*.
 
 1.2.  Networks Are Already Sharing Network Properties with Hosts
 
@@ -174,9 +187,9 @@ Table of Contents
    of [I-D.rwbr-sconepro-flow-metadata].
 
    In order to ensure consistent design for both IPv4 and IPv6
-   attachment circuits, Section 2.1 groups the set of NRLP parameters
-   that are returned independent of the address family.  This blob can
-   be leveraged in networks where DHCP is not used and ease the mapping
+   attachment circuits, Section 3 groups the set of NRLP parameters that
+   are returned independent of the address family.  This blob can be
+   leveraged in networks where DHCP is not used and ease the mapping
    with specific protocols used in these networks.  For example, a PCO
    NRLP IE can be defined in 3GPP.
 
@@ -281,7 +294,7 @@ Table of Contents
    Intentional policy:  Configured bandwidth, pps, or similar throughput
       constraints applied to a flow, application, host, or subscriber.
 
-2.1.  NRLP Blob
+3.  NRLP Blob
 
    This section defines the set of attributes that are included in an
    NRLP blob:
@@ -338,9 +351,9 @@ Table of Contents
 
       Consider using [RFC4115] (CIR/EIR).
 
-3.  IPv6 RA NRLP Option
+4.  IPv6 RA NRLP Option
 
-3.1.  Option Format
+4.1.  Option Format
 
    The format of the IPv6 RA NRLP option is illustrated in Figure 2.
 
@@ -369,19 +382,19 @@ Table of Contents
       If the "Length" is set to "8", this indicates that only the
       nominal bitrate is provided.
 
-   D:  See Section 2.1.
+   D:  See Section 3.
 
-   Scope:  See Section 2.1.
+   Scope:  See Section 3.
 
-   TC:  See Section 2.1.
+   TC:  See Section 3.
 
-   nominal bitrate (Mbps):  See Section 2.1.
+   nominal bitrate (Mbps):  See Section 3.
 
-   burst bitrate (Mbps):  See Section 2.1.
+   burst bitrate (Mbps):  See Section 3.
 
-   burst duration:  See Section 2.1.
+   burst duration:  See Section 3.
 
-3.2.  IPv6 Host Behavior
+4.2.  IPv6 Host Behavior
 
    The procedure for rate-limit configuration is the same as it is with
    any other Neighbor Discovery option [RFC4861].  In addition, the host
@@ -405,14 +418,14 @@ Table of Contents
       advertized using RAs and those policies are consistent with the
       network policies.
 
-   Application running over a host can learn the bitrates associated
+   Applications running over a host can learn the bitrates associated
    with a network attachment by invoking a dedicated API.  The exact
    details of the API is OS-specific and, thus, out of scope of this
    document.
 
-4.  DHCP NRLP Option
+5.  DHCP NRLP Option
 
-4.1.  Option Format
+5.1.  Option Format
 
    The format of the DHCP NRLP option is illustrated in Figure 3.
 
@@ -466,23 +479,23 @@ Table of Contents
       This field is set to '8' when only the nominal bitrate is provided
       for a NLRP instance.
 
-   D:  See Section 2.1.
+   D:  See Section 3.
 
-   Scope:  See Section 2.1.
+   Scope:  See Section 3.
 
-   TC:  See Section 2.1.
+   TC:  See Section 3.
 
-   nominal bitrate (Mbps):  See Section 2.1.
+   nominal bitrate (Mbps):  See Section 3.
 
-   burst bitrate (Mbps):  See Section 2.1.
+   burst bitrate (Mbps):  See Section 3.
 
-   burst duration:  See Section 2.1.
+   burst duration:  See Section 3.
 
    OPTION_V4_NRLP is a concatenation-requiring option.  As such, the
    mechanism specified in [RFC3396] MUST be used if OPTION_V4_NRLP
    exceeds the maximum DHCP option size of 255 octets.
 
-4.2.  DHCPv4 Client Behavior
+5.2.  DHCPv4 Client Behavior
 
    To discover a network rate-limit policy, the DHCP client includes
    OPTION_V4_NRLP in a Parameter Request List option [RFC2132].
@@ -491,9 +504,16 @@ Table of Contents
    Data" field entries in the OPTION_V4_NRLP option; each instance is to
    be treated as a separate network rate-limit policy.
 
-5.  Security Considerations
+6.  Operational Considerations
 
-5.1.  ND
+   NRLP senders should be configured with instructions about the type of
+   network rate-limit policies to be shared with requesting hosts.
+   These types can be provided using mechanisms such as
+   [I-D.ietf-opsawg-ntw-attachment-circuit].
+
+7.  Security Considerations
+
+7.1.  ND
 
    As discussed in [RFC8781], because RAs are required in all IPv6
    configuration scenarios, RAs must already be secured, e.g., by
@@ -523,7 +543,7 @@ Table of Contents
    *  Inject fake RAs: The implications are similar to the impacts of
       tweaking the values of a legitimate RA.
 
-5.2.  DHCP
+7.2.  DHCP
 
    An attacker who has access to the DHCP exchanged over an attachment
    circuit may do a lot of harm (e.g., prevent access to the network).
@@ -544,9 +564,9 @@ Table of Contents
    information about the DHCP server or the entity hosting the DHCP
    server.
 
-6.  IANA Considerations
+8.  IANA Considerations
 
-6.1.  Neighbor Discovery Option
+8.1.  Neighbor Discovery Option
 
    This document requests IANA to assign the following new IPv6 Neighbor
    Discovery Option type in the "IPv6 Neighbor Discovery Option Formats"
@@ -562,7 +582,7 @@ Table of Contents
                      Table 1: Neighbor Discovery NRLP
                                   Option
 
-6.2.  DHCP Option
+8.2.  DHCP Option
 
    This document requests IANA to assign the following new DHCP Option
    Code in the "BOOTP Vendor Extensions and DHCP Options" registry
@@ -577,9 +597,9 @@ Table of Contents
 
                          Table 2: DHCP NRLP Option
 
-7.  References
+9.  References
 
-7.1.  Normative References
+9.1.  Normative References
 
    [I-D.rwbr-sconepro-flow-metadata]
               Rajagopalan, S., Wing, D., Boucadair, M., and T. Reddy.K,
@@ -612,7 +632,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-7.2.  Informative References
+9.2.  Informative References
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
