@@ -340,12 +340,14 @@ Table of Contents
 
       *  "1": Host
 
+      *  2-15: Unassigned values.
+
    TC:  8-bit field which specifies a traffic category to which this
       policy applies.
 
       The following values are supported:
 
-      *  "0": All traffic
+      *  "0": All traffic.  This is the default value.
 
       *  "1": Streaming
 
@@ -353,11 +355,14 @@ Table of Contents
 
       *  "3": Bulk trafic
 
-      *  "4": Background trafic
+      *  4-255: Unassigned values
 
    Committed Information Rate (CIR) (Mbps):  Specifies the maximum
       number of bits that a network can receive or send during one
       second over an attachment circuit for a traffic category.
+
+      If set to 0, this indicates to the host that an alternate path (if
+      any) should be preferred over this one.
 
       See Section 5.1 of [I-D.rwbr-sconepro-flow-metadata].
 
@@ -381,13 +386,13 @@ Table of Contents
 
       This parameter is optional.
 
-   Excess Burst Size (EBS) (bytes):  MUST be present only if EIR is also
+   Excess Burst Size (EBS) (bytes):  MUST be greated than zero, if
       present.
-
-      MUST be greated than zero.
 
       Indicates that maximum excess burst size that is allowed while not
       complying with the CIR.
+
+      This parameter is optional.
 
    Peak Information Rate (PIR) (Mbps):  MUST be present only if P flag
       is set to '1'.
@@ -405,6 +410,16 @@ Table of Contents
 
       Specifies the maximum burst size that can be transmitted at PIR.
 
+   The reader should refer to [RFC2697], [RFC2698], and [RFC4115] for
+   examples of how various combinations of CIR/CBS/EIR/EBS/PIR/PBS are
+   used for policing.  Typically:
+
+   *  A Single-Rate, Three-Color Marker [RFC2697] uses CIR, CBS, and
+      EBS.
+
+   *  A Dual-Rate, Three-Color Marker [RFC2698] uses CIR, CBS, PIR, and
+      PBS.
+
 4.  IPv6 RA NRLP Option
 
 4.1.  Option Format
@@ -417,7 +432,7 @@ Table of Contents
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |     Type      |     Length    |D|E|P|U| Scope |      TC       |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                  Committed Information Rate                   |
+     |                Committed Information Rate (CIR)               |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                  Committed Burst Size (CBS)                   |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -432,7 +447,7 @@ Table of Contents
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |     Type      |     Length    |D|E|P|U| Scope |      TC       |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |                  Committed Information Rate                   |
+     |                Committed Information Rate (CIR)               |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                  Committed Burst Size (CBS)                   |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -817,6 +832,19 @@ Table of Contents
 
    [IANA-ND]  IANA, "IPv6 Neighbor Discovery Option Formats",
               <https://www.iana.org/assignments/icmpv6-parameters/>.
+
+   [RFC2697]  Heinanen, J. and R. Guerin, "A Single Rate Three Color
+              Marker", RFC 2697, DOI 10.17487/RFC2697, September 1999,
+              <https://www.rfc-editor.org/rfc/rfc2697>.
+
+   [RFC2698]  Heinanen, J. and R. Guerin, "A Two Rate Three Color
+              Marker", RFC 2698, DOI 10.17487/RFC2698, September 1999,
+              <https://www.rfc-editor.org/rfc/rfc2698>.
+
+   [RFC4115]  Aboul-Magd, O. and S. Rabie, "A Differentiated Service
+              Two-Rate, Three-Color Marker with Efficient Handling of
+              in-Profile Traffic", RFC 4115, DOI 10.17487/RFC4115, July
+              2005, <https://www.rfc-editor.org/rfc/rfc4115>.
 
    [RFC6105]  Levy-Abegnoli, E., Van de Velde, G., Popoviciu, C., and J.
               Mohacsi, "IPv6 Router Advertisement Guard", RFC 6105,
