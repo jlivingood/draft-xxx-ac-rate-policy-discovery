@@ -347,15 +347,13 @@ Table of Contents
 
       *  "0": All traffic
 
-      *  "1": Browsing
+      *  "1": Streaming
 
-      *  "2": Streaming
+      *  "2": Realtime
 
-      *  "3": Realtime
+      *  "3": Bulk trafic
 
-      *  "4": Bulk
-
-      *  "5": Background trafic
+      *  "4": Background trafic
 
    Committed Information Rate (CIR) (Mbps):  Specifies the maximum
       number of bits that a network can receive or send during one
@@ -363,10 +361,14 @@ Table of Contents
 
       See Section 5.1 of [I-D.rwbr-sconepro-flow-metadata].
 
+      This parameter is mandatory.
+
    Committed Burst Size (CBS) (bytes):  Specifies the maximum burst size
       that can be transmitted at CIR.
 
       MUST be greated than zero.
+
+      This parameter is mandatory.
 
    Excess Information Rate (EIR) (Mbps):  MUST be present only if the E
       flag is set to '1'.
@@ -376,6 +378,8 @@ Table of Contents
       category that is out of profile.
 
       See Section 5.1 of [I-D.rwbr-sconepro-flow-metadata].
+
+      This parameter is optional.
 
    Excess Burst Size (EBS) (bytes):  MUST be present only if EIR is also
       present.
@@ -392,6 +396,8 @@ Table of Contents
 
       See Section 5.1 of [I-D.rwbr-sconepro-flow-metadata].
 
+      This parameter is optional.
+
    Peak Burst Size (PBS) (bytes):  MUST be present only if PIR is also
       present.
 
@@ -403,7 +409,23 @@ Table of Contents
 
 4.1.  Option Format
 
-   The format of the IPv6 RA NRLP option is illustrated in Figure 2.
+   The format of the IPv6 RA NRLP option, with only mandatory fields
+   included, is illustrated in Figure 2.
+
+      0                   1                   2                   3
+      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |     Type      |     Length    |D|E|P|U| Scope |      TC       |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                  Committed Information Rate                   |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                  Committed Burst Size (CBS)                   |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+             Figure 2: NRLP Option Format with Mandatory Fields
+
+   The format of the IPv6 RA NRLP option, with optional fields included,
+   is illustrated in Figure 2.
 
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -423,9 +445,9 @@ Table of Contents
      |                  Peak Burst Size (PBS) (Optional)             |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-                        Figure 2: NRLP Option Format
+             Figure 3: NRLP Option Format with Optional Fields
 
-   The fields of the option shown in Figure 2 are as follows:
+   The fields of the option shown in Figure 3 are as follows:
 
    Type:  8-bit identifier of the NRLP option as assigned by IANA
       (TBD1).
@@ -449,22 +471,28 @@ Table of Contents
 
    Committed Burst Size (CBS) (bytes):  See Section 3.
 
-   Excess Information Rate (EIR) (Mbps):  See Section 3.
+   Excess Information Rate (EIR) (Mbps):  See Section 3.  This is an
+      optional field.
 
-   Excess Burst Size (EBS) (bytes):  See Section 3.
+   Excess Burst Size (EBS) (bytes):  See Section 3.  This is an optional
+      field.
 
-   Peak Information Rate (PIR) (Mbps):  See Section 3.
+   Peak Information Rate (PIR) (Mbps):  See Section 3.  This is an
+      optional field.
 
-   Peak Burst Size (PBS) (bytes):  See Section 3.
+   Peak Burst Size (PBS) (bytes):  See Section 3.  This is an optional
+      field.
 
 4.2.  IPv6 Host Behavior
 
    The procedure for rate-limit configuration is the same as it is with
-   any other Neighbor Discovery option [RFC4861].  In addition, the host
-   XXXX.
+   any other Neighbor Discovery option [RFC4861].
 
    The host MUST be prepared to receive multiple NRLP options in RAs;
    each with distinct scope and/or application group.
+
+   If the host receives multiple NRLP options with overlapping scope/TC,
+   the host MUST silently discard all these options.
 
    If the receiving host is a CE (e.g., mobile CE or mobile handset with
    tethering), the following behavior applies:
@@ -490,7 +518,7 @@ Table of Contents
 
 5.1.  Option Format
 
-   The format of the DHCP NRLP option is illustrated in Figure 3.
+   The format of the DHCP NRLP option is illustrated in Figure 4.
 
                  0                   1
                  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
@@ -504,19 +532,39 @@ Table of Contents
                 ~      NRLP Instance Data #n    ~    |
                 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   ---
 
-                     Figure 3: NRLP DHCP Option Format
+                     Figure 4: NRLP DHCP Option Format
 
-   The fields of the option shown in Figure 3 are as follows:
+   The fields of the option shown in Figure 4 are as follows:
 
    Code:  OPTION_V4_NRLP (TBD2).
 
    Length:  Indicates the length of the enclosed data in octets.
 
-   NRLP Instance Data:  Includes the configuration data of an encrypted
-      DNS resolver.  The format of this field is shown in Figure 4.
+   NRLP Instance Data:  Includes a network rate-limit policy.  The
+      format of this field with only mandatory parameters is shown in
+      Figure 5.
 
       When several NRLPs are to be included, the "NRLP Instance Data"
       field is repeated.
+
+                      0                   1
+                      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                     |   NRLP Instance Data Length   |
+                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                     |D|E|P|U| Scope |      TC       |
+                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                     |  Committed Information Rate   |
+                     |              (CIR)            |
+                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                     |  Committed Burst Size (CBS)   |
+                     |                               |
+                     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+         Figure 5: NRLP Instance Data Format with Mandatory Fields
+
+   The format of this field, with optional parameters included, is shown
+   in Figure 5.
 
                     0                   1
                     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
@@ -544,13 +592,13 @@ Table of Contents
                    |                               |  |
                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ---
 
-                    Figure 4: NRLP Instance Data Format
+     Figure 6: NRLP Instance Data Format with Optional Fields Included
 
-   The fields shown in Figure 4 are as follows:
+   The fields shown in Figure 6 are as follows:
 
    NRLP Instance Data Length:  Length of all following data in octets.
       This field is set to '8' when only the nominal bitrate is provided
-      for a NLRP instance.
+      for an NLRP instance.
 
    D:  See Section 3.
 
@@ -568,13 +616,17 @@ Table of Contents
 
    Committed Burst Size (CBS) (bytes):  See Section 3.
 
-   Excess Information Rate (EIR) (Mbps):  See Section 3.
+   Excess Information Rate (EIR) (Mbps):  See Section 3.  This is an
+      optional field.
 
-   Excess Burst Size (EBS) (bytes):  See Section 3.
+   Excess Burst Size (EBS) (bytes):  See Section 3.  This is an optional
+      field.
 
-   Peak Information Rate (PIR) (Mbps):  See Section 3.
+   Peak Information Rate (PIR) (Mbps):  See Section 3.  This is an
+      optional field.
 
-   Peak Burst Size (PBS) (bytes):  See Section 3.
+   Peak Burst Size (PBS) (bytes):  See Section 3.  This is an optional
+      field.
 
    OPTION_V4_NRLP is a concatenation-requiring option.  As such, the
    mechanism specified in [RFC3396] MUST be used if OPTION_V4_NRLP
