@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Discovery of Network Rate-Limit Policies in Router Advertisements</title>
+<title>Discovery of Network Rate-Limit Policies in Router Advertisements and DHCP</title>
 <meta content="Mohamed Boucadair" name="author">
 <meta content="Tirumaleswar Reddy" name="author">
 <meta content="Dan Wing" name="author">
@@ -13,7 +13,7 @@
 These policies may be intentional policies (e.g., enforced as part of the activation of the attachment circuit)
 or be reactive policies (e.g., enforced temporarily to manage an overload or during a DDoS attack mitigation). 
        Networks already support mechanisms to advertize a set of network properties to hosts using Neighbor Discovery options. Examples of such
-properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document complements these tools and specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. 
+properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document complements these tools and specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. For address family parity, a new DHCP option is also defined. 
     " name="description">
 <meta content="xml2rfc 3.20.1" name="generator">
 <meta content="collaborative networking" name="keyword">
@@ -1031,12 +1031,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">Rate-Limit Policies in RAs</td>
+<td class="center">Rate-Limit Policies Discovery</td>
 <td class="right">March 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 26 September 2024</td>
+<td class="center">Expires 27 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-brw-ac-rate-policy-discovery-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-03-25" class="published">25 March 2024</time>
+<time datetime="2024-03-26" class="published">26 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-09-26">26 September 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-27">27 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1072,14 +1072,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">Discovery of Network Rate-Limit Policies in Router Advertisements</h1>
+<h1 id="title">Discovery of Network Rate-Limit Policies in Router Advertisements and DHCP</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">Traffic exchanged over an attachment circuit may be subject to rate limit policies.
 These policies may be intentional policies (e.g., enforced as part of the activation of the attachment circuit)
 or be reactive policies (e.g., enforced temporarily to manage an overload or during a DDoS attack mitigation).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">Networks already support mechanisms to advertize a set of network properties to hosts using Neighbor Discovery options. Examples of such
-properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document complements these tools and specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document complements these tools and specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. For address family parity, a new DHCP option is also defined.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1108,7 +1108,7 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1138,16 +1138,41 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
         </h2>
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+            <p id="section-toc.1-1.1.1"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-context" class="internal xref">Context</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2">
+                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="auto internal xref">1.2</a>.  <a href="#name-networks-are-already-sharin" class="internal xref">Networks Are Already Sharing Network Properties with Hosts</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.3">
+                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="auto internal xref">1.3</a>.  <a href="#name-whats-in" class="internal xref">What's In?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.4">
+                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="auto internal xref">1.4</a>.  <a href="#name-design-motivation" class="internal xref">Design Motivation</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.5">
+                <p id="section-toc.1-1.1.2.5.1"><a href="#section-1.5" class="auto internal xref">1.5</a>.  <a href="#name-whats-out" class="internal xref">What's Out?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.6">
+                <p id="section-toc.1-1.1.2.6.1"><a href="#section-1.6" class="auto internal xref">1.6</a>.  <a href="#name-sample-deployment-cases" class="internal xref">Sample Deployment Cases</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-nrlp-blob" class="internal xref">NRLP Blob</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-ipv6-ra-nrlp-option" class="internal xref">IPv6 RA NRLP Option</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-option-format" class="internal xref">Option Format</a></p>
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-option-format" class="internal xref">Option Format</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-ipv6-host-behavior" class="internal xref">IPv6 Host Behavior</a></p>
@@ -1155,27 +1180,54 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-dhcp-nrlp-option" class="internal xref">DHCP NRLP Option</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-option-format-2" class="internal xref">Option Format</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-dhcpv4-client-behavior" class="internal xref">DHCPv4 Client Behavior</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-nd" class="internal xref">ND</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-dhcp" class="internal xref">DHCP</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-neighbor-discovery-option" class="internal xref">Neighbor Discovery Option</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-dhcp-option" class="internal xref">DHCP Option</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1186,94 +1238,163 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Connectivity services are provided by networks to customers via
-dedicated terminating points, such as customer edges (CEs) or User Equipment (UE).
+<div id="context">
+<section id="section-1.1">
+        <h3 id="name-context">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-context" class="section-name selfRef">Context</a>
+        </h3>
+<p id="section-1.1-1">Connectivity services are provided by networks to customers via
+dedicated terminating points, such as customer edges (CEs) or User Equipment (UE) (see <a href="#ac" class="auto internal xref">Figure 1</a>).
 To facilitate data transfer via the provider network, it is assumed that the appropriate setup
 is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)),
 allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs),
-while the underlying link is referred to as "bearers".<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">Customer terminating points are also provided with a set of information (e.g., IP address/prefix) to successfully be
-able to send and receive traffic over an attachment circuits. To optimally deliver connectivity services, networks
-also advertize other information to connected hosts such as:<a href="#section-1-2" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-1-3">
-        <dt id="section-1-3.1">Link Maximum Transmission Unit (MTU) <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span> to avoid fragmentation:</dt>
-        <dd style="margin-left: 1.5em" id="section-1-3.2">
-          <p id="section-1-3.2.1">For example, the 3GPP <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span> specifies that "the link MTU size for IPv4 is sent to the UE by including it in the PCO (see TS 24.501). The link MTU size for IPv6 is sent to the UE by including it in the IPv6 Router Advertisement message (see RFC 4861)".<a href="#section-1-3.2.1" class="pilcrow">¶</a></p>
+while the underlying link is referred to as "bearers".<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<span id="name-sample-attachment-circuits"></span><div id="ac">
+<figure id="figure-1">
+          <div class="alignCenter art-text artwork" id="section-1.1-2.1">
+<pre>
+     .-------.                .--------------------.         .-------.
+     |       +------.         |                    +---AC----+       |
+     | UE#1  |      |         |                    +---AC----+ CE#2  |
+     '-------'      .---AC----+                    |         '-------'
+                              |     Network        |
+     .-------.      .---AC----+                    |
+     |       |      |         |                    |         .-------.
+     | CE#1  +------'         |                    +---AC----+ CE#3  |
+     '-------'                |                    |         '----+--'
+        /|\                   '-----------+--------'              |
+       o o o                              |                       |
+       Hosts                              '-----------AC----------'
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-sample-attachment-circuits" class="selfRef">Sample Attachment Circuits</a>
+          </figcaption></figure>
+</div>
+<p id="section-1.1-3">Customer terminating points are also provided with a set of information (e.g., IP address/prefix) to successfully be
+able to send and receive traffic over an attachment circuit. A comprehensive list of provisioning parameters that are available on
+the PE-side of an attachment circuit is documented in <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="networks-are-already-sharing-network-properties-with-hosts">
+<section id="section-1.2">
+        <h3 id="name-networks-are-already-sharin">
+<a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-networks-are-already-sharin" class="section-name selfRef">Networks Are Already Sharing Network Properties with Hosts</a>
+        </h3>
+<p id="section-1.2-1">To optimally deliver connectivity services, networks also advertize a set of information to connected hosts such as:<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-1.2-2">
+          <dt id="section-1.2-2.1">Link Maximum Transmission Unit (MTU) to avoid fragmentation:</dt>
+          <dd style="margin-left: 1.5em" id="section-1.2-2.2">
+            <p id="section-1.2-2.2.1">For example, the 3GPP <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span> specifies that "the link MTU size for IPv4 is sent to the UE by including it in the PCO (see TS 24.501). The link MTU size for IPv6 is sent to the UE by including it in the IPv6 Router Advertisement message (see RFC 4861)".<a href="#section-1.2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.2-2.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-1.2-2.4">
+            <p id="section-1.2-2.4.1"><span><a href="https://rfc-editor.org/rfc/rfc7066#section-2.10" class="relref">Section 2.10</a> of [<a href="#RFC7066" class="cite xref">RFC7066</a>]</span> indicates that a cellular host should honor the MTU option in the Router Advertisement (<span><a href="https://rfc-editor.org/rfc/rfc4861#section-4.6.4" class="relref">Section 4.6.4</a> of [<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>) given that the 3GPP system
+architecture uses extensive tunneling in its packet core network below the 3GPP link, and this may lead to packet fragmentation issues.<a href="#section-1.2-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.2-2.5">Prefixes of Network Address and Protocol Translation from IPv6 clients to IPv4 servers (NAT64) <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:</dt>
+          <dd style="margin-left: 1.5em" id="section-1.2-2.6">
+            <p id="section-1.2-2.6.1">This option is useful to enable local DNSSEC validation, support networks with no DNS64, support IPv4 address literals on an IPv6-only host, etc.<a href="#section-1.2-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.2-2.7">Encrypted DNS option <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>:</dt>
+          <dd style="margin-left: 1.5em" id="section-1.2-2.8">
+            <p id="section-1.2-2.8.1">This option is used to discover encrypted DNS resolvers of a local network.<a href="#section-1.2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-1-3.3"></dt>
-        <dd style="margin-left: 1.5em" id="section-1-3.4">
-          <p id="section-1-3.4.1"><span><a href="https://rfc-editor.org/rfc/rfc7066#section-2.10" class="relref">Section 2.10</a> of [<a href="#RFC7066" class="cite xref">RFC7066</a>]</span> indicates that a cellular host should honor the MTU option in the Router Advertisement (<span><a href="https://rfc-editor.org/rfc/rfc4861#section-4.6.4" class="relref">Section 4.6.4</a> of [<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>) given that the 3GPP system
-architecture uses extensive tunneling in its packet core network below the 3GPP link, and this may lead to packet fragmentation issues.<a href="#section-1-3.4.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-1-3.5">Prefixes of Network Address and Protocol Translation from IPv6 clients to IPv4 servers (NAT64) <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:</dt>
-        <dd style="margin-left: 1.5em" id="section-1-3.6">
-          <p id="section-1-3.6.1">This option is useful to enable local DNSSEC validation, support networks with no DNS64, support IPv4 address literals on an IPv6-only host, etc.<a href="#section-1-3.6.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-1-3.7">Encrypted DNS option <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>:</dt>
-        <dd style="margin-left: 1.5em" id="section-1-3.8">
-          <p id="section-1-3.8.1">This option is used to discover encrypted DNS resolvers of a local network.<a href="#section-1-3.8.1" class="pilcrow">¶</a></p>
-</dd>
-      <dd class="break"></dd>
 </dl>
-<p id="section-1-4"><span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> discusses some use cases where it is beneficial to share policies to hosts. <strong>Given that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span></strong>, this document specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. This option is called: Network Rate-Limit Policy (NRLP).<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">The main motivations for the use of ND for such a discovery are listed in <span><a href="https://rfc-editor.org/rfc/rfc8781#section-3" class="relref">Section 3</a> of [<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:<a href="#section-1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="whats-in">
+<section id="section-1.3">
+        <h3 id="name-whats-in">
+<a href="#section-1.3" class="section-number selfRef">1.3. </a><a href="#name-whats-in" class="section-name selfRef">What's In?</a>
+        </h3>
+<p id="section-1.3-1"><span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> discusses some use cases where it is beneficial to share policies with the hosts. <strong>Given that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span></strong>, this document specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. For parity, a DHCP option <span>[<a href="#RFC2132" class="cite xref">RFC2132</a>]</span> is also defined for IPv4.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
+<p id="section-1.3-2">These options are called: Network Rate-Limit Policy (NRLP).<a href="#section-1.3-2" class="pilcrow">¶</a></p>
+<p id="section-1.3-3">This document uses the host/network metadata specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>.<a href="#section-1.3-3" class="pilcrow">¶</a></p>
+<p id="section-1.3-4">In order to ensure consistent design for both IPv4 and IPv6 attachment circuits, <a href="#sec-blob" class="auto internal xref">Section 2.1</a> groups the set of NRLP parameters that are returned independent of the address family. This blob can be leveraged in networks where DHCP is not used and ease the mapping with specific protocols used in these networks. For example, a PCO NRLP IE can be defined in 3GPP.<a href="#section-1.3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="design-motivation">
+<section id="section-1.4">
+        <h3 id="name-design-motivation">
+<a href="#section-1.4" class="section-number selfRef">1.4. </a><a href="#name-design-motivation" class="section-name selfRef">Design Motivation</a>
+        </h3>
+<p id="section-1.4-1">The main motivations for the use of ND for such a discovery are listed in <span><a href="https://rfc-editor.org/rfc/rfc8781#section-3" class="relref">Section 3</a> of [<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:<a href="#section-1.4-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1-6.1">
-          <p id="section-1-6.1.1">Fate sharing<a href="#section-1-6.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-1.4-2.1">
+            <p id="section-1.4-2.1.1">Fate sharing<a href="#section-1.4-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-6.2">
-          <p id="section-1-6.2.1">Atomic configuration<a href="#section-1-6.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.4-2.2">
+            <p id="section-1.4-2.2.1">Atomic configuration<a href="#section-1.4-2.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-6.3">
-          <p id="section-1-6.3.1">Updatability: change the policy at any time.<a href="#section-1-6.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.4-2.3">
+            <p id="section-1.4-2.3.1">Updatability: change the policy at any time.<a href="#section-1.4-2.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-6.4">
-          <p id="section-1-6.4.1">Deployability<a href="#section-1-6.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.4-2.4">
+            <p id="section-1.4-2.4.1">Deployability<a href="#section-1.4-2.4.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="section-1-7">The solution defined in this document:<a href="#section-1-7" class="pilcrow">¶</a></p>
+        </ul>
+<p id="section-1.4-3">The solution specified in the document is designed to <strong>ease integration with network managment tools</strong> that are used to manage and expose policies. It does so by leveraging the policy structure defined in <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-1.4-3" class="pilcrow">¶</a></p>
+<p id="section-1.4-4">The solution defined in this document:<a href="#section-1.4-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1-8.1">
-          <p id="section-1-8.1.1"><strong>Does not require any data plane change</strong>.<a href="#section-1-8.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-1.4-5.1">
+            <p id="section-1.4-5.1.1"><strong>Does not require any data plane change</strong>.<a href="#section-1.4-5.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-8.2">
-          <p id="section-1-8.2.1"><strong>Supports cascaded environments</strong> where multiple levels to enforce rate limiting polices is required (e.g., WAN and LAN).<a href="#section-1-8.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.4-5.2">
+            <p id="section-1.4-5.2.1"><strong>Supports cascaded environments</strong> where multiple levels to enforce rate limiting polices is required (e.g., WAN and LAN).<a href="#section-1.4-5.2.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="section-1-9">Compared to proxy or encapsulation proposals (e.g., <span>[<a href="#I-D.ihlar-masque-sconepro-mediabitrate" class="cite xref">I-D.ihlar-masque-sconepro-mediabitrate</a>]</span>), the solution defined in this document:<a href="#section-1-9" class="pilcrow">¶</a></p>
+        </ul>
+<p id="section-1.4-6">Compared to a proxy or an encapsulation-based proposal (e.g., <span>[<a href="#I-D.ihlar-masque-sconepro-mediabitrate" class="cite xref">I-D.ihlar-masque-sconepro-mediabitrate</a>]</span>), the solution defined in this document:<a href="#section-1.4-6" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1-10.1">
-          <p id="section-1-10.1.1"><strong>Does not impact the MTU tweaking</strong>.<a href="#section-1-10.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-1.4-7.1">
+            <p id="section-1.4-7.1.1"><strong>Does not impact the MTU tweaking</strong>.<a href="#section-1.4-7.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-10.2">
-          <p id="section-1-10.2.1"><strong>Does not suffer from side effects of multi-layer encryption schemes</strong> on the packet processing and overall performance of involved network nodes.<a href="#section-1-10.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.4-7.2">
+            <p id="section-1.4-7.2.1"><strong>Does not suffer from side effects of multi-layer encryption schemes</strong> on the packet processing and overall performance of involved network nodes.<a href="#section-1.4-7.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-10.3">
-          <p id="section-1-10.3.1"><strong>Does not suffer from nested congestion control</strong>.<a href="#section-1-10.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.4-7.3">
+            <p id="section-1.4-7.3.1"><strong>Does not suffer from nested congestion control</strong>.<a href="#section-1.4-7.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-10.4">
-          <p id="section-1-10.4.1"><strong>Requires a minor change to the network</strong>: upgrade PE nodes to support a new ND option. Note that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>.<a href="#section-1-10.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.4-7.4">
+            <p id="section-1.4-7.4.1"><strong>Requires a minor change to the network</strong>: upgrade PE nodes to support a new ND option. Note that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>.<a href="#section-1.4-7.4.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="section-1-11">This document does not make any assumption about the type of the network (fixed, cellular, etc.) that terminates an attachment circuit.<a href="#section-1-11" class="pilcrow">¶</a></p>
-<p id="section-1-12">Likewise, the document does not make any assumption about the services or applications that are delivered over an attachment circuit. Whether one or multiple services
-are bound to the same attachment circuit is deployment specific.<a href="#section-1-12" class="pilcrow">¶</a></p>
-<p id="section-1-13">This document does not specify how a receiving host uses the discovered policy. Readers should refer, e.g., to <span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> for some examples. Some deployment use cases for NRLP are provided below:<a href="#section-1-13" class="pilcrow">¶</a></p>
+        </ul>
+</section>
+</div>
+<div id="whats-out">
+<section id="section-1.5">
+        <h3 id="name-whats-out">
+<a href="#section-1.5" class="section-number selfRef">1.5. </a><a href="#name-whats-out" class="section-name selfRef">What's Out?</a>
+        </h3>
+<p id="section-1.5-1">This document does not make any assumption about the type of the network (fixed, cellular, etc.) that terminates an attachment circuit.<a href="#section-1.5-1" class="pilcrow">¶</a></p>
+<p id="section-1.5-2">Likewise, the document does not make any assumption about the services or applications that are delivered over an attachment circuit. Whether one or multiple services
+are bound to the same attachment circuit is deployment specific.<a href="#section-1.5-2" class="pilcrow">¶</a></p>
+<p id="section-1.5-3">This document does not specify how a receiving host uses the discovered policy. Readers should refer, e.g., to <span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> for some examples.<a href="#section-1.5-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sample-deployment-cases">
+<section id="section-1.6">
+        <h3 id="name-sample-deployment-cases">
+<a href="#section-1.6" class="section-number selfRef">1.6. </a><a href="#name-sample-deployment-cases" class="section-name selfRef">Sample Deployment Cases</a>
+        </h3>
+<p id="section-1.6-1">Some deployment use cases for NRLP are provided below:<a href="#section-1.6-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1-14.1">
-          <p id="section-1-14.1.1">A network may advertize a NRLP when it is overloaded, including when it is under attack. The rate limit policy is basically a reactive policy that is meant to adjust the behavior of connected hosts to better control the load during these exceptional events.<a href="#section-1-14.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-1.6-2.1">
+            <p id="section-1.6-2.1.1">A network may advertize a NRLP when it is overloaded, including when it is under attack. The rate limit policy is basically a reactive policy that is meant to adjust the behavior of connected hosts to better control the load during these exceptional events.<a href="#section-1.6-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-14.2">
-          <p id="section-1-14.2.1">Discovery of rate limit applied on attachment circuits (peering links, CE-PE links, etc.).<a href="#section-1-14.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.6-2.2">
+            <p id="section-1.6-2.2.1">Discovery of rate limit policy applied on attachment circuits (peering links, CE-PE links, etc.).<a href="#section-1.6-2.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-14.3">
-          <p id="section-1-14.3.1">A user may configure policies on the CPE such as securing some resources to a specific internal host used for gaming or video streaming. The CPE can use the RA NRLP to share these rate limit policies to each these connected hosts to adjust their forwarding behavior.<a href="#section-1-14.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-1.6-2.3">
+            <p id="section-1.6-2.3.1">A user may configure policies on the CPE such as securing some resources to a specific internal host used for gaming or video streaming. The CPE can use the NRLP option to share these rate limit policies to connected hosts to adjust their forwarding behavior.<a href="#section-1.6-2.3.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="section-1-15">This document uses the host/network metadata specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>.<a href="#section-1-15" class="pilcrow">¶</a></p>
+        </ul>
+</section>
+</div>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1303,6 +1424,112 @@ constraints applied to a flow, application, host, or subscriber.<a href="#sectio
 </dd>
       <dd class="break"></dd>
 </dl>
+<div id="sec-blob">
+<section id="section-2.1">
+        <h3 id="name-nrlp-blob">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-nrlp-blob" class="section-name selfRef">NRLP Blob</a>
+        </h3>
+<p id="section-2.1-1">This section defines the set of attributes that are included in an NRLP blob:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.1-2">
+          <dt id="section-2.1-2.1">D:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.2">
+            <p id="section-2.1-2.2.1">1-bit flag which indicates the direction on which to apply the enclosed polciy.<a href="#section-2.1-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.4">
+            <p id="section-2.1-2.4.1">When set to "1", this flag indicates that this policy is for
+network-to-host direction.<a href="#section-2.1-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.5"></dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.6">
+            <p id="section-2.1-2.6.1">When set to "0", this flag indicates that this policy is for
+host-to-network direction.<a href="#section-2.1-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.7">Scope:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.8">
+            <p id="section-2.1-2.8.1">7-bit field which specifies whether the policy is per host, per subscriber, etc.<a href="#section-2.1-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.9"></dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.10">
+            <p id="section-2.1-2.10.1">The following values are supported:<a href="#section-2.1-2.10.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.1-2.10.2.1">
+                <p id="section-2.1-2.10.2.1.1">"0": subscriber<a href="#section-2.1-2.10.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-2.1-2.10.2.2">
+                <p id="section-2.1-2.10.2.2.1">"1": host<a href="#section-2.1-2.10.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-2.1-2.10.2.3">
+                <p id="section-2.1-2.10.2.3.1">"2": application group<a href="#section-2.1-2.10.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.11">TC:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.12">
+            <p id="section-2.1-2.12.1">8-bit field which specifies a traffic category to which this policy applies.<a href="#section-2.1-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.13"></dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.14">
+            <p id="section-2.1-2.14.1">The following values are supported:<a href="#section-2.1-2.14.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.1-2.14.2.1">
+                <p id="section-2.1-2.14.2.1.1">"0": all traffic<a href="#section-2.1-2.14.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-2.1-2.14.2.2">
+                <p id="section-2.1-2.14.2.2.1">"1":        Browsing<a href="#section-2.1-2.14.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-2.1-2.14.2.3">
+                <p id="section-2.1-2.14.2.3.1">"2": Streaming<a href="#section-2.1-2.14.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-2.1-2.14.2.4">
+                <p id="section-2.1-2.14.2.4.1">"3":        Realtime<a href="#section-2.1-2.14.2.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-2.1-2.14.2.5">
+                <p id="section-2.1-2.14.2.5.1">"4": Bulk<a href="#section-2.1-2.14.2.5.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-2.1-2.14.2.6">
+                <p id="section-2.1-2.14.2.6.1">"5": background trafic<a href="#section-2.1-2.14.2.6.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.15">nominal bitrate (Mbps):</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.16">
+            <p id="section-2.1-2.16.1">Specifies the maximum number of bits that a network can receive or
+send during one second over an attachment circuit for a
+traffic category.<a href="#section-2.1-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.17"></dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.18">
+            <p id="section-2.1-2.18.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>.<a href="#section-2.1-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.19">burst bitrate (Mbps):</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.20">
+            <p id="section-2.1-2.20.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>. This field is optional.<a href="#section-2.1-2.20.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.21">burst duration:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.22">
+            <p id="section-2.1-2.22.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>. This field <span class="bcp14">MUST</span> be present
+only if a burst bitrate is present.<a href="#section-2.1-2.22.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-2.1-3.1">
+            <p id="section-2.1-3.1.1">Consider using <span>[<a href="#RFC4115" class="cite xref">RFC4115</a>]</span> (CIR/EIR).<a href="#section-2.1-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
 </section>
 </div>
 <div id="ipv6-ra-nrlp-option">
@@ -1315,9 +1542,9 @@ constraints applied to a flow, application, host, or subscriber.<a href="#sectio
         <h3 id="name-option-format">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-option-format" class="section-name selfRef">Option Format</a>
         </h3>
-<p id="section-3.1-1">The format of the IPv6 RA NRLP option is illustrated in <a href="#opt-format" class="auto internal xref">Figure 1</a>.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">The format of the IPv6 RA NRLP option is illustrated in <a href="#opt-format" class="auto internal xref">Figure 2</a>.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <span id="name-nrlp-option-format"></span><div id="opt-format">
-<figure id="figure-1">
+<figure id="figure-2">
           <div class="alignCenter art-text artwork" id="section-3.1-2.1">
 <pre>
  0                   1                   2                   3
@@ -1333,15 +1560,15 @@ constraints applied to a flow, application, host, or subscriber.<a href="#sectio
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </pre>
 </div>
-<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-nrlp-option-format" class="selfRef">NRLP Option Format</a>
           </figcaption></figure>
 </div>
-<p id="section-3.1-3">The fields of the option shown in <a href="#opt-format" class="auto internal xref">Figure 1</a> are as follows:<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">The fields of the option shown in <a href="#opt-format" class="auto internal xref">Figure 2</a> are as follows:<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-3.1-4">
           <dt id="section-3.1-4.1">Type:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-4.2">
-            <p id="section-3.1-4.2.1">8-bit identifier of the NRLP option as assigned by IANA (TBD).<a href="#section-3.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.2.1">8-bit identifier of the NRLP option as assigned by IANA (TBD1).<a href="#section-3.1-4.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.1-4.3">Length:</dt>
@@ -1358,101 +1585,35 @@ nominal bitrate is provided.<a href="#section-3.1-4.6.1" class="pilcrow">¶</a><
           <dd class="break"></dd>
 <dt id="section-3.1-4.7">D:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-4.8">
-            <p id="section-3.1-4.8.1">1-bit flag which indicates the direction on which to apply the enclosed polciy.<a href="#section-3.1-4.8.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.8.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-3.1-4.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.1-4.9"></dt>
+<dt id="section-3.1-4.9">Scope:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-4.10">
-            <p id="section-3.1-4.10.1">When set to "1", this flag indicates that this policy is for
-network-to-host direction.<a href="#section-3.1-4.10.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.10.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-3.1-4.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.1-4.11"></dt>
+<dt id="section-3.1-4.11">TC:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-4.12">
-            <p id="section-3.1-4.12.1">When set to "0", this flag indicates that this policy is for
-host-to-network direction.<a href="#section-3.1-4.12.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.12.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-3.1-4.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.1-4.13">Scope:</dt>
+<dt id="section-3.1-4.13">nominal bitrate (Mbps):</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-4.14">
-            <p id="section-3.1-4.14.1">7-bit field which specifies whether the policy is per host, per subscriber, etc.<a href="#section-3.1-4.14.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.14.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-3.1-4.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.1-4.15"></dt>
+<dt id="section-3.1-4.15">burst bitrate (Mbps):</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-4.16">
-            <p id="section-3.1-4.16.1">The following values are supported:<a href="#section-3.1-4.16.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.1-4.16.2.1">
-                <p id="section-3.1-4.16.2.1.1">"0": subscriber<a href="#section-3.1-4.16.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-3.1-4.16.2.2">
-                <p id="section-3.1-4.16.2.2.1">"1": host<a href="#section-3.1-4.16.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-3.1-4.16.2.3">
-                <p id="section-3.1-4.16.2.3.1">"2": application group<a href="#section-3.1-4.16.2.3.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
+            <p id="section-3.1-4.16.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-3.1-4.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.1-4.17">TC:</dt>
+<dt id="section-3.1-4.17">burst duration:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-4.18">
-            <p id="section-3.1-4.18.1">8-bit field which specifies a traffic category to which this policy applies.<a href="#section-3.1-4.18.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-3.1-4.19"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-4.20">
-            <p id="section-3.1-4.20.1">The following values are supported:<a href="#section-3.1-4.20.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.1-4.20.2.1">
-                <p id="section-3.1-4.20.2.1.1">"0": all traffic<a href="#section-3.1-4.20.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-3.1-4.20.2.2">
-                <p id="section-3.1-4.20.2.2.1">"1":        Browsing<a href="#section-3.1-4.20.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-3.1-4.20.2.3">
-                <p id="section-3.1-4.20.2.3.1">"2": Streaming<a href="#section-3.1-4.20.2.3.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-3.1-4.20.2.4">
-                <p id="section-3.1-4.20.2.4.1">"3":        Realtime<a href="#section-3.1-4.20.2.4.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-3.1-4.20.2.5">
-                <p id="section-3.1-4.20.2.5.1">"4": Bulk<a href="#section-3.1-4.20.2.5.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-3.1-4.20.2.6">
-                <p id="section-3.1-4.20.2.6.1">"5": background trafic<a href="#section-3.1-4.20.2.6.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-3.1-4.21">nominal bitrate (Mbps):</dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-4.22">
-            <p id="section-3.1-4.22.1">Specifies the maximum number of bits that a network can receive or
-send during one second over an attachment circuit for a
-traffic category.<a href="#section-3.1-4.22.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-3.1-4.23"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-4.24">
-            <p id="section-3.1-4.24.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>.<a href="#section-3.1-4.24.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-3.1-4.25">burst bitrate (Mbps):</dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-4.26">
-            <p id="section-3.1-4.26.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>. This field is optional.<a href="#section-3.1-4.26.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-3.1-4.27">burst duration:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-4.28">
-            <p id="section-3.1-4.28.1">See <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>. This field <span class="bcp14">MUST</span> be present
-only if a burst bitrate is present.<a href="#section-3.1-4.28.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.18.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-3.1-4.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-3.1-5.1">
-            <p id="section-3.1-5.1.1">Consider using <span>[<a href="#RFC4115" class="cite xref">RFC4115</a>]</span> (CIR/EIR).<a href="#section-3.1-5.1.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
 </section>
 </div>
 <div id="ipv6-host-behavior">
@@ -1482,70 +1643,272 @@ already advertized using RAs and those policies are consistent with the network 
 </div>
 </section>
 </div>
-<div id="security-considerations">
+<div id="dhcp-nrlp-option">
 <section id="section-4">
-      <h2 id="name-security-considerations">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-dhcp-nrlp-option">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-dhcp-nrlp-option" class="section-name selfRef">DHCP NRLP Option</a>
       </h2>
-<p id="section-4-1">As discussed in <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>, because RAs are required in all IPv6 configuration scenarios, RAs must already be secured, e.g., by deploying an RA-Guard <span>[<a href="#RFC6105" class="cite xref">RFC6105</a>]</span>. Providing all configuration in RAs reduces the attack surface to be targeted by malicious attackers trying to provide hosts with invalid configuration, as compared to distributing the configuration through multiple different mechanisms that need to be secured independently.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">RAs are already used in mobile networks to advertize the link MTU. The same security considerartions for MTU discovery apply for the NRLP discover.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">An attacker who has access to the RAs exchange over an attachment circuit may:<a href="#section-4-3" class="pilcrow">¶</a></p>
+<div id="option-format-1">
+<section id="section-4.1">
+        <h3 id="name-option-format-2">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-option-format-2" class="section-name selfRef">Option Format</a>
+        </h3>
+<p id="section-4.1-1">The format of the DHCP NRLP option is illustrated in <a href="#dhc-format" class="auto internal xref">Figure 3</a>.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<span id="name-nrlp-dhcp-option-format"></span><div id="dhc-format">
+<figure id="figure-3">
+          <div class="alignCenter art-text artwork" id="section-4.1-2.1">
+<pre>
+ 0                   1
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| OPTION_V4_NRLP|     Length    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+~      NRLP Instance Data #1    ~
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   ---
+.              ...              .    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ optional
+~      NRLP Instance Data #n    ~    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   ---
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-nrlp-dhcp-option-format" class="selfRef">NRLP DHCP Option Format</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.1-3">The fields of the option shown in  <a href="#dhc-format" class="auto internal xref">Figure 3</a> are as follows:<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.1-4">
+          <dt id="section-4.1-4.1">Code:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.2">
+            <p id="section-4.1-4.2.1">OPTION_V4_NRLP (TBD2).<a href="#section-4.1-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.3">Length:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.4">
+            <p id="section-4.1-4.4.1">Indicates the length of the enclosed data in octets.<a href="#section-4.1-4.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.5">NRLP Instance Data:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.6">
+            <p id="section-4.1-4.6.1">Includes the configuration data of an encrypted DNS resolver. The format of this field is shown in <a href="#nrlp-format" class="auto internal xref">Figure 4</a>.<a href="#section-4.1-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.7"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.8">
+            <p id="section-4.1-4.8.1">When several NRLPs are to be included, the "NRLP Instance Data" field is repeated.<a href="#section-4.1-4.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span id="name-nrlp-instance-data-format"></span><div id="nrlp-format">
+<figure id="figure-4">
+          <div class="alignCenter art-text artwork" id="section-4.1-5.1">
+<pre>
+ 0                   1
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   NRLP Instance Data Length   |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|D|   Scope     |      TC       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|      nominal bitrate          |
+|                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  burst bitrate (optional)     |
+|                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  duration   (optional)        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-nrlp-instance-data-format" class="selfRef">NRLP Instance Data Format</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.1-6">The fields shown in <a href="#nrlp-format" class="auto internal xref">Figure 4</a> are as follows:<a href="#section-4.1-6" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.1-7">
+          <dt id="section-4.1-7.1">NRLP Instance Data Length:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-7.2">
+            <p id="section-4.1-7.2.1">Length of all following data in octets. This field is set to '8' when only the nominal bitrate is provided for a NLRP instance.<a href="#section-4.1-7.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-7.3">D:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-7.4">
+            <p id="section-4.1-7.4.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-4.1-7.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-7.5">Scope:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-7.6">
+            <p id="section-4.1-7.6.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-4.1-7.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-7.7">TC:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-7.8">
+            <p id="section-4.1-7.8.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-4.1-7.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-7.9">nominal bitrate (Mbps):</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-7.10">
+            <p id="section-4.1-7.10.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-4.1-7.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-7.11">burst bitrate (Mbps):</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-7.12">
+            <p id="section-4.1-7.12.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-4.1-7.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-7.13">burst duration:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-7.14">
+            <p id="section-4.1-7.14.1">See <a href="#sec-blob" class="auto internal xref">Section 2.1</a>.<a href="#section-4.1-7.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-4.1-8">OPTION_V4_NRLP is a concatenation-requiring option. As such, the mechanism specified in <span>[<a href="#RFC3396" class="cite xref">RFC3396</a>]</span> <span class="bcp14">MUST</span> be used if OPTION_V4_NRLP exceeds the maximum DHCP option size of 255 octets.<a href="#section-4.1-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="dhcpv4-client-behavior">
+<section id="section-4.2">
+        <h3 id="name-dhcpv4-client-behavior">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-dhcpv4-client-behavior" class="section-name selfRef">DHCPv4 Client Behavior</a>
+        </h3>
+<p id="section-4.2-1">To discover a network rate-limit policy, the DHCP client includes OPTION_V4_NRLP in a Parameter Request List option <span>[<a href="#RFC2132" class="cite xref">RFC2132</a>]</span>.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">The DHCP client <span class="bcp14">MUST</span> be prepared to receive multiple "NRLP Instance Data" field entries in the OPTION_V4_NRLP option; each instance is to be treated as a separate network rate-limit policy.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-5">
+      <h2 id="name-security-considerations">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<div id="nd">
+<section id="section-5.1">
+        <h3 id="name-nd">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-nd" class="section-name selfRef">ND</a>
+        </h3>
+<p id="section-5.1-1">As discussed in <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>, because RAs are required in all IPv6 configuration scenarios, RAs must already be secured, e.g., by deploying an RA-Guard <span>[<a href="#RFC6105" class="cite xref">RFC6105</a>]</span>. Providing all configuration in RAs reduces the attack surface to be targeted by malicious attackers trying to provide hosts with invalid configuration, as compared to distributing the configuration through multiple different mechanisms that need to be secured independently.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">RAs are already used in mobile networks to advertize the link MTU. The same security considerartions for MTU discovery apply for the NRLP discover.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">An attacker who has access to the RAs exchanged over an attachment circuit may:<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4-4.1">
-          <p id="section-4-4.1.1">Decrease the bitrate: This may lower the perceived QoS if the host aggressively lowers its transmission rate.<a href="#section-4-4.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5.1-4.1">
+            <p id="section-5.1-4.1.1">Decrease the bitrate: This may lower the perceived QoS if the host aggressively lowers its transmission rate.<a href="#section-5.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.2">
-          <p id="section-4-4.2.1">Increase the bitrate value: The attachment circuit will be overloaded, but still the rate-limit at the network will discard excess traffic.<a href="#section-4-4.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.1-4.2">
+            <p id="section-5.1-4.2.1">Increase the bitrate value: The attachment circuit will be overloaded, but still the rate-limit at the network will discard excess traffic.<a href="#section-5.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.3">
-          <p id="section-4-4.3.1">Drop RAs: This is similar to the current operations, where no NRLP RA is shared.<a href="#section-4-4.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.1-4.3">
+            <p id="section-5.1-4.3.1">Drop RAs: This is similar to the current operations, where no NRLP RA is shared.<a href="#section-5.1-4.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.4">
-          <p id="section-4-4.4.1">Inject fake RAs: The implications are similar to the impacts of tweaking the values of a legitimate RA.<a href="#section-4-4.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.1-4.4">
+            <p id="section-5.1-4.4.1">Inject fake RAs: The implications are similar to the impacts of tweaking the values of a legitimate RA.<a href="#section-5.1-4.4.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
+        </ul>
+</section>
+</div>
+<div id="dhcp">
+<section id="section-5.2">
+        <h3 id="name-dhcp">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-dhcp" class="section-name selfRef">DHCP</a>
+        </h3>
+<p id="section-5.2-1">An attacker who has access to the DHCP exchanged over an attachment circuit may do a lot of harm (e.g., prevent access to the network).<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">The following mechanisms may be considered to mitigate spoofed or modified DHCP responses:<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.2-3">
+          <dt id="section-5.2-3.1">DHCPv6-Shield <span>[<a href="#RFC7610" class="cite xref">RFC7610</a>]</span>:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-3.2">
+            <p id="section-5.2-3.2.1">The network access node (e.g., a border router, a CPE, an Access Point (AP)) discards DHCP response messages received from any local endpoint.<a href="#section-5.2-3.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-3.3">Source Address Validation Improvement (SAVI) solution for DHCP <span>[<a href="#RFC7513" class="cite xref">RFC7513</a>]</span>:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-3.4">
+            <p id="section-5.2-3.4.1">The network access node filters packets with forged source IP addresses.<a href="#section-5.2-3.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-5.2-4">The above mechanisms would ensure that the endpoint receives the correct NRLP information, but these mechanisms cannot provide any information about the DHCP server or the entity hosting the DHCP server.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-5">
+<section id="section-6">
       <h2 id="name-iana-considerations">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-5-1">This document requests IANA to assign the following new IPv6 Neighbor Discovery Option
+<div id="neighbor-discovery-option">
+<section id="section-6.1">
+        <h3 id="name-neighbor-discovery-option">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-neighbor-discovery-option" class="section-name selfRef">Neighbor Discovery Option</a>
+        </h3>
+<p id="section-6.1-1">This document requests IANA to assign the following new IPv6 Neighbor Discovery Option
 type in the "IPv6 Neighbor Discovery Option Formats" subregistry under the "Internet Control Message Protocol version 6 (ICMPv6)
-Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">IANA-ND</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
+Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">IANA-ND</a>]</span>.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <span id="name-neighbor-discovery-nrlp-opt"></span><div id="iana-new-op">
 <table class="center" id="table-1">
-        <caption>
+          <caption>
 <a href="#table-1" class="selfRef">Table 1</a>:
 <a href="#name-neighbor-discovery-nrlp-opt" class="selfRef">Neighbor Discovery NRLP Option</a>
-        </caption>
+          </caption>
 <thead>
-          <tr>
-            <th class="text-left" rowspan="1" colspan="1">Type</th>
-            <th class="text-left" rowspan="1" colspan="1">Description</th>
-            <th class="text-left" rowspan="1" colspan="1">Reference</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">TBD</td>
-            <td class="text-left" rowspan="1" colspan="1">NRLP Option</td>
-            <td class="text-left" rowspan="1" colspan="1">This-Document</td>
-          </tr>
-        </tbody>
-      </table>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Type</th>
+              <th class="text-left" rowspan="1" colspan="1">Description</th>
+              <th class="text-left" rowspan="1" colspan="1">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TBD1</td>
+              <td class="text-left" rowspan="1" colspan="1">NRLP Option</td>
+              <td class="text-left" rowspan="1" colspan="1">This-Document</td>
+            </tr>
+          </tbody>
+        </table>
 </div>
 </section>
 </div>
-<section id="section-6">
+<div id="dhcp-option">
+<section id="section-6.2">
+        <h3 id="name-dhcp-option">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-dhcp-option" class="section-name selfRef">DHCP Option</a>
+        </h3>
+<p id="section-6.2-1">This document requests IANA to assign the following new DHCP Option Code in the "BOOTP Vendor Extensions and DHCP Options" registry maintained at <span>[<a href="#IANA-BOOTP" class="cite xref">IANA-BOOTP</a>]</span>.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<span id="name-dhcp-nrlp-option-2"></span><div id="iana-new-dhcp">
+<table class="center" id="table-2">
+          <caption>
+<a href="#table-2" class="selfRef">Table 2</a>:
+<a href="#name-dhcp-nrlp-option-2" class="selfRef">DHCP NRLP Option</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Tag</th>
+              <th class="text-left" rowspan="1" colspan="1">Name</th>
+              <th class="text-left" rowspan="1" colspan="1">Data Length</th>
+              <th class="text-left" rowspan="1" colspan="1">Meaning</th>
+              <th class="text-left" rowspan="1" colspan="1">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TBD2</td>
+              <td class="text-left" rowspan="1" colspan="1">OPTION_V4_NRLP</td>
+              <td class="text-left" rowspan="1" colspan="1">N</td>
+              <td class="text-left" rowspan="1" colspan="1">NRLP Option</td>
+              <td class="text-left" rowspan="1" colspan="1">This-Document</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+</section>
+</div>
+</section>
+</div>
+<section id="section-7">
       <h2 id="name-references">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-6.1">
+<section id="section-7.1">
         <h3 id="name-normative-references">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.rwbr-sconepro-flow-metadata">[I-D.rwbr-sconepro-flow-metadata]</dt>
@@ -1555,6 +1918,14 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2132">[RFC2132]</dt>
+        <dd>
+<span class="refAuthor">Alexander, S.</span> and <span class="refAuthor">R. Droms</span>, <span class="refTitle">"DHCP Options and BOOTP Vendor Extensions"</span>, <span class="seriesInfo">RFC 2132</span>, <span class="seriesInfo">DOI 10.17487/RFC2132</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2132">https://www.rfc-editor.org/rfc/rfc2132</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3396">[RFC3396]</dt>
+        <dd>
+<span class="refAuthor">Lemon, T.</span> and <span class="refAuthor">S. Cheshire</span>, <span class="refTitle">"Encoding Long Options in the Dynamic Host Configuration Protocol (DHCPv4)"</span>, <span class="seriesInfo">RFC 3396</span>, <span class="seriesInfo">DOI 10.17487/RFC3396</span>, <time datetime="2002-11" class="refDate">November 2002</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3396">https://www.rfc-editor.org/rfc/rfc3396</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4861">[RFC4861]</dt>
         <dd>
@@ -1568,9 +1939,9 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-6.2">
+<section id="section-7.2">
         <h3 id="name-informative-references">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
@@ -1585,9 +1956,13 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
         <dd>
 <span class="refAuthor">Rajagopalan, S.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">T. Reddy.K</span>, <span class="refTitle">"Host to Network Signaling Use Cases for Collaborative Traffic Differentiation"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-rwbr-tsvwg-signaling-use-cases-02</span>, <time datetime="2024-03-17" class="refDate">17 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-rwbr-tsvwg-signaling-use-cases-02">https://datatracker.ietf.org/doc/html/draft-rwbr-tsvwg-signaling-use-cases-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="IANA-BOOTP">[IANA-BOOTP]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"BOOTP Vendor Extensions and DHCP Options"</span>, <span>&lt;<a href="https://www.iana.org/assignments/bootp-dhcp-parameters/">https://www.iana.org/assignments/bootp-dhcp-parameters/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="IANA-ND">[IANA-ND]</dt>
         <dd>
-<span class="refAuthor">IANA</span>, <span class="refTitle">"IPv6 Neighbor Discovery Option Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml">https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml</a>&gt;</span>. </dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"IPv6 Neighbor Discovery Option Formats"</span>, <span>&lt;<a href="https://www.iana.org/assignments/icmpv6-parameters/">https://www.iana.org/assignments/icmpv6-parameters/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4115">[RFC4115]</dt>
         <dd>
@@ -1600,6 +1975,14 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <dt id="RFC7066">[RFC7066]</dt>
         <dd>
 <span class="refAuthor">Korhonen, J., Ed.</span>, <span class="refAuthor">Arkko, J., Ed.</span>, <span class="refAuthor">Savolainen, T.</span>, and <span class="refAuthor">S. Krishnan</span>, <span class="refTitle">"IPv6 for Third Generation Partnership Project (3GPP) Cellular Hosts"</span>, <span class="seriesInfo">RFC 7066</span>, <span class="seriesInfo">DOI 10.17487/RFC7066</span>, <time datetime="2013-11" class="refDate">November 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7066">https://www.rfc-editor.org/rfc/rfc7066</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7513">[RFC7513]</dt>
+        <dd>
+<span class="refAuthor">Bi, J.</span>, <span class="refAuthor">Wu, J.</span>, <span class="refAuthor">Yao, G.</span>, and <span class="refAuthor">F. Baker</span>, <span class="refTitle">"Source Address Validation Improvement (SAVI) Solution for DHCP"</span>, <span class="seriesInfo">RFC 7513</span>, <span class="seriesInfo">DOI 10.17487/RFC7513</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7513">https://www.rfc-editor.org/rfc/rfc7513</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7610">[RFC7610]</dt>
+        <dd>
+<span class="refAuthor">Gont, F.</span>, <span class="refAuthor">Liu, W.</span>, and <span class="refAuthor">G. Van de Velde</span>, <span class="refTitle">"DHCPv6-Shield: Protecting against Rogue DHCPv6 Servers"</span>, <span class="seriesInfo">BCP 199</span>, <span class="seriesInfo">RFC 7610</span>, <span class="seriesInfo">DOI 10.17487/RFC7610</span>, <time datetime="2015-08" class="refDate">August 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7610">https://www.rfc-editor.org/rfc/rfc7610</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8781">[RFC8781]</dt>
         <dd>
