@@ -1150,7 +1150,7 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
                 <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="auto internal xref">1.3</a>.  <a href="#name-whats-in" class="internal xref">What's In?</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.4">
-                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="auto internal xref">1.4</a>.  <a href="#name-design-motivation" class="internal xref">Design Motivation</a></p>
+                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="auto internal xref">1.4</a>.  <a href="#name-design-motivation-rationale" class="internal xref">Design Motivation &amp; Rationale</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.5">
                 <p id="section-toc.1-1.1.2.5.1"><a href="#section-1.5" class="auto internal xref">1.5</a>.  <a href="#name-whats-out" class="internal xref">What's Out?</a></p>
@@ -1317,16 +1317,18 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
         <h3 id="name-whats-in">
 <a href="#section-1.3" class="section-number selfRef">1.3. </a><a href="#name-whats-in" class="section-name selfRef">What's In?</a>
         </h3>
-<p id="section-1.3-1"><span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> discusses some use cases where it is beneficial to share policies with the hosts. <strong>Given that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span></strong>, this document specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. For parity, a DHCP option <span>[<a href="#RFC2132" class="cite xref">RFC2132</a>]</span> is also defined for IPv4.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
+<p id="section-1.3-1"><span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> discusses some use cases where it is beneficial to share policies with the hosts. <strong>Given that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span></strong>, this document specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. For address family parity, a DHCP option <span>[<a href="#RFC2132" class="cite xref">RFC2132</a>]</span> is also defined for IPv4.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
 <p id="section-1.3-2">These options are called: Network Rate-Limit Policy (NRLP).<a href="#section-1.3-2" class="pilcrow">¶</a></p>
 <p id="section-1.3-3">This document uses the host/network metadata specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>.<a href="#section-1.3-3" class="pilcrow">¶</a></p>
 <p id="section-1.3-4">In order to ensure consistent design for both IPv4 and IPv6 attachment circuits, <a href="#sec-blob" class="auto internal xref">Section 3</a> groups the set of NRLP parameters that are returned independent of the address family. This blob can be leveraged in networks where DHCP is not used and ease the mapping with specific protocols used in these networks. For example, a PCO NRLP IE can be defined in 3GPP.<a href="#section-1.3-4" class="pilcrow">¶</a></p>
+<p id="section-1.3-5">Whether host-to-network, network-to-host, or both policies are returning an NRLP is deployment specific. All these combinations are supported in this document.<a href="#section-1.3-5" class="pilcrow">¶</a></p>
+<p id="section-1.3-6">Also, the design supports returning one more NRLP instances for a given traffic direction.<a href="#section-1.3-6" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="design-motivation">
+<div id="design-motivation-rationale">
 <section id="section-1.4">
-        <h3 id="name-design-motivation">
-<a href="#section-1.4" class="section-number selfRef">1.4. </a><a href="#name-design-motivation" class="section-name selfRef">Design Motivation</a>
+        <h3 id="name-design-motivation-rationale">
+<a href="#section-1.4" class="section-number selfRef">1.4. </a><a href="#name-design-motivation-rationale" class="section-name selfRef">Design Motivation &amp; Rationale</a>
         </h3>
 <p id="section-1.4-1">The main motivations for the use of ND for such a discovery are listed in <span><a href="https://rfc-editor.org/rfc/rfc8781#section-3" class="relref">Section 3</a> of [<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:<a href="#section-1.4-1" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1351,6 +1353,9 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
 </li>
           <li class="normal" id="section-1.4-5.2">
             <p id="section-1.4-5.2.1"><strong>Supports cascaded environments</strong> where multiple levels to enforce rate limiting polices is required (e.g., WAN and LAN).<a href="#section-1.4-5.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.4-5.3">
+            <p id="section-1.4-5.3.1"><strong>Supports signaling policies bound to one or both traffic directions</strong>.<a href="#section-1.4-5.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-1.4-6">Compared to a proxy or an encapsulation-based proposal (e.g., <span>[<a href="#I-D.ihlar-masque-sconepro-mediabitrate" class="cite xref">I-D.ihlar-masque-sconepro-mediabitrate</a>]</span>), the solution defined in this document:<a href="#section-1.4-6" class="pilcrow">¶</a></p>
