@@ -1283,7 +1283,7 @@ the PE-side of an attachment circuit is documented in <span>[<a href="#I-D.ietf-
         </h3>
 <p id="section-1.2-1">To optimally deliver connectivity services, networks also advertize a set of information to connected hosts such as:<a href="#section-1.2-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-1.2-2">
-          <dt id="section-1.2-2.1">Link Maximum Transmission Unit (MTU) to avoid fragmentation:</dt>
+          <dt id="section-1.2-2.1">Link Maximum Transmission Unit (MTU):</dt>
           <dd style="margin-left: 1.5em" id="section-1.2-2.2">
             <p id="section-1.2-2.2.1">For example, the 3GPP <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span> specifies that "the link MTU size for IPv4 is sent to the UE by including it in the PCO (see TS 24.501). The link MTU size for IPv6 is sent to the UE by including it in the IPv6 Router Advertisement message (see RFC 4861)".<a href="#section-1.2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1351,7 +1351,7 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
 <p id="section-1.4-6">Compared to a proxy or an encapsulation-based proposal (e.g., <span>[<a href="#I-D.ihlar-masque-sconepro-mediabitrate" class="cite xref">I-D.ihlar-masque-sconepro-mediabitrate</a>]</span>), the solution defined in this document:<a href="#section-1.4-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1.4-7.1">
-            <p id="section-1.4-7.1.1"><strong>Does not impact the MTU tweaking</strong>.<a href="#section-1.4-7.1.1" class="pilcrow">¶</a></p>
+            <p id="section-1.4-7.1.1"><strong>Does not impact the MTU tweaking</strong>: No packet overhead is required.<a href="#section-1.4-7.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.4-7.2">
             <p id="section-1.4-7.2.1"><strong>Does not suffer from side effects of multi-layer encryption schemes</strong> on the packet processing and overall performance of involved network nodes.<a href="#section-1.4-7.2.1" class="pilcrow">¶</a></p>
@@ -1360,7 +1360,10 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
             <p id="section-1.4-7.3.1"><strong>Does not suffer from nested congestion control</strong>.<a href="#section-1.4-7.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.4-7.4">
-            <p id="section-1.4-7.4.1"><strong>Requires a minor change to the network</strong>: upgrade PE nodes to support a new ND option. Note that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>.<a href="#section-1.4-7.4.1" class="pilcrow">¶</a></p>
+            <p id="section-1.4-7.4.1"><strong>Does not suffer from the complications of IP address sharing <span>[<a href="#RFC6269" class="cite xref">RFC6269</a>]</span></strong>. Such issues are likely to be experienced for proxy-based solutions that multiplex internal connections using one or more external IP addresses.<a href="#section-1.4-7.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.4-7.5">
+            <p id="section-1.4-7.5.1"><strong>Requires a minor change to the network</strong>: upgrade PE nodes to support a new ND option. Note that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>.<a href="#section-1.4-7.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1971,6 +1974,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <dt id="RFC6105">[RFC6105]</dt>
         <dd>
 <span class="refAuthor">Levy-Abegnoli, E.</span>, <span class="refAuthor">Van de Velde, G.</span>, <span class="refAuthor">Popoviciu, C.</span>, and <span class="refAuthor">J. Mohacsi</span>, <span class="refTitle">"IPv6 Router Advertisement Guard"</span>, <span class="seriesInfo">RFC 6105</span>, <span class="seriesInfo">DOI 10.17487/RFC6105</span>, <time datetime="2011-02" class="refDate">February 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6105">https://www.rfc-editor.org/rfc/rfc6105</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6269">[RFC6269]</dt>
+        <dd>
+<span class="refAuthor">Ford, M., Ed.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Durand, A.</span>, <span class="refAuthor">Levis, P.</span>, and <span class="refAuthor">P. Roberts</span>, <span class="refTitle">"Issues with IP Address Sharing"</span>, <span class="seriesInfo">RFC 6269</span>, <span class="seriesInfo">DOI 10.17487/RFC6269</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6269">https://www.rfc-editor.org/rfc/rfc6269</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7066">[RFC7066]</dt>
         <dd>
