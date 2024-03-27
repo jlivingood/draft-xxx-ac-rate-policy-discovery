@@ -254,7 +254,7 @@ Table of Contents
 
    *  *Does not impact the forwarding peformance of network nodes*. For
       example, the proxy forwarded mode [I-D.ietf-masque-quic-proxy]
-      requires rewritting connection identifiers; that is, the
+      requires rewriting connection identifiers; that is, the
       performance degradation will be at least equivalent to NAT.
 
    *  *Does not suffer from the complications of IP address sharing
