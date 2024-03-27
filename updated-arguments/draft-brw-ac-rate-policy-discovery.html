@@ -1404,10 +1404,13 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
             <p id="section-1.4-5.3.1"><strong>Does not impact the connection setup delay</strong>.<a href="#section-1.4-5.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.4-5.4">
-            <p id="section-1.4-5.4.1"><strong>Supports cascaded environments</strong> where multiple levels to enforce rate limiting polices is required (e.g., WAN and LAN).<a href="#section-1.4-5.4.1" class="pilcrow">¶</a></p>
+            <p id="section-1.4-5.4.1"><strong>Does not require to reveal the identity of the target server or the application itself</strong> to consume the signal.<a href="#section-1.4-5.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.4-5.5">
-            <p id="section-1.4-5.5.1"><strong>Supports signaling policies bound to one or both traffic directions</strong>.<a href="#section-1.4-5.5.1" class="pilcrow">¶</a></p>
+            <p id="section-1.4-5.5.1"><strong>Supports cascaded environments</strong> where multiple levels to enforce rate limiting polices is required (e.g., WAN and LAN).<a href="#section-1.4-5.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.4-5.6">
+            <p id="section-1.4-5.6.1"><strong>Supports signaling policies bound to one or both traffic directions</strong>.<a href="#section-1.4-5.6.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-1.4-6">Compared to a proxy or an encapsulation-based proposal (e.g., <span>[<a href="#I-D.ihlar-masque-sconepro-mediabitrate" class="cite xref">I-D.ihlar-masque-sconepro-mediabitrate</a>]</span>), the solution defined in this document:<a href="#section-1.4-6" class="pilcrow">¶</a></p>
@@ -1422,13 +1425,16 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
             <p id="section-1.4-7.3.1"><strong>Does not suffer from nested congestion control</strong> for tunneled proxy mode.<a href="#section-1.4-7.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.4-7.4">
-            <p id="section-1.4-7.4.1"><strong>Does not suffer from the complications of IP address sharing <span>[<a href="#RFC6269" class="cite xref">RFC6269</a>]</span></strong>. Such issues are likely to be experienced for proxy-based solutions that multiplex internal connections using one or more external IP addresses.<a href="#section-1.4-7.4.1" class="pilcrow">¶</a></p>
+            <p id="section-1.4-7.4.1"><strong>Does not impact the forwarding peformance of network nodes</strong>. For example, the proxy forwarded mode <span>[<a href="#I-D.ietf-masque-quic-proxy" class="cite xref">I-D.ietf-masque-quic-proxy</a>]</span> requires rewritting connection identifiers; that is, the performance degradation will be at least equivalent to NAT.<a href="#section-1.4-7.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.4-7.5">
-            <p id="section-1.4-7.5.1"><strong>Does not require manipulating extra steering policies on the host</strong> to decide which flows can be forwarded over or outside the proxy connection.<a href="#section-1.4-7.5.1" class="pilcrow">¶</a></p>
+            <p id="section-1.4-7.5.1"><strong>Does not suffer from the complications of IP address sharing <span>[<a href="#RFC6269" class="cite xref">RFC6269</a>]</span></strong>. Such issues are likely to be experienced for proxy-based solutions that multiplex internal connections using one or more external IP addresses.<a href="#section-1.4-7.5.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.4-7.6">
-            <p id="section-1.4-7.6.1"><strong>Requires a minor change to the network</strong>: For IPv6, upgrade PE nodes to support a new ND option. Note that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>. For IPv4, configure DHCP servers to include a new DHCP option.<a href="#section-1.4-7.6.1" class="pilcrow">¶</a></p>
+            <p id="section-1.4-7.6.1"><strong>Does not require manipulating extra steering policies on the host</strong> to decide which flows can be forwarded over or outside the proxy connection.<a href="#section-1.4-7.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.4-7.7">
+            <p id="section-1.4-7.7.1"><strong>Requires a minor change to the network</strong>: For IPv6, upgrade PE nodes to support a new ND option. Note that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span>. For IPv4, configure DHCP servers to include a new DHCP option.<a href="#section-1.4-7.7.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>

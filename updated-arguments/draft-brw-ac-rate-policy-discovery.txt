@@ -227,6 +227,9 @@ Table of Contents
 
    *  *Does not impact the connection setup delay*.
 
+   *  *Does not require to reveal the identity of the target server or
+      the application itself* to consume the signal.
+
    *  *Supports cascaded environments* where multiple levels to enforce
       rate limiting polices is required (e.g., WAN and LAN).
 
@@ -248,6 +251,11 @@ Table of Contents
 
    *  *Does not suffer from nested congestion control* for tunneled
       proxy mode.
+
+   *  *Does not impact the forwarding peformance of network nodes*. For
+      example, the proxy forwarded mode [I-D.ietf-masque-quic-proxy]
+      requires rewritting connection identifiers; that is, the
+      performance degradation will be at least equivalent to NAT.
 
    *  *Does not suffer from the complications of IP address sharing
       [RFC6269]*. Such issues are likely to be experienced for proxy-
