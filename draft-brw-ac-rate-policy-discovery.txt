@@ -2,17 +2,16 @@
 
 
 
-Network Working Group                                       M. Boucadair
+sconepro                                                    M. Boucadair
 Internet-Draft                                                    Orange
-Intended status: Standards Track                                T. Reddy
-Expires: 29 September 2024                                         Nokia
-                                                                 D. Wing
-                                                    Cloud Software Group
+Intended status: Standards Track                                 D. Wing
+Expires: 29 September 2024                          Cloud Software Group
+                                                                T. Reddy
+                                                                   Nokia
                                                            28 March 2024
 
 
-Discovery of Network Rate-Limit Policies Using Router Advertisements and
-                                  DHCP
+            Discovery of Network Rate-Limit Policies (NRLPs)
                draft-brw-ac-rate-policy-discovery-latest
 
 Abstract
@@ -1008,13 +1007,13 @@ Authors' Addresses
    Email: mohamed.boucadair@orange.com
 
 
-   Tirumaleswar Reddy
-   Nokia
-   India
-   Email: kondtir@gmail.com
-
-
    Dan Wing
    Cloud Software Group Holdings, Inc.
    United States of America
    Email: danwing@gmail.com
+
+
+   Tirumaleswar Reddy
+   Nokia
+   India
+   Email: kondtir@gmail.com
