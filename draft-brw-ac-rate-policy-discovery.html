@@ -1158,6 +1158,9 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.6">
                 <p id="section-toc.1-1.1.2.6.1"><a href="#section-1.6" class="auto internal xref">1.6</a>.  <a href="#name-sample-deployment-cases" class="internal xref">Sample Deployment Cases</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.7">
+                <p id="section-toc.1-1.1.2.7.1"><a href="#section-1.7" class="auto internal xref">1.7</a>.  <a href="#name-deployment-incentives" class="internal xref">Deployment Incentives</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
@@ -1599,6 +1602,33 @@ are bound to the same attachment circuit is deployment specific.<a href="#sectio
 </li>
           <li class="normal" id="section-1.6-2.3">
             <p id="section-1.6-2.3.1">A user may configure policies on the CPE such as securing some resources to a specific internal host used for gaming or video streaming. The CPE can use the NRLP option to share these rate limit policies to connected hosts to adjust their forwarding behavior.<a href="#section-1.6-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="deployment-incentives">
+<section id="section-1.7">
+        <h3 id="name-deployment-incentives">
+<a href="#section-1.7" class="section-number selfRef">1.7. </a><a href="#name-deployment-incentives" class="section-name selfRef">Deployment Incentives</a>
+        </h3>
+<p id="section-1.7-1">Some applications support some forms of bandwidth measurements (e.g., <span>[<a href="#app-measurement" class="cite xref">app-measurement</a>]</span>) which feed
+how the content is accessed to using ABR. Complementing or replacing these measurements with explicit signals
+depends upon:<a href="#section-1.7-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1.7-2.1">
+            <p id="section-1.7-2.1.1">the extra cost that is required to support both mechanisms at the application layer.<a href="#section-1.7-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.7-2.2">
+            <p id="section-1.7-2.2.1">the complexity balance between performing the measurements vs. consuming the signal.<a href="#section-1.7-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.7-2.3">
+            <p id="section-1.7-2.3.1">whether the measurements reflect actual network conditions or severely diverge.<a href="#section-1.7-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.7-2.4">
+            <p id="section-1.7-2.4.1">the availability of the network signals at the first place: it is unlikely that all networks will support sending the signals. Deployment incentives at the network may vary.<a href="#section-1.7-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.7-2.5">
+            <p id="section-1.7-2.5.1">the host support may be variable.<a href="#section-1.7-2.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -2403,6 +2433,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="app-measurement">[app-measurement]</dt>
+        <dd>
+<span class="refAuthor">Gurel, Z.</span> and <span class="refAuthor">A. C. Begen</span>, <span class="refTitle">"Bandwidth measurement for QUIC"</span>, <time datetime="2024" class="refDate">2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/slides-119-moq-bandwidth-measurement-for-quic/">https://datatracker.ietf.org/doc/slides-119-moq-bandwidth-measurement-for-quic/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-masque-quic-proxy">[I-D.ietf-masque-quic-proxy]</dt>
         <dd>
 <span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Rosenberg, E.</span>, and <span class="refAuthor">D. Schinazi</span>, <span class="refTitle">"QUIC-Aware Proxying Using HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-masque-quic-proxy-01</span>, <time datetime="2024-02-12" class="refDate">12 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-masque-quic-proxy-01">https://datatracker.ietf.org/doc/html/draft-ietf-masque-quic-proxy-01</a>&gt;</span>. </dd>

@@ -79,6 +79,7 @@ Table of Contents
      1.4.  Design Motivation & Rationale
      1.5.  What's Out?
      1.6.  Sample Deployment Cases
+     1.7.  Deployment Incentives
    2.  Conventions and Definitions
    3.  NRLP Blob
    4.  IPv6 RA NRLP Option
@@ -327,6 +328,28 @@ Table of Contents
       streaming.  The CPE can use the NRLP option to share these rate
       limit policies to connected hosts to adjust their forwarding
       behavior.
+
+1.7.  Deployment Incentives
+
+   Some applications support some forms of bandwidth measurements (e.g.,
+   [app-measurement]) which feed how the content is accessed to using
+   ABR.  Complementing or replacing these measurements with explicit
+   signals depends upon:
+
+   *  the extra cost that is required to support both mechanisms at the
+      application layer.
+
+   *  the complexity balance between performing the measurements vs.
+      consuming the signal.
+
+   *  whether the measurements reflect actual network conditions or
+      severely diverge.
+
+   *  the availability of the network signals at the first place: it is
+      unlikely that all networks will support sending the signals.
+      Deployment incentives at the network may vary.
+
+   *  the host support may be variable.
 
 2.  Conventions and Definitions
 
@@ -852,6 +875,11 @@ Table of Contents
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
 9.2.  Informative References
+
+   [app-measurement]
+              Gurel, Z. and A. C. Begen, "Bandwidth measurement for
+              QUIC", 2024, <https://datatracker.ietf.org/doc/slides-119-
+              moq-bandwidth-measurement-for-quic/>.
 
    [I-D.ietf-masque-quic-proxy]
               Pauly, T., Rosenberg, E., and D. Schinazi, "QUIC-Aware
