@@ -261,6 +261,10 @@ Table of Contents
    Readers should refer, e.g., to [I-D.rwbr-tsvwg-signaling-use-cases]
    for some examples.
 
+   This document does not assume nor preclude that other mechanims,
+   e.g., Low Latency, Low Loss, and Scalable Throughput (L4S) [RFC9330],
+   are enabled in a bottleneck link.
+
 1.5.  Design Motivation & Rationale
 
    The main motivations for the use of ND for such a discovery are
@@ -1047,6 +1051,12 @@ Table of Contents
               (DOTS) Signal Channel Call Home", RFC 9066,
               DOI 10.17487/RFC9066, December 2021,
               <https://www.rfc-editor.org/rfc/rfc9066>.
+
+   [RFC9330]  Briscoe, B., Ed., De Schepper, K., Bagnulo, M., and G.
+              White, "Low Latency, Low Loss, and Scalable Throughput
+              (L4S) Internet Service: Architecture", RFC 9330,
+              DOI 10.17487/RFC9330, January 2023,
+              <https://www.rfc-editor.org/rfc/rfc9330>.
 
    [RFC9463]  Boucadair, M., Ed., Reddy.K, T., Ed., Wing, D., Cook, N.,
               and T. Jensen, "DHCP and Router Advertisement Options for
