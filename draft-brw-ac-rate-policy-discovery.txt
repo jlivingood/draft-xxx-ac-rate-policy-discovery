@@ -5,10 +5,10 @@
 Network Working Group                                       M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                                T. Reddy
-Expires: 27 September 2024                                         Nokia
+Expires: 29 September 2024                                         Nokia
                                                                  D. Wing
                                                     Cloud Software Group
-                                                           26 March 2024
+                                                           28 March 2024
 
 
 Discovery of Network Rate-Limit Policies Using Router Advertisements and
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 September 2024.
+   This Internet-Draft will expire on 29 September 2024.
 
 Copyright Notice
 
@@ -223,6 +223,13 @@ Table of Contents
 
    *  *Does not require any data plane change*.
 
+   *  *Applicable to any transport protocol*.
+
+   *  *Does not impact the connection setup delay*.
+
+   *  *Does not require to reveal the identity of the target server or
+      the application itself* to consume the signal.
+
    *  *Supports cascaded environments* where multiple levels to enforce
       rate limiting polices is required (e.g., WAN and LAN).
 
@@ -236,15 +243,33 @@ Table of Contents
    *  *Does not impact the MTU tweaking*: No packet overhead is
       required.
 
+   *  *Does not suffer from side effects of multi-layer encryption
+      schemes* on the packet processing and overall performance of
+      involved network nodes.  Such issues are encountered, e.g., with
+      the tunneled mode or long header packets in the forwarded QUIC
+      proxy mode [I-D.ietf-masque-quic-proxy].
+
+   *  *Does not suffer from nested congestion control* for tunneled
+      proxy mode.
+
+   *  *Does not impact the forwarding peformance of network nodes*. For
+      example, the proxy forwarded mode [I-D.ietf-masque-quic-proxy]
+      requires rewriting connection identifiers; that is, the
+      performance degradation will be at least equivalent to NAT.
+
    *  *Does not suffer from the complications of IP address sharing
       [RFC6269]*. Such issues are likely to be experienced for proxy-
       based solutions that multiplex internal connections using one or
       more external IP addresses.
 
+   *  *Does not require manipulating extra steering policies on the
+      host* to decide which flows can be forwarded over or outside the
+      proxy connection.
+
    *  *Requires a minor change to the network*: For IPv6, upgrade PE
       nodes to support a new ND option.  Note that all IPv6 hosts and
       networks are required to support Neighbor Discovery [RFC4861].
-      For IPv4, configure DHCP server to include new DHCP option.
+      For IPv4, configure DHCP servers to include a new DHCP option.
 
 1.5.  What's Out?
 
@@ -803,6 +828,13 @@ Table of Contents
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
 9.2.  Informative References
+
+   [I-D.ietf-masque-quic-proxy]
+              Pauly, T., Rosenberg, E., and D. Schinazi, "QUIC-Aware
+              Proxying Using HTTP", Work in Progress, Internet-Draft,
+              draft-ietf-masque-quic-proxy-01, 12 February 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-masque-
+              quic-proxy-01>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
