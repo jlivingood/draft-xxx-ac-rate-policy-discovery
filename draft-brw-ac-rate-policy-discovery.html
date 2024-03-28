@@ -1472,7 +1472,7 @@ service offering while a more elaborated set is required for Enterprise services
         <h3 id="name-networks-are-already-sharin">
 <a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-networks-are-already-sharin" class="section-name selfRef">Networks Are Already Sharing Network Properties with Hosts</a>
         </h3>
-<p id="section-1.2-1">To optimally deliver connectivity services, networks also advertize a set of information to connected hosts such as:<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<p id="section-1.2-1">To optimally deliver connectivity services, networks also advertize a set of network properties to connected hosts such as:<a href="#section-1.2-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-1.2-2">
           <dt id="section-1.2-2.1">Link Maximum Transmission Unit (MTU):</dt>
           <dd style="margin-left: 1.5em" id="section-1.2-2.2">
@@ -1485,14 +1485,24 @@ service offering while a more elaborated set is required for Enterprise services
 architecture uses extensive tunneling in its packet core network below the 3GPP link, and this may lead to packet fragmentation issues.<a href="#section-1.2-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-1.2-2.5">Prefixes of Network Address and Protocol Translation from IPv6 clients to IPv4 servers (NAT64) <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:</dt>
+<dt id="section-1.2-2.5"></dt>
           <dd style="margin-left: 1.5em" id="section-1.2-2.6">
-            <p id="section-1.2-2.6.1">This option is useful to enable local DNSSEC validation, support networks with no DNS64, support IPv4 address literals on an IPv6-only host, etc.<a href="#section-1.2-2.6.1" class="pilcrow">¶</a></p>
+            <p id="section-1.2-2.6.1">MTU is cited as an example of path properties in <span><a href="https://rfc-editor.org/rfc/rfc9473#section-4" class="relref">Section 4</a> of [<a href="#RFC9473" class="cite xref">RFC9473</a>]</span>.<a href="#section-1.2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-1.2-2.7">Encrypted DNS option <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>:</dt>
+<dt id="section-1.2-2.7">Prefixes of Network Address and Protocol Translation from IPv6 clients to IPv4 servers (NAT64) <span>[<a href="#RFC8781" class="cite xref">RFC8781</a>]</span>:</dt>
           <dd style="margin-left: 1.5em" id="section-1.2-2.8">
-            <p id="section-1.2-2.8.1">This option is used to discover encrypted DNS resolvers of a local network.<a href="#section-1.2-2.8.1" class="pilcrow">¶</a></p>
+            <p id="section-1.2-2.8.1">This option is useful to enable local DNSSEC validation, support networks with no DNS64, support IPv4 address literals on an IPv6-only host, etc.<a href="#section-1.2-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.2-2.9"></dt>
+          <dd style="margin-left: 1.5em" id="section-1.2-2.10">
+            <p id="section-1.2-2.10.1">NAT is cited as an example of useful path properties  (see "Service Function" bullet in <span><a href="https://rfc-editor.org/rfc/rfc9473#section-4" class="relref">Section 4</a> of [<a href="#RFC9473" class="cite xref">RFC9473</a>]</span>).<a href="#section-1.2-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.2-2.11">Encrypted DNS option <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>:</dt>
+          <dd style="margin-left: 1.5em" id="section-1.2-2.12">
+            <p id="section-1.2-2.12.1">This option is used to discover encrypted DNS resolvers of a local network.<a href="#section-1.2-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1619,19 +1629,19 @@ how the content is accessed to using ABR. Complementing or replacing these measu
 depends upon:<a href="#section-1.7-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1.7-2.1">
-            <p id="section-1.7-2.1.1">the extra cost that is required to support both mechanisms at the application layer.<a href="#section-1.7-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-1.7-2.1.1">The extra cost that is required to support both mechanisms at the application layer.<a href="#section-1.7-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.7-2.2">
-            <p id="section-1.7-2.2.1">the complexity balance between performing the measurements vs. consuming the signal.<a href="#section-1.7-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-1.7-2.2.1">The complexity balance between performing the measurements vs. consuming the signal.<a href="#section-1.7-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.7-2.3">
-            <p id="section-1.7-2.3.1">whether the measurements reflect actual network conditions or severely diverge.<a href="#section-1.7-2.3.1" class="pilcrow">¶</a></p>
+            <p id="section-1.7-2.3.1">Whether the measurements reflect actual network conditions or severely diverge.<a href="#section-1.7-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.7-2.4">
-            <p id="section-1.7-2.4.1">the availability of the network signals at the first place: it is unlikely that all networks will support sending the signals. Deployment incentives at the network may vary.<a href="#section-1.7-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-1.7-2.4.1">The availability of the network signals at the first place: it is unlikely that all networks will support sending the signals. Deployment incentives at the network may vary.<a href="#section-1.7-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.7-2.5">
-            <p id="section-1.7-2.5.1">the host support may be variable.<a href="#section-1.7-2.5.1" class="pilcrow">¶</a></p>
+            <p id="section-1.7-2.5.1">The host support may be variable.<a href="#section-1.7-2.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1647,7 +1657,7 @@ depends upon:<a href="#section-1.7-1" class="pilcrow">¶</a></p>
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">This document uses the terms defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-05#section-2" class="relref">Section 2</a> of [<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-2">This document uses the terms defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-05#section-2" class="relref">Section 2</a> of [<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> and <span>[<a href="#RFC9473" class="cite xref">RFC9473</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">Also, this document makes use fo the following terms:<a href="#section-2-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-2-4">
         <dt id="section-2-4.1">Reactive policy:</dt>
@@ -2540,6 +2550,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <dt id="RFC9463">[RFC9463]</dt>
         <dd>
 <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Reddy.K, T., Ed.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">Cook, N.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"DHCP and Router Advertisement Options for the Discovery of Network-designated Resolvers (DNR)"</span>, <span class="seriesInfo">RFC 9463</span>, <span class="seriesInfo">DOI 10.17487/RFC9463</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9463">https://www.rfc-editor.org/rfc/rfc9463</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9473">[RFC9473]</dt>
+        <dd>
+<span class="refAuthor">Enghardt, R.</span> and <span class="refAuthor">C. Krähenbühl</span>, <span class="refTitle">"A Vocabulary of Path Properties"</span>, <span class="seriesInfo">RFC 9473</span>, <span class="seriesInfo">DOI 10.17487/RFC9473</span>, <time datetime="2023-09" class="refDate">September 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9473">https://www.rfc-editor.org/rfc/rfc9473</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TS-23.501">[TS-23.501]</dt>
       <dd>
