@@ -277,7 +277,10 @@ Table of Contents
    The solution specified in the document is designed to *ease
    integration with network managment tools* that are used to manage and
    expose policies.  It does so by leveraging the policy structure
-   defined in [I-D.ietf-opsawg-ntw-attachment-circuit].
+   defined in [I-D.ietf-opsawg-ntw-attachment-circuit].  That same
+   structure is also used in the context of service activation such as
+   Network Slicing [RFC9543]; see the example depicted in Appendix B.5
+   of [I-D.ietf-teas-ietf-network-slice-nbi-yang].
 
    The solution defined in this document:
 
@@ -962,6 +965,14 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
               ntw-attachment-circuit-05>.
 
+   [I-D.ietf-teas-ietf-network-slice-nbi-yang]
+              Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
+              "A YANG Data Model for the RFC 9543 Network Slice
+              Service", Work in Progress, Internet-Draft, draft-ietf-
+              teas-ietf-network-slice-nbi-yang-10, 16 March 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
+              ietf-network-slice-nbi-yang-10>.
+
    [I-D.ihlar-masque-sconepro-mediabitrate]
               Ihlar, M. and M. Kühlewind, "MASQUE extension for
               signaling media bitrate", Work in Progress, Internet-
@@ -1046,6 +1057,12 @@ Table of Contents
    [RFC9473]  Enghardt, R. and C. Krähenbühl, "A Vocabulary of Path
               Properties", RFC 9473, DOI 10.17487/RFC9473, September
               2023, <https://www.rfc-editor.org/rfc/rfc9473>.
+
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
 
    [TS-23.501]
               3GPP, "TS 23.501: System architecture for the 5G System
