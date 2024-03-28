@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-26T00:54:45.257999+00:00",
+  "timestamp": "2024-03-28T00:55:11.081136+00:00",
   "repo": "boucadair/draft-xxx-ac-rate-policy-discovery",
   "labels": [
     {
@@ -50,5 +50,152 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOLlGZlc5q4mxg",
+      "title": "reword argument with Dan's inputs",
+      "url": "https://github.com/boucadair/draft-xxx-ac-rate-policy-discovery/pull/1",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-27T06:24:55Z",
+      "updatedAt": "2024-03-28T00:49:10Z",
+      "baseRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "baseRefName": "main",
+      "baseRefOid": "8ada251dc1859ab569752a8d1d72878d839f3d84",
+      "headRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "headRefName": "updated-arguments",
+      "headRefOid": "2eca290c4c004a9083b1649150e00a3f620e4f44",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLlGZlc51H05h",
+          "commit": {
+            "abbreviatedOid": "2eca290"
+          },
+          "author": "danwing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-28T00:49:10Z",
+          "updatedAt": "2024-03-28T00:49:10Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOLlGZlc5q5CKm",
+      "title": "add an example of 5G arch",
+      "url": "https://github.com/boucadair/draft-xxx-ac-rate-policy-discovery/pull/2",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-27T07:51:01Z",
+      "updatedAt": "2024-03-27T07:55:04Z",
+      "baseRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "baseRefName": "main",
+      "baseRefOid": "8ada251dc1859ab569752a8d1d72878d839f3d84",
+      "headRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "f354d162a0be0c574a92ce993672b4db90ee6389",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOLlGZlc5q5PO5",
+      "title": "Deployment Incentives",
+      "url": "https://github.com/boucadair/draft-xxx-ac-rate-policy-discovery/pull/3",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-27T08:27:38Z",
+      "updatedAt": "2024-03-27T23:43:34Z",
+      "baseRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "baseRefName": "main",
+      "baseRefOid": "8ada251dc1859ab569752a8d1d72878d839f3d84",
+      "headRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "headRefName": "Deployment-Incentives",
+      "headRefOid": "d1a1e6a72a6d2c1118f82a419daea2a3498bd881",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLlGZlc51HoCM",
+          "commit": {
+            "abbreviatedOid": "d1a1e6a"
+          },
+          "author": "danwing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-27T23:43:34Z",
+          "updatedAt": "2024-03-27T23:43:34Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOLlGZlc5q9-PA",
+      "title": "NRLP is Permitted in the RADIUS DHCPv4-Options Attribute",
+      "url": "https://github.com/boucadair/draft-xxx-ac-rate-policy-discovery/pull/4",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-27T18:33:03Z",
+      "updatedAt": "2024-03-28T00:49:55Z",
+      "baseRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "baseRefName": "main",
+      "baseRefOid": "8ada251dc1859ab569752a8d1d72878d839f3d84",
+      "headRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "headRefName": "boucadair-patch-2",
+      "headRefOid": "b29c49d0434acc4208f113d252f791f7f485edcb",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLlGZlc51H1A9",
+          "commit": {
+            "abbreviatedOid": "b29c49d"
+          },
+          "author": "danwing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-28T00:49:55Z",
+          "updatedAt": "2024-03-28T00:49:55Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
 }
