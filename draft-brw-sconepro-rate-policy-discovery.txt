@@ -178,7 +178,7 @@ Table of Contents
                          Figure 2: 5GS Architecture
 
       The "AC" mention in Figure 2 is not present in [TS-23.501].  It is
-      added to the figure for the readers convenience to position an
+      added to the figure for the readers' convenience to position an
       attachment circuit.
 
 1.2.  Networks Are Already Sharing Network Properties with Hosts
@@ -236,8 +236,8 @@ Table of Contents
    Element can be defined in 3GPP_*.
 
    Whether host-to-network, network-to-host, or both policies are
-   returning an NRLP is deployment specific.  All these combinations are
-   supported in this document.
+   returned in an NRLP is deployment specific.  All these combinations
+   are supported in this document.
 
    Also, the design supports returning one more NRLP instances for a
    given traffic direction.
@@ -267,6 +267,11 @@ Table of Contents
    recommendation about how a receiving host uses the discovered policy.
    Readers should refer, e.g., to [I-D.rwbr-tsvwg-signaling-use-cases]
    for some examples.
+
+   Networks that advertize NLRP are likely to maintain the policing in
+   place within the network because of the trust model (hosts are not
+   considered as trusted devices).  Discussion about conditions under
+   which such model can be relaxed is out of scope of this document.
 
    This document does not assume nor preclude that other mechanims,
    e.g., Low Latency, Low Loss, and Scalable Throughput (L4S) [RFC9330],
