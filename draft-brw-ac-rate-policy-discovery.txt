@@ -224,8 +224,9 @@ Table of Contents
    attachment circuits, Section 3 groups the set of NRLP parameters that
    are returned independent of the address family.  This blob can be
    leveraged in networks where DHCP is not used and ease the mapping
-   with specific protocols used in these networks.  For example, a PCO
-   NRLP IE can be defined in 3GPP.
+   with specific protocols used in these networks.  For example, *_a
+   Protocol Configuration Option (PCO) [TS-24.008] NRLP Information
+   Element can be defined in 3GPP_*.
 
    Whether host-to-network, network-to-host, or both policies are
    returning an NRLP is deployment specific.  All these combinations are
@@ -250,9 +251,15 @@ Table of Contents
    circuit.  Whether one or multiple services are bound to the same
    attachment circuit is deployment specific.
 
-   This document does not specify how a receiving host uses the
-   discovered policy.  Readers should refer, e.g., to
-   [I-D.rwbr-tsvwg-signaling-use-cases] for some examples.
+   Applications will have access to all these NRLPs and will thus adjust
+   their behavior as a function of scope and traffic category indicated
+   in a policy (all traffic, streaming, etc.).  An application that
+   couples multiple flow types will adjust each flow type to be
+   consistent with the specific policy for the relevant traffic
+   category.  That's said, this document does not make any
+   recommendation about how a receiving host uses the discovered policy.
+   Readers should refer, e.g., to [I-D.rwbr-tsvwg-signaling-use-cases]
+   for some examples.
 
 1.5.  Design Motivation & Rationale
 
@@ -1020,6 +1027,12 @@ Table of Contents
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=3144>.
 
+   [TS-24.008]
+              3GPP, "Technical Specification Group Core Network and
+              Terminals; Mobile radio interface Layer 3 specification;
+              Core network protocols; Stage 3 (Release 18)", 2024,
+              <https://www.3gpp.org/DynaReport/24008.htm>.
+
 Appendix A.  Provisioning Domains
 
    PvD may also be considered as a mechanism to discover NRLP.
@@ -1031,18 +1044,18 @@ Appendix A.  Provisioning Domains
    NRLP list may include multiple instances if distinct policies are to
    be returned for distinct traffic categories.
 
-                          {
-                             "nrlp":[
-                                {
-                                   "direction":1,
-                                   "scope":1,
-                                   "tc":0,
-                                   "cir":50,
-                                   "cbs":10000,
-                                   "ebs":20000
-                                }
-                             ]
-                          }
+   {
+      "nrlp":[
+         {
+            "direction":1,
+            "scope":1,
+            "tc":0,
+            "cir":50,
+            "cbs":10000,
+            "ebs":20000
+         }
+      ]
+   }
 
                       Figure 8: NRLP Example with PvD
 

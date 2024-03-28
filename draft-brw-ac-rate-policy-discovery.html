@@ -1521,7 +1521,7 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
 <p id="section-1.3-1"><span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> discusses some use cases where it is beneficial to share policies with the hosts. <strong>Given that all IPv6 hosts and networks are required to support Neighbor Discovery <span>[<a href="#RFC4861" class="cite xref">RFC4861</a>]</span></strong>, this document specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. For address family parity, a DHCP option <span>[<a href="#RFC2132" class="cite xref">RFC2132</a>]</span> is also defined for IPv4.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
 <p id="section-1.3-2">These options are called: Network Rate-Limit Policy (NRLP).<a href="#section-1.3-2" class="pilcrow">¶</a></p>
 <p id="section-1.3-3">This document uses the host/network metadata specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>.<a href="#section-1.3-3" class="pilcrow">¶</a></p>
-<p id="section-1.3-4">In order to ensure consistent design for both IPv4 and IPv6 attachment circuits, <a href="#sec-blob" class="auto internal xref">Section 3</a> groups the set of NRLP parameters that are returned independent of the address family. This blob can be leveraged in networks where DHCP is not used and ease the mapping with specific protocols used in these networks. For example, a PCO NRLP IE can be defined in 3GPP.<a href="#section-1.3-4" class="pilcrow">¶</a></p>
+<p id="section-1.3-4">In order to ensure consistent design for both IPv4 and IPv6 attachment circuits, <a href="#sec-blob" class="auto internal xref">Section 3</a> groups the set of NRLP parameters that are returned independent of the address family. This blob can be leveraged in networks where DHCP is not used and ease the mapping with specific protocols used in these networks. For example, <strong><em>a Protocol Configuration Option (PCO) <span>[<a href="#TS-24.008" class="cite xref">TS-24.008</a>]</span> NRLP Information Element can be defined in 3GPP</em></strong>.<a href="#section-1.3-4" class="pilcrow">¶</a></p>
 <p id="section-1.3-5">Whether host-to-network, network-to-host, or both policies are returning an NRLP is deployment specific. All these combinations are supported in this document.<a href="#section-1.3-5" class="pilcrow">¶</a></p>
 <p id="section-1.3-6">Also, the design supports returning one more NRLP instances for a given traffic direction.<a href="#section-1.3-6" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
@@ -1539,7 +1539,7 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
 <p id="section-1.4-1">This document does not make any assumption about the type of the network (fixed, cellular, etc.) that terminates an attachment circuit.<a href="#section-1.4-1" class="pilcrow">¶</a></p>
 <p id="section-1.4-2">Likewise, the document does not make any assumption about the services or applications that are delivered over an attachment circuit. Whether one or multiple services
 are bound to the same attachment circuit is deployment specific.<a href="#section-1.4-2" class="pilcrow">¶</a></p>
-<p id="section-1.4-3">This document does not specify how a receiving host uses the discovered policy. Readers should refer, e.g., to <span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> for some examples.<a href="#section-1.4-3" class="pilcrow">¶</a></p>
+<p id="section-1.4-3">Applications will have access to all these NRLPs and will thus adjust their behavior as a function of scope and traffic category indicated in a policy (all traffic, streaming, etc.). An application that couples multiple flow types will adjust each flow type to be consistent with the specific policy for the relevant traffic category. That's said, this document does not make any recommendation about how a receiving host uses the discovered policy. Readers should refer, e.g., to <span>[<a href="#I-D.rwbr-tsvwg-signaling-use-cases" class="cite xref">I-D.rwbr-tsvwg-signaling-use-cases</a>]</span> for some examples.<a href="#section-1.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="design-motivation-rationale">
@@ -2571,8 +2571,12 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <span class="refAuthor">Enghardt, R.</span> and <span class="refAuthor">C. Krähenbühl</span>, <span class="refTitle">"A Vocabulary of Path Properties"</span>, <span class="seriesInfo">RFC 9473</span>, <span class="seriesInfo">DOI 10.17487/RFC9473</span>, <time datetime="2023-09" class="refDate">September 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9473">https://www.rfc-editor.org/rfc/rfc9473</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TS-23.501">[TS-23.501]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">3GPP</span>, <span class="refTitle">"TS 23.501: System architecture for the 5G System (5GS)"</span>, <time datetime="2024" class="refDate">2024</time>, <span>&lt;<a href="https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144">https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="TS-24.008">[TS-24.008]</dt>
+      <dd>
+<span class="refAuthor">3GPP</span>, <span class="refTitle">"Technical Specification Group Core Network and Terminals; Mobile radio interface Layer 3 specification; Core network protocols; Stage 3 (Release 18)"</span>, <time datetime="2024" class="refDate">2024</time>, <span>&lt;<a href="https://www.3gpp.org/DynaReport/24008.htm">https://www.3gpp.org/DynaReport/24008.htm</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2590,7 +2594,7 @@ NRLP for all subscriber traffic. The NRLP list may include multiple instances if
 are to be returned for distinct traffic categories.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <span id="name-nrlp-example-with-pvd"></span><div id="pvd-ex">
 <figure id="figure-8">
-        <div class="alignCenter art-text artwork" id="appendix-A-3.1">
+        <div class="lang-json sourcecode" id="appendix-A-3.1">
 <pre>
 {
    "nrlp":[
