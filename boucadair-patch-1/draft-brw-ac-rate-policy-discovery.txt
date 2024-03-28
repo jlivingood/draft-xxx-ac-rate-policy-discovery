@@ -5,10 +5,10 @@
 Network Working Group                                       M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                                T. Reddy
-Expires: 28 September 2024                                         Nokia
+Expires: 29 September 2024                                         Nokia
                                                                  D. Wing
                                                     Cloud Software Group
-                                                           27 March 2024
+                                                           28 March 2024
 
 
 Discovery of Network Rate-Limit Policies Using Router Advertisements and
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 September 2024.
+   This Internet-Draft will expire on 29 September 2024.
 
 Copyright Notice
 
@@ -151,23 +151,23 @@ Table of Contents
    the scope of this document to describe all involved components.
    Readers may refer to [TS-23.501] for more details.
 
-       .-----.  .-----.  .-----.    .-----.  .-----.  .-----.
-       |NSSF |  | NEF |  | NRF |    | PCF |  | UDM |  | AF  |
-       '--+--'  '--+--'  '--+--'    '--+--'  '--+--'  '--+--'
-     Nnssf|    Nnef|    Nnrf|      Npcf|    Nudm|        |Naf
-       ───┴────────┴──┬─────┴──┬───────┴───┬────┴────────┴────
-                 Nausf|    Namf|       Nsmf|
-                   .--+--.  .--+--.     .--+------.
-                   │AUSR │  │ AMF │     │   SMF   │
-                   '-----'  '--+--'     '--+------'
-                            ╱  |           |      ╲
-     Control Plane      N1 ╱   |N2         |N4     ╲N4
-     ════════════════════════════════════════════════════════════
-     User Plane          ╱     |           │         ╲
-                     .---.  .-----.  N3 .--+--. N9 .-----. N6  .───.
-                     |UE ├──┤(R)AN├─────┤ UPF ├────┤ UPF ├────( DN  )
-                     '---'  '-----'     '-----'    '-----'     `───'
-                         |------AC------|
+      .-----.  .-----.  .-----.    .-----.  .-----.  .-----.
+      |NSSF |  | NEF |  | NRF |    | PCF |  | UDM |  | AF  |
+      '--+--'  '--+--'  '--+--'    '--+--'  '--+--'  '--+--'
+    Nnssf|    Nnef|    Nnrf|      Npcf|    Nudm|        |Naf
+      ---+--------+--+-----+--+-------+---+----+--------+---
+                Nausf|    Namf|       Nsmf|
+                  .--+--.  .--+--.     .--+------.
+                  │AUSR │  │ AMF │     │   SMF   │
+                  '-----'  '--+--'     '----+----'
+                           ╱  |             |      ╲
+    Control Plane      N1 ╱   |N2           |N4     ╲N4
+    ════════════════════════════════════════════════════════════
+    User Plane          ╱     |             │         ╲
+                    .---.  .-------.  N3 .--+--. N9 .--+--. N6   .--.
+                    |UE +--+ (R)AN +-----+ UPF +----+ UPF +-----( DN )
+                    '---'  '-------'     '-----'    '-----'      '--'
+                       |-------AC----------|
 
                          Figure 2: 5GS Architecture
 

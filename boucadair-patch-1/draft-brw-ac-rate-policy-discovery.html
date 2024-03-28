@@ -1036,7 +1036,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 28 September 2024</td>
+<td class="center">Expires 29 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-brw-ac-rate-policy-discovery-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-03-27" class="published">27 March 2024</time>
+<time datetime="2024-03-28" class="published">28 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-09-28">28 September 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-29">29 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1108,7 +1108,7 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 29 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1327,26 +1327,133 @@ service offering while a more elaborated set is required for Enterprise services
 <strong>leverages access control, authorization, and authentication mechanisms that are already in place for the delivery of services over these attachment circuits</strong>. An example of an attachment circuit provided over a 3GPP network is depicted in <a href="#ex-arch" class="auto internal xref">Figure 2</a>. It is out of the scope of this document to describe all involved components. Readers may refer to <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span> for more details.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
 <span id="name-5gs-architecture"></span><div id="ex-arch">
 <figure id="figure-2">
-          <div class="alignCenter art-aavg art-text artwork" id="section-1.1-6.1">
-<pre>
-  .-----.  .-----.  .-----.    .-----.  .-----.  .-----.
-  |NSSF |  | NEF |  | NRF |    | PCF |  | UDM |  | AF  |
-  '--+--'  '--+--'  '--+--'    '--+--'  '--+--'  '--+--'
-Nnssf|    Nnef|    Nnrf|      Npcf|    Nudm|        |Naf
-  ───┴────────┴──┬─────┴──┬───────┴───┬────┴────────┴────
-            Nausf|    Namf|       Nsmf|
-              .--+--.  .--+--.     .--+------.
-              │AUSR │  │ AMF │     │   SMF   │
-              '-----'  '--+--'     '--+------'
-                       ╱  |           |      ╲
-Control Plane      N1 ╱   |N2         |N4     ╲N4
-════════════════════════════════════════════════════════════
-User Plane          ╱     |           │         ╲
-                .---.  .-----.  N3 .--+--. N9 .-----. N6  .───.
-                |UE ├──┤(R)AN├─────┤ UPF ├────┤ UPF ├────( DN  )
-                '---'  '-----'     '-----'    '-----'     `───'
-                    |------AC------|
-</pre>
+          <div id="section-1.1-6.1">
+            <div class="alignCenter art-svg artwork" id="section-1.1-6.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="536" viewBox="0 0 536 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 24,32 L 24,64" fill="none" stroke="black"></path>
+                <path d="M 48,64 L 48,96" fill="none" stroke="black"></path>
+                <path d="M 72,32 L 72,64" fill="none" stroke="black"></path>
+                <path d="M 96,32 L 96,64" fill="none" stroke="black"></path>
+                <path d="M 120,64 L 120,96" fill="none" stroke="black"></path>
+                <path d="M 136,240 L 136,272" fill="none" stroke="black"></path>
+                <path d="M 144,32 L 144,64" fill="none" stroke="black"></path>
+                <path d="M 144,96 L 144,128" fill="none" stroke="black"></path>
+                <path d="M 168,32 L 168,64" fill="none" stroke="black"></path>
+                <path d="M 168,240 L 168,272" fill="none" stroke="black"></path>
+                <path d="M 192,64 L 192,96" fill="none" stroke="black"></path>
+                <path d="M 192,240 L 192,272" fill="none" stroke="black"></path>
+                <path d="M 216,32 L 216,64" fill="none" stroke="black"></path>
+                <path d="M 216,96 L 216,128" fill="none" stroke="black"></path>
+                <path d="M 216,160 L 216,192" fill="none" stroke="black"></path>
+                <path d="M 256,32 L 256,64" fill="none" stroke="black"></path>
+                <path d="M 256,240 L 256,272" fill="none" stroke="black"></path>
+                <path d="M 280,64 L 280,96" fill="none" stroke="black"></path>
+                <path d="M 304,32 L 304,64" fill="none" stroke="black"></path>
+                <path d="M 304,240 L 304,272" fill="none" stroke="black"></path>
+                <path d="M 312,96 L 312,128" fill="none" stroke="black"></path>
+                <path d="M 328,32 L 328,64" fill="none" stroke="black"></path>
+                <path d="M 328,160 L 328,192" fill="none" stroke="black"></path>
+                <path d="M 352,64 L 352,96" fill="none" stroke="black"></path>
+                <path d="M 352,240 L 352,272" fill="none" stroke="black"></path>
+                <path d="M 376,32 L 376,64" fill="none" stroke="black"></path>
+                <path d="M 392,240 L 392,272" fill="none" stroke="black"></path>
+                <path d="M 400,32 L 400,64" fill="none" stroke="black"></path>
+                <path d="M 424,64 L 424,96" fill="none" stroke="black"></path>
+                <path d="M 440,240 L 440,272" fill="none" stroke="black"></path>
+                <path d="M 448,32 L 448,64" fill="none" stroke="black"></path>
+                <path d="M 24,32 L 72,32" fill="none" stroke="black"></path>
+                <path d="M 96,32 L 144,32" fill="none" stroke="black"></path>
+                <path d="M 168,32 L 216,32" fill="none" stroke="black"></path>
+                <path d="M 256,32 L 304,32" fill="none" stroke="black"></path>
+                <path d="M 328,32 L 376,32" fill="none" stroke="black"></path>
+                <path d="M 400,32 L 448,32" fill="none" stroke="black"></path>
+                <path d="M 24,64 L 72,64" fill="none" stroke="black"></path>
+                <path d="M 96,64 L 144,64" fill="none" stroke="black"></path>
+                <path d="M 168,64 L 216,64" fill="none" stroke="black"></path>
+                <path d="M 256,64 L 304,64" fill="none" stroke="black"></path>
+                <path d="M 328,64 L 376,64" fill="none" stroke="black"></path>
+                <path d="M 400,64 L 448,64" fill="none" stroke="black"></path>
+                <path d="M 24,96 L 448,96" fill="none" stroke="black"></path>
+                <path d="M 120,128 L 168,128" fill="none" stroke="black"></path>
+                <path d="M 192,128 L 240,128" fill="none" stroke="black"></path>
+                <path d="M 288,128 L 368,128" fill="none" stroke="black"></path>
+                <path d="M 120,160 L 168,160" fill="none" stroke="black"></path>
+                <path d="M 192,160 L 240,160" fill="none" stroke="black"></path>
+                <path d="M 288,160 L 368,160" fill="none" stroke="black"></path>
+                <path d="M 8,206 L 480,206" fill="none" stroke="black"></path>
+                <path d="M 8,210 L 480,210" fill="none" stroke="black"></path>
+                <path d="M 136,240 L 168,240" fill="none" stroke="black"></path>
+                <path d="M 192,240 L 256,240" fill="none" stroke="black"></path>
+                <path d="M 304,240 L 352,240" fill="none" stroke="black"></path>
+                <path d="M 392,240 L 440,240" fill="none" stroke="black"></path>
+                <path d="M 504,240 L 512,240" fill="none" stroke="black"></path>
+                <path d="M 168,256 L 192,256" fill="none" stroke="black"></path>
+                <path d="M 256,256 L 304,256" fill="none" stroke="black"></path>
+                <path d="M 352,256 L 392,256" fill="none" stroke="black"></path>
+                <path d="M 440,256 L 488,256" fill="none" stroke="black"></path>
+                <path d="M 136,272 L 168,272" fill="none" stroke="black"></path>
+                <path d="M 192,272 L 256,272" fill="none" stroke="black"></path>
+                <path d="M 304,272 L 352,272" fill="none" stroke="black"></path>
+                <path d="M 392,272 L 440,272" fill="none" stroke="black"></path>
+                <path d="M 504,272 L 512,272" fill="none" stroke="black"></path>
+                <path d="M 168,288 L 216,288" fill="none" stroke="black"></path>
+                <path d="M 240,288 L 312,288" fill="none" stroke="black"></path>
+                <path d="M 504,240 C 483.2,240 483.2,272 504,272" fill="none" stroke="black"></path>
+                <path d="M 512,240 C 532.8,240 532.8,272 512,272" fill="none" stroke="black"></path>
+                <path d="M 164,232 L 172,216" fill="none" stroke="black"></path>
+                <path d="M 180,200 L 188,184" fill="none" stroke="black"></path>
+                <path d="M 188,184 L 196,168" fill="none" stroke="black"></path>
+                <path d="M 380,168 L 388,184" fill="none" stroke="black"></path>
+                <path d="M 388,184 L 396,200" fill="none" stroke="black"></path>
+                <path d="M 404,216 L 412,232" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="44" y="52">NSSF</text>
+                  <text x="120" y="52">NEF</text>
+                  <text x="192" y="52">NRF</text>
+                  <text x="280" y="52">PCF</text>
+                  <text x="352" y="52">UDM</text>
+                  <text x="420" y="52">AF</text>
+                  <text x="24" y="84">Nnssf</text>
+                  <text x="100" y="84">Nnef</text>
+                  <text x="172" y="84">Nnrf</text>
+                  <text x="260" y="84">Npcf</text>
+                  <text x="332" y="84">Nudm</text>
+                  <text x="440" y="84">Naf</text>
+                  <text x="120" y="116">Nausf</text>
+                  <text x="196" y="116">Namf</text>
+                  <text x="292" y="116">Nsmf</text>
+                  <text x="136" y="148">│AUSR</text>
+                  <text x="168" y="148">│</text>
+                  <text x="192" y="148">│</text>
+                  <text x="216" y="148">AMF</text>
+                  <text x="240" y="148">│</text>
+                  <text x="288" y="148">│</text>
+                  <text x="328" y="148">SMF</text>
+                  <text x="368" y="148">│</text>
+                  <text x="32" y="196">Control</text>
+                  <text x="88" y="196">Plane</text>
+                  <text x="164" y="196">N1</text>
+                  <text x="228" y="196">N2</text>
+                  <text x="340" y="196">N4</text>
+                  <text x="404" y="196">N4</text>
+                  <text x="20" y="228">User</text>
+                  <text x="64" y="228">Plane</text>
+                  <text x="216" y="228">|</text>
+                  <text x="328" y="228">│</text>
+                  <text x="284" y="244">N3</text>
+                  <text x="372" y="244">N9</text>
+                  <text x="460" y="244">N6</text>
+                  <text x="148" y="260">UE</text>
+                  <text x="224" y="260">(R)AN</text>
+                  <text x="328" y="260">UPF</text>
+                  <text x="416" y="260">UPF</text>
+                  <text x="508" y="260">DN</text>
+                  <text x="160" y="292">|</text>
+                  <text x="228" y="292">AC</text>
+                  <text x="320" y="292">|</text>
+                </g>
+              </svg><a href="#section-1.1-6.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-5gs-architecture" class="selfRef">5GS Architecture</a>
