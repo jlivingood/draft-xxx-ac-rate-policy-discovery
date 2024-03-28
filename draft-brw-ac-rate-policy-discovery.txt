@@ -291,10 +291,25 @@ Table of Contents
       the application itself* to consume the signal.
 
    *  *Supports cascaded environments* where multiple levels to enforce
-      rate limiting polices is required (e.g., WAN and LAN).
+      rate limiting polices is required (e.g., WAN and LAN shown in
+      Figure 3).  NRLP signals can be coupled or decoupled as a function
+      of the local policy.
 
    *  *Supports signaling policies bound to one or both traffic
       directions*.
+
+           .------.                      .--------------------.
+           | Host +---+     .---.        |                    |
+           |  #1  |   |     |   |        |                    |
+           '------'   +-----+ C |        |                    |
+                    nrlp#2  | P +--------+      Network       |
+           .------.   .-----+ E | nrlp#1 |                    |
+           | Host |   |     |   |        |                    |
+           |  #2  +---'     '---'        |                    |
+           '------' nrlp#3               |                    |
+                                         '--------------------'
+
+                    Figure 3: Example of Cascaded NRLPs
 
    Compared to a proxy or an encapsulation-based proposal (e.g.,
    [I-D.ihlar-masque-sconepro-mediabitrate]), the solution defined in
@@ -341,9 +356,9 @@ Table of Contents
       hosts to better control the load during these exceptional events
       (issue with RAN resources, for example).  The mechanism can also
       be used to enrich the tools that are already available to better
-      block attack traffic at the source [RFC9066].
+      handle attack traffic close to the source [RFC9066].
 
-   *  Discovery of rate limit policy applied on attachment circuits
+   *  Discovery of intentional policy applied on attachment circuits
       (peering links, CE-PE links, etc.) when such information is not
       made available during the service activation or when network
       upgrades are performed.
@@ -500,7 +515,7 @@ Table of Contents
 4.1.  Option Format
 
    The format of the IPv6 RA NRLP option, with only mandatory fields
-   included, is illustrated in Figure 3.
+   included, is illustrated in Figure 4.
 
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -512,10 +527,10 @@ Table of Contents
      |                  Committed Burst Size (CBS)                   |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-             Figure 3: NRLP Option Format with Mandatory Fields
+             Figure 4: NRLP Option Format with Mandatory Fields
 
    The format of the IPv6 RA NRLP option, with optional fields included,
-   is illustrated in Figure 3.
+   is illustrated in Figure 4.
 
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -535,9 +550,9 @@ Table of Contents
      |                  Peak Burst Size (PBS) (Optional)             |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-             Figure 4: NRLP Option Format with Optional Fields
+             Figure 5: NRLP Option Format with Optional Fields
 
-   The fields of the option shown in Figure 4 are as follows:
+   The fields of the option shown in Figure 5 are as follows:
 
    Type:  8-bit identifier of the NRLP option as assigned by IANA
       (TBD1).
@@ -612,7 +627,7 @@ Table of Contents
 
 5.1.  Option Format
 
-   The format of the DHCP NRLP option is illustrated in Figure 5.
+   The format of the DHCP NRLP option is illustrated in Figure 6.
 
                  0                   1
                  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
@@ -626,9 +641,9 @@ Table of Contents
                 ~      NRLP Instance Data #n    ~    |
                 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   ---
 
-                     Figure 5: NRLP DHCP Option Format
+                     Figure 6: NRLP DHCP Option Format
 
-   The fields of the option shown in Figure 5 are as follows:
+   The fields of the option shown in Figure 6 are as follows:
 
    Code:  OPTION_V4_NRLP (TBD2).
 
@@ -636,7 +651,7 @@ Table of Contents
 
    NRLP Instance Data:  Includes a network rate-limit policy.  The
       format of this field with only mandatory parameters is shown in
-      Figure 6.
+      Figure 7.
 
       When several NRLPs are to be included, the "NRLP Instance Data"
       field is repeated.
@@ -655,10 +670,10 @@ Table of Contents
                      |                               |
                      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-         Figure 6: NRLP Instance Data Format with Mandatory Fields
+         Figure 7: NRLP Instance Data Format with Mandatory Fields
 
    The format of this field, with optional parameters included, is shown
-   in Figure 6.
+   in Figure 7.
 
                     0                   1
                     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
@@ -686,9 +701,9 @@ Table of Contents
                    |                               |  |
                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ---
 
-     Figure 7: NRLP Instance Data Format with Optional Fields Included
+     Figure 8: NRLP Instance Data Format with Optional Fields Included
 
-   The fields shown in Figure 7 are as follows:
+   The fields shown in Figure 8 are as follows:
 
    NRLP Instance Data Length:  Length of all following data in octets.
       This field is set to '8' when only the nominal bitrate is provided
@@ -1050,7 +1065,7 @@ Appendix A.  Provisioning Domains
    Typically, the network will configured to set the H-flag so clients
    can request PvD Additional Information (Section 4.1 of [RFC8801]).
 
-   Figure 8 provides an example of the returned "application/pvd+json"
+   Figure 9 provides an example of the returned "application/pvd+json"
    to indicate a network-to-host NRLP for all subscriber traffic.  The
    NRLP list may include multiple instances if distinct policies are to
    be returned for distinct traffic categories.
@@ -1068,7 +1083,7 @@ Appendix A.  Provisioning Domains
       ]
    }
 
-                      Figure 8: NRLP Example with PvD
+                      Figure 9: NRLP Example with PvD
 
 Acknowledgments
 
