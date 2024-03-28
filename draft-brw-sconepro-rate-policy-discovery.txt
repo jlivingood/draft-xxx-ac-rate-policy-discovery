@@ -103,6 +103,8 @@ Table of Contents
      10.1.  Normative References
      10.2.  Informative References
    Appendix A.  Provisioning Domains
+   Appendix B.  Example of Authentication, Authorization, and
+           Accounting (AAA)
    Acknowledgments
    Authors' Addresses
 
@@ -1074,6 +1076,11 @@ Table of Contents
               Marker", RFC 2698, DOI 10.17487/RFC2698, September 1999,
               <https://www.rfc-editor.org/rfc/rfc2698>.
 
+   [RFC2865]  Rigney, C., Willens, S., Rubens, A., and W. Simpson,
+              "Remote Authentication Dial In User Service (RADIUS)",
+              RFC 2865, DOI 10.17487/RFC2865, June 2000,
+              <https://www.rfc-editor.org/rfc/rfc2865>.
+
    [RFC3203]  T'Joens, Y., Hublet, C., and P. De Schrijver, "DHCP
               reconfigure extension", RFC 3203, DOI 10.17487/RFC3203,
               December 2001, <https://www.rfc-editor.org/rfc/rfc3203>.
@@ -1202,6 +1209,42 @@ Appendix A.  Provisioning Domains
    }
 
                       Figure 9: NRLP Example with PvD
+
+Appendix B.  Example of Authentication, Authorization, and Accounting
+             (AAA)
+
+   Figure 10 provides an example of the exchanges that might occur
+   between a DHCP server and an Authentication, Authorization, and
+   Accounting (AAA) server to retrive the per-subscriber NRLPs.
+
+   This example assumes that the Network Access Server (NAS) embeds both
+   Remote Authentication Dial-In User Service (RADIUS) [RFC2865] client
+   and DHCP server capabilities.
+
+      .-------------.           .-------------.             .-------.
+      |    Host     |           |     NAS     |             |  AAA  |
+      | DHCP Client |           | DHCP Server |             |Server |
+      |             |           |RADIUS Client|             |       |
+      '------+------'           '------+------'             '---+---'
+             |                         |                        |
+             o------DHCPDISCOVER------>|                        |
+             |                         o----Access-Request ---->|
+             |                         |                        |
+             |                         |<----Access-Accept------o
+             |                         |     DHCPv4-Options     |
+             |<-----DHCPOFFER----------o    (OPTION_V4_NRLP)    |
+             |     (OPTION_V4_NRLP)    |                        |
+             |                         |                        |
+             o-----DHCPREQUEST-------->|                        |
+             |     (OPTION_V4_NRLP)    |                        |
+             |                         |                        |
+             |<-------DHCPACK----------o                        |
+             |     (OPTION_V4_NRLP)    |                        |
+             |                         |                        |
+
+                        DHCP                    RADIUS
+
+               Figure 10: An Example of RADIUS NRLP Exchanges
 
 Acknowledgments
 

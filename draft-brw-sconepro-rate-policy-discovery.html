@@ -1245,10 +1245,13 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
             <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-provisioning-domains" class="internal xref">Provisioning Domains</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-example-of-authentication-a" class="internal xref">Example of Authentication, Authorization, and Accounting (AAA)</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -2650,6 +2653,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
         <dd>
 <span class="refAuthor">Heinanen, J.</span> and <span class="refAuthor">R. Guerin</span>, <span class="refTitle">"A Two Rate Three Color Marker"</span>, <span class="seriesInfo">RFC 2698</span>, <span class="seriesInfo">DOI 10.17487/RFC2698</span>, <time datetime="1999-09" class="refDate">September 1999</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2698">https://www.rfc-editor.org/rfc/rfc2698</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC2865">[RFC2865]</dt>
+        <dd>
+<span class="refAuthor">Rigney, C.</span>, <span class="refAuthor">Willens, S.</span>, <span class="refAuthor">Rubens, A.</span>, and <span class="refAuthor">W. Simpson</span>, <span class="refTitle">"Remote Authentication Dial In User Service (RADIUS)"</span>, <span class="seriesInfo">RFC 2865</span>, <span class="seriesInfo">DOI 10.17487/RFC2865</span>, <time datetime="2000-06" class="refDate">June 2000</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2865">https://www.rfc-editor.org/rfc/rfc2865</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC3203">[RFC3203]</dt>
         <dd>
 <span class="refAuthor">T'Joens, Y.</span>, <span class="refAuthor">Hublet, C.</span>, and <span class="refAuthor">P. De Schrijver</span>, <span class="refTitle">"DHCP reconfigure extension"</span>, <span class="seriesInfo">RFC 3203</span>, <span class="seriesInfo">DOI 10.17487/RFC3203</span>, <time datetime="2001-12" class="refDate">December 2001</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3203">https://www.rfc-editor.org/rfc/rfc3203</a>&gt;</span>. </dd>
@@ -2768,16 +2775,59 @@ are to be returned for distinct traffic categories.<a href="#appendix-A-2" class
 </div>
 </section>
 </div>
-<div id="acknowledgments">
+<div id="example-of-authentication-authorization-and-accounting-aaa">
 <section id="appendix-B">
+      <h2 id="name-example-of-authentication-a">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-example-of-authentication-a" class="section-name selfRef">Example of Authentication, Authorization, and Accounting (AAA)</a>
+      </h2>
+<p id="appendix-B-1"><a href="#radius-ex" class="auto internal xref">Figure 10</a> provides an example of the exchanges that might occur between a DHCP server
+and an Authentication, Authorization, and Accounting (AAA) server to retrive the per-subscriber NRLPs.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">This example assumes that the Network Access Server (NAS) embeds both Remote Authentication Dial-In User Service
+(RADIUS) <span>[<a href="#RFC2865" class="cite xref">RFC2865</a>]</span> client and DHCP server capabilities.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<span id="name-an-example-of-radius-nrlp-e"></span><div id="radius-ex">
+<figure id="figure-10">
+        <div class="alignLeft art-text artwork" id="appendix-B-3.1">
+<pre>
+   .-------------.           .-------------.             .-------.
+   |    Host     |           |     NAS     |             |  AAA  |
+   | DHCP Client |           | DHCP Server |             |Server |
+   |             |           |RADIUS Client|             |       |
+   '------+------'           '------+------'             '---+---'
+          |                         |                        |
+          o------DHCPDISCOVER------&gt;|                        |
+          |                         o----Access-Request ----&gt;|
+          |                         |                        |
+          |                         |&lt;----Access-Accept------o
+          |                         |     DHCPv4-Options     |
+          |&lt;-----DHCPOFFER----------o    (OPTION_V4_NRLP)    |
+          |     (OPTION_V4_NRLP)    |                        |
+          |                         |                        |
+          o-----DHCPREQUEST--------&gt;|                        |
+          |     (OPTION_V4_NRLP)    |                        |
+          |                         |                        |
+          |&lt;-------DHCPACK----------o                        |
+          |     (OPTION_V4_NRLP)    |                        |
+          |                         |                        |
+
+                     DHCP                    RADIUS
+</pre>
+</div>
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<a href="#name-an-example-of-radius-nrlp-e" class="selfRef">An Example of RADIUS NRLP Exchanges</a>
+        </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-C">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-B-1">TODO acknowledge.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">TODO acknowledge.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-C">
+<section id="appendix-D">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
