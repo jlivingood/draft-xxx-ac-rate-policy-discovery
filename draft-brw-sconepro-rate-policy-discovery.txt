@@ -272,8 +272,8 @@ Table of Contents
    Networks that advertize NLRPs are likely to maintain the policing in
    place within the network because of the trust model (hosts are not
    considered as trusted devices).  Per-subscriber rate-limit policies
-   are generally recommended to protect nodes nodes against Denial of
-   Service (DoS) attacks (e.g., Section 9.3 of [RFC8803] or Section 8 of
+   are generally recommended to protect nodes against Denial of Service
+   (DoS) attacks (e.g., Section 9.3 of [RFC8803] or Section 8 of
    [I-D.ietf-masque-quic-proxy]).  Discussion about conditions under
    which such model can be relaxed is out of scope of this document.
 
