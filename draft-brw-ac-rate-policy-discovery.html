@@ -1233,10 +1233,13 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-provisioning-domains" class="internal xref">Provisioning Domains</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1474,7 +1477,7 @@ service offering while a more elaborated set is required for Enterprise services
         <h3 id="name-networks-are-already-sharin">
 <a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-networks-are-already-sharin" class="section-name selfRef">Networks Are Already Sharing Network Properties with Hosts</a>
         </h3>
-<p id="section-1.2-1">To optimally deliver connectivity services, networks also advertize a set of network properties to connected hosts such as:<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<p id="section-1.2-1">To optimally deliver connectivity services, networks also advertize a set of network properties <span>[<a href="#RFC9473" class="cite xref">RFC9473</a>]</span> to connected hosts such as:<a href="#section-1.2-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-1.2-2">
           <dt id="section-1.2-2.1">Link Maximum Transmission Unit (MTU):</dt>
           <dd style="margin-left: 1.5em" id="section-1.2-2.2">
@@ -1504,7 +1507,7 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
           <dd class="break"></dd>
 <dt id="section-1.2-2.11">Encrypted DNS option <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>:</dt>
           <dd style="margin-left: 1.5em" id="section-1.2-2.12">
-            <p id="section-1.2-2.12.1">This option is used to discover encrypted DNS resolvers of a local network.<a href="#section-1.2-2.12.1" class="pilcrow">¶</a></p>
+            <p id="section-1.2-2.12.1">This option is used to discover encrypted DNS resolvers of a network.<a href="#section-1.2-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1521,6 +1524,11 @@ architecture uses extensive tunneling in its packet core network below the 3GPP 
 <p id="section-1.3-4">In order to ensure consistent design for both IPv4 and IPv6 attachment circuits, <a href="#sec-blob" class="auto internal xref">Section 3</a> groups the set of NRLP parameters that are returned independent of the address family. This blob can be leveraged in networks where DHCP is not used and ease the mapping with specific protocols used in these networks. For example, a PCO NRLP IE can be defined in 3GPP.<a href="#section-1.3-4" class="pilcrow">¶</a></p>
 <p id="section-1.3-5">Whether host-to-network, network-to-host, or both policies are returning an NRLP is deployment specific. All these combinations are supported in this document.<a href="#section-1.3-5" class="pilcrow">¶</a></p>
 <p id="section-1.3-6">Also, the design supports returning one more NRLP instances for a given traffic direction.<a href="#section-1.3-6" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1.3-7.1">
+            <p id="section-1.3-7.1.1"><a href="#sec-pvd" class="auto internal xref">Appendix A</a> describes a candidate discovery approach using Provisioning Domains (PvDs) <span>[<a href="#RFC8801" class="cite xref">RFC8801</a>]</span>. That approach requires more discussion as PvD is not currently deployed in mobile networks.<a href="#section-1.3-7.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
 </section>
 </div>
 <div id="whats-out">
@@ -2550,6 +2558,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
         <dd>
 <span class="refAuthor">Colitti, L.</span> and <span class="refAuthor">J. Linkova</span>, <span class="refTitle">"Discovering PREF64 in Router Advertisements"</span>, <span class="seriesInfo">RFC 8781</span>, <span class="seriesInfo">DOI 10.17487/RFC8781</span>, <time datetime="2020-04" class="refDate">April 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8781">https://www.rfc-editor.org/rfc/rfc8781</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8801">[RFC8801]</dt>
+        <dd>
+<span class="refAuthor">Pfister, P.</span>, <span class="refAuthor">Vyncke, É.</span>, <span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Schinazi, D.</span>, and <span class="refAuthor">W. Shao</span>, <span class="refTitle">"Discovering Provisioning Domain Names and Data"</span>, <span class="seriesInfo">RFC 8801</span>, <span class="seriesInfo">DOI 10.17487/RFC8801</span>, <time datetime="2020-07" class="refDate">July 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8801">https://www.rfc-editor.org/rfc/rfc8801</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9463">[RFC9463]</dt>
         <dd>
 <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Reddy.K, T., Ed.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">Cook, N.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"DHCP and Router Advertisement Options for the Discovery of Network-designated Resolvers (DNR)"</span>, <span class="seriesInfo">RFC 9463</span>, <span class="seriesInfo">DOI 10.17487/RFC9463</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9463">https://www.rfc-editor.org/rfc/rfc9463</a>&gt;</span>. </dd>
@@ -2566,16 +2578,50 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 </section>
 </div>
 </section>
-<div id="acknowledgments">
+<div id="sec-pvd">
 <section id="appendix-A">
+      <h2 id="name-provisioning-domains">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-provisioning-domains" class="section-name selfRef">Provisioning Domains</a>
+      </h2>
+<p id="appendix-A-1">PvD may also be considered as a mechanism to discover NRLP. Typically, the network will configured to set the H-flag so clients can
+request PvD Additional Information (<span><a href="https://rfc-editor.org/rfc/rfc8801#section-4.1" class="relref">Section 4.1</a> of [<a href="#RFC8801" class="cite xref">RFC8801</a>]</span>).<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2"><a href="#pvd-ex" class="auto internal xref">Figure 8</a> provides an example of the returned "application/pvd+json" to indicate a network-to-host
+NRLP for all subscriber traffic. The NRLP list may include multiple instances if distinct policies
+are to be returned for distinct traffic categories.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<span id="name-nrlp-example-with-pvd"></span><div id="pvd-ex">
+<figure id="figure-8">
+        <div class="alignCenter art-text artwork" id="appendix-A-3.1">
+<pre>
+{
+   "nrlp":[
+      {
+         "direction":1,
+         "scope":1,
+         "tc":0,
+         "cir":50,
+         "cbs":10000,
+         "ebs":20000
+      }
+   ]
+}
+</pre>
+</div>
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<a href="#name-nrlp-example-with-pvd" class="selfRef">NRLP Example with PvD</a>
+        </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-B">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">TODO acknowledge.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-B">
+<section id="appendix-C">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>

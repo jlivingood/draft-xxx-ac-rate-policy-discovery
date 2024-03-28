@@ -99,6 +99,7 @@ Table of Contents
    9.  References
      9.1.  Normative References
      9.2.  Informative References
+   Appendix A.  Provisioning Domains
    Acknowledgments
    Authors' Addresses
 
@@ -176,7 +177,7 @@ Table of Contents
 1.2.  Networks Are Already Sharing Network Properties with Hosts
 
    To optimally deliver connectivity services, networks also advertize a
-   set of network properties to connected hosts such as:
+   set of network properties [RFC9473] to connected hosts such as:
 
    Link Maximum Transmission Unit (MTU):  For example, the 3GPP
       [TS-23.501] specifies that "the link MTU size for IPv4 is sent to
@@ -202,7 +203,7 @@ Table of Contents
       Function" bullet in Section 4 of [RFC9473]).
 
    Encrypted DNS option [RFC9463]:  This option is used to discover
-      encrypted DNS resolvers of a local network.
+      encrypted DNS resolvers of a network.
 
 1.3.  What's In?
 
@@ -232,6 +233,11 @@ Table of Contents
 
    Also, the design supports returning one more NRLP instances for a
    given traffic direction.
+
+      Appendix A describes a candidate discovery approach using
+      Provisioning Domains (PvDs) [RFC8801].  That approach requires
+      more discussion as PvD is not currently deployed in mobile
+      networks.
 
 1.4.  What's Out?
 
@@ -993,6 +999,11 @@ Table of Contents
               Advertisements", RFC 8781, DOI 10.17487/RFC8781, April
               2020, <https://www.rfc-editor.org/rfc/rfc8781>.
 
+   [RFC8801]  Pfister, P., Vyncke, É., Pauly, T., Schinazi, D., and W.
+              Shao, "Discovering Provisioning Domain Names and Data",
+              RFC 8801, DOI 10.17487/RFC8801, July 2020,
+              <https://www.rfc-editor.org/rfc/rfc8801>.
+
    [RFC9463]  Boucadair, M., Ed., Reddy.K, T., Ed., Wing, D., Cook, N.,
               and T. Jensen, "DHCP and Router Advertisement Options for
               the Discovery of Network-designated Resolvers (DNR)",
@@ -1008,6 +1019,32 @@ Table of Contents
               (5GS)", 2024,
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=3144>.
+
+Appendix A.  Provisioning Domains
+
+   PvD may also be considered as a mechanism to discover NRLP.
+   Typically, the network will configured to set the H-flag so clients
+   can request PvD Additional Information (Section 4.1 of [RFC8801]).
+
+   Figure 8 provides an example of the returned "application/pvd+json"
+   to indicate a network-to-host NRLP for all subscriber traffic.  The
+   NRLP list may include multiple instances if distinct policies are to
+   be returned for distinct traffic categories.
+
+                          {
+                             "nrlp":[
+                                {
+                                   "direction":1,
+                                   "scope":1,
+                                   "tc":0,
+                                   "cir":50,
+                                   "cbs":10000,
+                                   "ebs":20000
+                                }
+                             ]
+                          }
+
+                      Figure 8: NRLP Example with PvD
 
 Acknowledgments
 
