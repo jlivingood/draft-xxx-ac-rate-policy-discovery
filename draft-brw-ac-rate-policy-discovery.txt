@@ -87,18 +87,18 @@ Table of Contents
      5.1.  Option Format
      5.2.  DHCPv4 Client Behavior
    6.  Operational Considerations
-     6.1.  Deployment Incentives
-   7.  Security Considerations
-     7.1.  ND
-     7.2.  DHCP
-   8.  IANA Considerations
-     8.1.  Neighbor Discovery Option
-     8.2.  DHCP Option
-     8.3.  DHCP Options Permitted in the RADIUS DHCPv4-Options
+   7.  Deployment Incentives
+   8.  Security Considerations
+     8.1.  ND
+     8.2.  DHCP
+   9.  IANA Considerations
+     9.1.  Neighbor Discovery Option
+     9.2.  DHCP Option
+     9.3.  DHCP Options Permitted in the RADIUS DHCPv4-Options
            Attribute
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Appendix A.  Provisioning Domains
    Acknowledgments
    Authors' Addresses
@@ -373,7 +373,7 @@ Table of Contents
       behavior.
 
    Operational considerations are discussed in Section 6, while
-   deployment incentives are described in Section 6.1.
+   deployment incentives are described in Section 7.
 
 2.  Conventions and Definitions
 
@@ -780,7 +780,7 @@ Table of Contents
    Rate-limit policies enforced at the network are assumed to be
    consistent with the local jurisdictions.
 
-6.1.  Deployment Incentives
+7.  Deployment Incentives
 
    Some applications support some forms of bandwidth measurements (e.g.,
    [app-measurement]) which feed how the content is accessed to using
@@ -802,9 +802,9 @@ Table of Contents
 
    *  The host support may be variable.
 
-7.  Security Considerations
+8.  Security Considerations
 
-7.1.  ND
+8.1.  ND
 
    As discussed in [RFC8781], because RAs are required in all IPv6
    configuration scenarios, RAs must already be secured, e.g., by
@@ -834,7 +834,7 @@ Table of Contents
    *  Inject fake RAs: The implications are similar to the impacts of
       tweaking the values of a legitimate RA.
 
-7.2.  DHCP
+8.2.  DHCP
 
    An attacker who has access to the DHCP exchanged over an attachment
    circuit may do a lot of harm (e.g., prevent access to the network).
@@ -855,9 +855,9 @@ Table of Contents
    information about the DHCP server or the entity hosting the DHCP
    server.
 
-8.  IANA Considerations
+9.  IANA Considerations
 
-8.1.  Neighbor Discovery Option
+9.1.  Neighbor Discovery Option
 
    This document requests IANA to assign the following new IPv6 Neighbor
    Discovery Option type in the "IPv6 Neighbor Discovery Option Formats"
@@ -873,7 +873,7 @@ Table of Contents
                      Table 1: Neighbor Discovery NRLP
                                   Option
 
-8.2.  DHCP Option
+9.2.  DHCP Option
 
    This document requests IANA to assign the following new DHCP Option
    Code in the "BOOTP Vendor Extensions and DHCP Options" registry
@@ -888,7 +888,7 @@ Table of Contents
 
                          Table 2: DHCP NRLP Option
 
-8.3.  DHCP Options Permitted in the RADIUS DHCPv4-Options Attribute
+9.3.  DHCP Options Permitted in the RADIUS DHCPv4-Options Attribute
 
    This document requests IANA to add the following DHCP Option Code to
    the "DHCP Options Permitted in the RADIUS DHCPv4-Options Attribute"
@@ -903,9 +903,9 @@ Table of Contents
               Table 3: New DHCP Option Permitted in the RADIUS
                      DHCPv4-Options Attribute Registry
 
-9.  References
+10.  References
 
-9.1.  Normative References
+10.1.  Normative References
 
    [I-D.rwbr-sconepro-flow-metadata]
               Rajagopalan, S., Wing, D., Boucadair, M., and T. Reddy.K,
@@ -943,7 +943,7 @@ Table of Contents
               DOI 10.17487/RFC9445, August 2023,
               <https://www.rfc-editor.org/rfc/rfc9445>.
 
-9.2.  Informative References
+10.2.  Informative References
 
    [app-measurement]
               Gurel, Z. and A. C. Begen, "Bandwidth measurement for
