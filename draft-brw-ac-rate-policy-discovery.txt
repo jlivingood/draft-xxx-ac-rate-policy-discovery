@@ -628,9 +628,12 @@ Table of Contents
 
 5.  DHCP NRLP Option
 
-      Note that DHCP can only signal a rate policy change when the
-      client first joins the network or renews its lease, whereas IPv6
-      ND can update the rate policy at the network's discretion.
+      Note that the base DHCP can only signal a rate policy change when
+      the client first joins the network or renews its lease, whereas
+      IPv6 ND can update the rate policy at the network's discretion.
+      [RFC6704] specifies an approach for forcing reconfiguration of
+      individual hosts without suffering from the limitations of the
+      FORCERENEW design in [RFC3203].
 
 5.1.  Option Format
 
@@ -1018,6 +1021,10 @@ Table of Contents
               Marker", RFC 2698, DOI 10.17487/RFC2698, September 1999,
               <https://www.rfc-editor.org/rfc/rfc2698>.
 
+   [RFC3203]  T'Joens, Y., Hublet, C., and P. De Schrijver, "DHCP
+              reconfigure extension", RFC 3203, DOI 10.17487/RFC3203,
+              December 2001, <https://www.rfc-editor.org/rfc/rfc3203>.
+
    [RFC4115]  Aboul-Magd, O. and S. Rabie, "A Differentiated Service
               Two-Rate, Three-Color Marker with Efficient Handling of
               in-Profile Traffic", RFC 4115, DOI 10.17487/RFC4115, July
@@ -1032,6 +1039,11 @@ Table of Contents
               P. Roberts, "Issues with IP Address Sharing", RFC 6269,
               DOI 10.17487/RFC6269, June 2011,
               <https://www.rfc-editor.org/rfc/rfc6269>.
+
+   [RFC6704]  Miles, D., Dec, W., Bristow, J., and R. Maglione,
+              "Forcerenew Nonce Authentication", RFC 6704,
+              DOI 10.17487/RFC6704, August 2012,
+              <https://www.rfc-editor.org/rfc/rfc6704>.
 
    [RFC7066]  Korhonen, J., Ed., Arkko, J., Ed., Savolainen, T., and S.
               Krishnan, "IPv6 for Third Generation Partnership Project

@@ -2100,9 +2100,11 @@ already advertized using RAs and those policies are consistent with the network 
       </h2>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-5-1.1">
-          <p id="section-5-1.1.1">Note that DHCP can only signal a rate policy change when the
+          <p id="section-5-1.1.1">Note that the base DHCP can only signal a rate policy change when the
   client first joins the network or renews its lease, whereas IPv6 ND
-  can update the rate policy at the network's discretion.<a href="#section-5-1.1.1" class="pilcrow">¶</a></p>
+  can update the rate policy at the network's discretion. <span>[<a href="#RFC6704" class="cite xref">RFC6704</a>]</span>
+  specifies an approach for forcing reconfiguration of individual hosts
+  without suffering from the limitations of the FORCERENEW design in <span>[<a href="#RFC3203" class="cite xref">RFC3203</a>]</span>.<a href="#section-5-1.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <div id="option-format-1">
@@ -2590,6 +2592,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
         <dd>
 <span class="refAuthor">Heinanen, J.</span> and <span class="refAuthor">R. Guerin</span>, <span class="refTitle">"A Two Rate Three Color Marker"</span>, <span class="seriesInfo">RFC 2698</span>, <span class="seriesInfo">DOI 10.17487/RFC2698</span>, <time datetime="1999-09" class="refDate">September 1999</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2698">https://www.rfc-editor.org/rfc/rfc2698</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC3203">[RFC3203]</dt>
+        <dd>
+<span class="refAuthor">T'Joens, Y.</span>, <span class="refAuthor">Hublet, C.</span>, and <span class="refAuthor">P. De Schrijver</span>, <span class="refTitle">"DHCP reconfigure extension"</span>, <span class="seriesInfo">RFC 3203</span>, <span class="seriesInfo">DOI 10.17487/RFC3203</span>, <time datetime="2001-12" class="refDate">December 2001</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3203">https://www.rfc-editor.org/rfc/rfc3203</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC4115">[RFC4115]</dt>
         <dd>
 <span class="refAuthor">Aboul-Magd, O.</span> and <span class="refAuthor">S. Rabie</span>, <span class="refTitle">"A Differentiated Service Two-Rate, Three-Color Marker with Efficient Handling of in-Profile Traffic"</span>, <span class="seriesInfo">RFC 4115</span>, <span class="seriesInfo">DOI 10.17487/RFC4115</span>, <time datetime="2005-07" class="refDate">July 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4115">https://www.rfc-editor.org/rfc/rfc4115</a>&gt;</span>. </dd>
@@ -2601,6 +2607,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <dt id="RFC6269">[RFC6269]</dt>
         <dd>
 <span class="refAuthor">Ford, M., Ed.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Durand, A.</span>, <span class="refAuthor">Levis, P.</span>, and <span class="refAuthor">P. Roberts</span>, <span class="refTitle">"Issues with IP Address Sharing"</span>, <span class="seriesInfo">RFC 6269</span>, <span class="seriesInfo">DOI 10.17487/RFC6269</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6269">https://www.rfc-editor.org/rfc/rfc6269</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6704">[RFC6704]</dt>
+        <dd>
+<span class="refAuthor">Miles, D.</span>, <span class="refAuthor">Dec, W.</span>, <span class="refAuthor">Bristow, J.</span>, and <span class="refAuthor">R. Maglione</span>, <span class="refTitle">"Forcerenew Nonce Authentication"</span>, <span class="seriesInfo">RFC 6704</span>, <span class="seriesInfo">DOI 10.17487/RFC6704</span>, <time datetime="2012-08" class="refDate">August 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6704">https://www.rfc-editor.org/rfc/rfc6704</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7066">[RFC7066]</dt>
         <dd>
