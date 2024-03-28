@@ -1599,6 +1599,9 @@ are bound to the same attachment circuit is deployment specific.<a href="#sectio
           <li class="normal" id="section-1.5-5.6">
             <p id="section-1.5-5.6.1"><strong>Supports signaling policies bound to one or both traffic directions</strong>.<a href="#section-1.5-5.6.1" class="pilcrow">¶</a></p>
 </li>
+          <li class="normal" id="section-1.5-5.7">
+            <p id="section-1.5-5.7.1">Is able to <strong>signal wether a policy applies to a specific host or all hosts of a given subscriber</strong>.<a href="#section-1.5-5.7.1" class="pilcrow">¶</a></p>
+</li>
         </ul>
 <span id="name-example-of-cascaded-nrlps"></span><div id="ac-casc">
 <figure id="figure-3">
@@ -2093,7 +2096,7 @@ other Neighbor Discovery option <span>[<a href="#RFC4861" class="cite xref">RFC4
 <p id="section-4.2-2">The host <span class="bcp14">MUST</span> be prepared to receive multiple NRLP options
 in RAs; each with distinct scope and/or application group.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <p id="section-4.2-3">If the host receives multiple NRLP options with overlapping scope/TC, the host <span class="bcp14">MUST</span> silently discard all these options.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
-<p id="section-4.2-4">If the receiving host is a CE (e.g., mobile CE or mobile handset with tethering), the following behavior applies:<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+<p id="section-4.2-4">If the receiving host has LAN capabilities (e.g., mobile CE or mobile handset with tethering), the following behavior applies:<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.2-5.1">
             <p id="section-4.2-5.1.1">If an RA NRLP is advertised from the network, and absent local rate limit policies, the

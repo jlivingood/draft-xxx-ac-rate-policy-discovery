@@ -321,6 +321,9 @@ Table of Contents
    *  *Supports signaling policies bound to one or both traffic
       directions*.
 
+   *  Is able to *signal wether a policy applies to a specific host or
+      all hosts of a given subscriber*.
+
            .------.                      .--------------------.
            | Host +---+     .---.        |                    |
            |  #1  |   |     |   |        |                    |
@@ -622,8 +625,8 @@ Table of Contents
    If the host receives multiple NRLP options with overlapping scope/TC,
    the host MUST silently discard all these options.
 
-   If the receiving host is a CE (e.g., mobile CE or mobile handset with
-   tethering), the following behavior applies:
+   If the receiving host has LAN capabilities (e.g., mobile CE or mobile
+   handset with tethering), the following behavior applies:
 
    *  If an RA NRLP is advertised from the network, and absent local
       rate limit policies, the device should send RAs to the downstream
