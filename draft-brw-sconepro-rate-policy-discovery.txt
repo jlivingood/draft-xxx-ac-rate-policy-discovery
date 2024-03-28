@@ -149,13 +149,14 @@ Table of Contents
    The required set of parameters is a function of the service offering.
    For example, a very limited set of parameters is required for mass-
    market service offering while a more elaborated set is required for
-   Enterprise services (e.g., Layer 2 or Layer 3 VPN services).  This
-   document *leverages access control, authorization, and authentication
-   mechanisms that are already in place for the delivery of services
-   over these attachment circuits*. An example of an attachment circuit
-   provided over a 3GPP network is depicted in Figure 2.  It is out of
-   the scope of this document to describe all involved components.
-   Readers may refer to [TS-23.501] for more details.
+   Enterprise services (e.g., Layer 2 VPN [RFC9291] or Layer 3 VPN
+   [RFC9182]).  This document *leverages access control, authorization,
+   and authentication mechanisms that are already in place for the
+   delivery of services over these attachment circuits*. An example of
+   an attachment circuit provided over a 3GPP network is depicted in
+   Figure 2.  It is out of the scope of this document to describe all
+   involved components.  Readers may refer to [TS-23.501] for more
+   details.
 
       .-----.  .-----.  .-----.    .-----.  .-----.  .-----.
       |NSSF |  | NEF |  | NRF |    | PCF |  | UDM |  | AF  |
@@ -268,9 +269,12 @@ Table of Contents
    Readers should refer, e.g., to [I-D.rwbr-tsvwg-signaling-use-cases]
    for some examples.
 
-   Networks that advertize NLRP are likely to maintain the policing in
+   Networks that advertize NLRPs are likely to maintain the policing in
    place within the network because of the trust model (hosts are not
-   considered as trusted devices).  Discussion about conditions under
+   considered as trusted devices).  Per-subscriber rate-limit policies
+   are generally recommended to protect nodes nodes against Denial of
+   Service (DoS) attacks (e.g., Section 9.3 of [RFC8803] or Section 8 of
+   [I-D.ietf-masque-quic-proxy]).  Discussion about conditions under
    which such model can be relaxed is out of scope of this document.
 
    This document does not assume nor preclude that other mechanims,
@@ -1115,11 +1119,26 @@ Table of Contents
               RFC 8801, DOI 10.17487/RFC8801, July 2020,
               <https://www.rfc-editor.org/rfc/rfc8801>.
 
+   [RFC8803]  Bonaventure, O., Ed., Boucadair, M., Ed., Gundavelli, S.,
+              Seo, S., and B. Hesmans, "0-RTT TCP Convert Protocol",
+              RFC 8803, DOI 10.17487/RFC8803, July 2020,
+              <https://www.rfc-editor.org/rfc/rfc8803>.
+
    [RFC9066]  Reddy.K, T., Boucadair, M., Ed., and J. Shallow,
               "Distributed Denial-of-Service Open Threat Signaling
               (DOTS) Signal Channel Call Home", RFC 9066,
               DOI 10.17487/RFC9066, December 2021,
               <https://www.rfc-editor.org/rfc/rfc9066>.
+
+   [RFC9182]  Barguil, S., Gonzalez de Dios, O., Ed., Boucadair, M.,
+              Ed., Munoz, L., and A. Aguado, "A YANG Network Data Model
+              for Layer 3 VPNs", RFC 9182, DOI 10.17487/RFC9182,
+              February 2022, <https://www.rfc-editor.org/rfc/rfc9182>.
+
+   [RFC9291]  Boucadair, M., Ed., Gonzalez de Dios, O., Ed., Barguil,
+              S., and L. Munoz, "A YANG Network Data Model for Layer 2
+              VPNs", RFC 9291, DOI 10.17487/RFC9291, September 2022,
+              <https://www.rfc-editor.org/rfc/rfc9291>.
 
    [RFC9330]  Briscoe, B., Ed., De Schepper, K., Bagnulo, M., and G.
               White, "Low Latency, Low Loss, and Scalable Throughput
