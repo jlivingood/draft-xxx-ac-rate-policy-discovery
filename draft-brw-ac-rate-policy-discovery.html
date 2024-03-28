@@ -10,7 +10,7 @@
 <meta content="Dan Wing" name="author">
 <meta content="
        Traffic exchanged over an attachment circuit may be subject to rate limit policies.
-These policies may be intentional policies (e.g., enforced as part of the activation of the attachment circuit)
+These policies may be intentional policies (e.g., enforced as part of the activation of the attachment circuit and typically agreed upon service subscription)
 or be reactive policies (e.g., enforced temporarily to manage an overload or during a DDoS attack mitigation). 
        Networks already support mechanisms to advertize a set of network properties to hosts using Neighbor Discovery options. Examples of such
 properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document complements these tools and specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. For address family parity, a new DHCP option is also defined. 
@@ -1076,7 +1076,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">Traffic exchanged over an attachment circuit may be subject to rate limit policies.
-These policies may be intentional policies (e.g., enforced as part of the activation of the attachment circuit)
+These policies may be intentional policies (e.g., enforced as part of the activation of the attachment circuit and typically agreed upon service subscription)
 or be reactive policies (e.g., enforced temporarily to manage an overload or during a DDoS attack mitigation).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">Networks already support mechanisms to advertize a set of network properties to hosts using Neighbor Discovery options. Examples of such
 properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document complements these tools and specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate these policies to hosts. For address family parity, a new DHCP option is also defined.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
@@ -1324,7 +1324,141 @@ able to send and receive traffic over an attachment circuit. A comprehensive lis
 the PE-side of an attachment circuit is documented in <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
 <p id="section-1.1-5">The required set of parameters is a function of the service offering. For example, a very limited set of parameters is required for mass-market
 service offering while a more elaborated set is required for Enterprise services (e.g., Layer 2 or Layer 3 VPN services). This document
-<strong>leverages access control, authorization, and authentication mechanisms that are already in place for the delivery of services over these attachment circuits</strong>.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
+<strong>leverages access control, authorization, and authentication mechanisms that are already in place for the delivery of services over these attachment circuits</strong>. An example of an attachment circuit provided over a 3GPP network is depicted in <a href="#ex-arch" class="auto internal xref">Figure 2</a>. It is out of the scope of this document to describe all involved components. Readers may refer to <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span> for more details.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
+<span id="name-5gs-architecture"></span><div id="ex-arch">
+<figure id="figure-2">
+          <div id="section-1.1-6.1">
+            <div class="alignCenter art-svg artwork" id="section-1.1-6.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="536" viewBox="0 0 536 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 24,32 L 24,64" fill="none" stroke="black"></path>
+                <path d="M 48,64 L 48,96" fill="none" stroke="black"></path>
+                <path d="M 72,32 L 72,64" fill="none" stroke="black"></path>
+                <path d="M 96,32 L 96,64" fill="none" stroke="black"></path>
+                <path d="M 120,64 L 120,96" fill="none" stroke="black"></path>
+                <path d="M 136,240 L 136,272" fill="none" stroke="black"></path>
+                <path d="M 144,32 L 144,64" fill="none" stroke="black"></path>
+                <path d="M 144,96 L 144,128" fill="none" stroke="black"></path>
+                <path d="M 168,32 L 168,64" fill="none" stroke="black"></path>
+                <path d="M 168,240 L 168,272" fill="none" stroke="black"></path>
+                <path d="M 192,64 L 192,96" fill="none" stroke="black"></path>
+                <path d="M 192,240 L 192,272" fill="none" stroke="black"></path>
+                <path d="M 216,32 L 216,64" fill="none" stroke="black"></path>
+                <path d="M 216,96 L 216,128" fill="none" stroke="black"></path>
+                <path d="M 216,160 L 216,192" fill="none" stroke="black"></path>
+                <path d="M 256,32 L 256,64" fill="none" stroke="black"></path>
+                <path d="M 256,240 L 256,272" fill="none" stroke="black"></path>
+                <path d="M 280,64 L 280,96" fill="none" stroke="black"></path>
+                <path d="M 304,32 L 304,64" fill="none" stroke="black"></path>
+                <path d="M 304,240 L 304,272" fill="none" stroke="black"></path>
+                <path d="M 312,96 L 312,128" fill="none" stroke="black"></path>
+                <path d="M 328,32 L 328,64" fill="none" stroke="black"></path>
+                <path d="M 328,160 L 328,192" fill="none" stroke="black"></path>
+                <path d="M 352,64 L 352,96" fill="none" stroke="black"></path>
+                <path d="M 352,240 L 352,272" fill="none" stroke="black"></path>
+                <path d="M 376,32 L 376,64" fill="none" stroke="black"></path>
+                <path d="M 392,240 L 392,272" fill="none" stroke="black"></path>
+                <path d="M 400,32 L 400,64" fill="none" stroke="black"></path>
+                <path d="M 424,64 L 424,96" fill="none" stroke="black"></path>
+                <path d="M 440,240 L 440,272" fill="none" stroke="black"></path>
+                <path d="M 448,32 L 448,64" fill="none" stroke="black"></path>
+                <path d="M 24,32 L 72,32" fill="none" stroke="black"></path>
+                <path d="M 96,32 L 144,32" fill="none" stroke="black"></path>
+                <path d="M 168,32 L 216,32" fill="none" stroke="black"></path>
+                <path d="M 256,32 L 304,32" fill="none" stroke="black"></path>
+                <path d="M 328,32 L 376,32" fill="none" stroke="black"></path>
+                <path d="M 400,32 L 448,32" fill="none" stroke="black"></path>
+                <path d="M 24,64 L 72,64" fill="none" stroke="black"></path>
+                <path d="M 96,64 L 144,64" fill="none" stroke="black"></path>
+                <path d="M 168,64 L 216,64" fill="none" stroke="black"></path>
+                <path d="M 256,64 L 304,64" fill="none" stroke="black"></path>
+                <path d="M 328,64 L 376,64" fill="none" stroke="black"></path>
+                <path d="M 400,64 L 448,64" fill="none" stroke="black"></path>
+                <path d="M 24,96 L 448,96" fill="none" stroke="black"></path>
+                <path d="M 120,128 L 168,128" fill="none" stroke="black"></path>
+                <path d="M 192,128 L 240,128" fill="none" stroke="black"></path>
+                <path d="M 288,128 L 368,128" fill="none" stroke="black"></path>
+                <path d="M 120,160 L 168,160" fill="none" stroke="black"></path>
+                <path d="M 192,160 L 240,160" fill="none" stroke="black"></path>
+                <path d="M 288,160 L 368,160" fill="none" stroke="black"></path>
+                <path d="M 8,206 L 480,206" fill="none" stroke="black"></path>
+                <path d="M 8,210 L 480,210" fill="none" stroke="black"></path>
+                <path d="M 136,240 L 168,240" fill="none" stroke="black"></path>
+                <path d="M 192,240 L 256,240" fill="none" stroke="black"></path>
+                <path d="M 304,240 L 352,240" fill="none" stroke="black"></path>
+                <path d="M 392,240 L 440,240" fill="none" stroke="black"></path>
+                <path d="M 504,240 L 512,240" fill="none" stroke="black"></path>
+                <path d="M 168,256 L 192,256" fill="none" stroke="black"></path>
+                <path d="M 256,256 L 304,256" fill="none" stroke="black"></path>
+                <path d="M 352,256 L 392,256" fill="none" stroke="black"></path>
+                <path d="M 440,256 L 488,256" fill="none" stroke="black"></path>
+                <path d="M 136,272 L 168,272" fill="none" stroke="black"></path>
+                <path d="M 192,272 L 256,272" fill="none" stroke="black"></path>
+                <path d="M 304,272 L 352,272" fill="none" stroke="black"></path>
+                <path d="M 392,272 L 440,272" fill="none" stroke="black"></path>
+                <path d="M 504,272 L 512,272" fill="none" stroke="black"></path>
+                <path d="M 168,288 L 216,288" fill="none" stroke="black"></path>
+                <path d="M 240,288 L 312,288" fill="none" stroke="black"></path>
+                <path d="M 504,240 C 483.2,240 483.2,272 504,272" fill="none" stroke="black"></path>
+                <path d="M 512,240 C 532.8,240 532.8,272 512,272" fill="none" stroke="black"></path>
+                <path d="M 164,232 L 172,216" fill="none" stroke="black"></path>
+                <path d="M 180,200 L 188,184" fill="none" stroke="black"></path>
+                <path d="M 188,184 L 196,168" fill="none" stroke="black"></path>
+                <path d="M 380,168 L 388,184" fill="none" stroke="black"></path>
+                <path d="M 388,184 L 396,200" fill="none" stroke="black"></path>
+                <path d="M 404,216 L 412,232" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="44" y="52">NSSF</text>
+                  <text x="120" y="52">NEF</text>
+                  <text x="192" y="52">NRF</text>
+                  <text x="280" y="52">PCF</text>
+                  <text x="352" y="52">UDM</text>
+                  <text x="420" y="52">AF</text>
+                  <text x="24" y="84">Nnssf</text>
+                  <text x="100" y="84">Nnef</text>
+                  <text x="172" y="84">Nnrf</text>
+                  <text x="260" y="84">Npcf</text>
+                  <text x="332" y="84">Nudm</text>
+                  <text x="440" y="84">Naf</text>
+                  <text x="120" y="116">Nausf</text>
+                  <text x="196" y="116">Namf</text>
+                  <text x="292" y="116">Nsmf</text>
+                  <text x="136" y="148">│AUSR</text>
+                  <text x="168" y="148">│</text>
+                  <text x="192" y="148">│</text>
+                  <text x="216" y="148">AMF</text>
+                  <text x="240" y="148">│</text>
+                  <text x="288" y="148">│</text>
+                  <text x="328" y="148">SMF</text>
+                  <text x="368" y="148">│</text>
+                  <text x="32" y="196">Control</text>
+                  <text x="88" y="196">Plane</text>
+                  <text x="164" y="196">N1</text>
+                  <text x="228" y="196">N2</text>
+                  <text x="340" y="196">N4</text>
+                  <text x="404" y="196">N4</text>
+                  <text x="20" y="228">User</text>
+                  <text x="64" y="228">Plane</text>
+                  <text x="216" y="228">|</text>
+                  <text x="328" y="228">│</text>
+                  <text x="284" y="244">N3</text>
+                  <text x="372" y="244">N9</text>
+                  <text x="460" y="244">N6</text>
+                  <text x="148" y="260">UE</text>
+                  <text x="224" y="260">(R)AN</text>
+                  <text x="328" y="260">UPF</text>
+                  <text x="416" y="260">UPF</text>
+                  <text x="508" y="260">DN</text>
+                  <text x="160" y="292">|</text>
+                  <text x="228" y="292">AC</text>
+                  <text x="320" y="292">|</text>
+                </g>
+              </svg><a href="#section-1.1-6.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-5gs-architecture" class="selfRef">5GS Architecture</a>
+          </figcaption></figure>
+</div>
 </section>
 </div>
 <div id="networks-are-already-sharing-network-properties-with-hosts">
@@ -1734,9 +1868,9 @@ of how various combinations of CIR/CBS/EIR/EBS/PIR/PBS are used for policing. Ty
         <h3 id="name-option-format">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-option-format" class="section-name selfRef">Option Format</a>
         </h3>
-<p id="section-4.1-1">The format of the IPv6 RA NRLP option, with only mandatory fields included, is illustrated in <a href="#opt-m-format" class="auto internal xref">Figure 2</a>.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">The format of the IPv6 RA NRLP option, with only mandatory fields included, is illustrated in <a href="#opt-m-format" class="auto internal xref">Figure 3</a>.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <span id="name-nrlp-option-format-with-man"></span><div id="opt-m-format">
-<figure id="figure-2">
+<figure id="figure-3">
           <div class="alignCenter art-text artwork" id="section-4.1-2.1">
 <pre>
  0                   1                   2                   3
@@ -1750,13 +1884,13 @@ of how various combinations of CIR/CBS/EIR/EBS/PIR/PBS are used for policing. Ty
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-nrlp-option-format-with-man" class="selfRef">NRLP Option Format with Mandatory Fields</a>
           </figcaption></figure>
 </div>
-<p id="section-4.1-3">The format of the IPv6 RA NRLP option, with optional fields included, is illustrated in <a href="#opt-m-format" class="auto internal xref">Figure 2</a>.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1-3">The format of the IPv6 RA NRLP option, with optional fields included, is illustrated in <a href="#opt-m-format" class="auto internal xref">Figure 3</a>.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <span id="name-nrlp-option-format-with-opt"></span><div id="opt-format">
-<figure id="figure-3">
+<figure id="figure-4">
           <div class="alignCenter art-text artwork" id="section-4.1-4.1">
 <pre>
  0                   1                   2                   3
@@ -1778,11 +1912,11 @@ of how various combinations of CIR/CBS/EIR/EBS/PIR/PBS are used for policing. Ty
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-nrlp-option-format-with-opt" class="selfRef">NRLP Option Format with Optional Fields</a>
           </figcaption></figure>
 </div>
-<p id="section-4.1-5">The fields of the option shown in <a href="#opt-format" class="auto internal xref">Figure 3</a> are as follows:<a href="#section-4.1-5" class="pilcrow">¶</a></p>
+<p id="section-4.1-5">The fields of the option shown in <a href="#opt-format" class="auto internal xref">Figure 4</a> are as follows:<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-4.1-6">
           <dt id="section-4.1-6.1">Type:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-6.2">
@@ -1902,9 +2036,9 @@ already advertized using RAs and those policies are consistent with the network 
         <h3 id="name-option-format-2">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-option-format-2" class="section-name selfRef">Option Format</a>
         </h3>
-<p id="section-5.1-1">The format of the DHCP NRLP option is illustrated in <a href="#dhc-format" class="auto internal xref">Figure 4</a>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-1">The format of the DHCP NRLP option is illustrated in <a href="#dhc-format" class="auto internal xref">Figure 5</a>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <span id="name-nrlp-dhcp-option-format"></span><div id="dhc-format">
-<figure id="figure-4">
+<figure id="figure-5">
           <div class="alignCenter art-text artwork" id="section-5.1-2.1">
 <pre>
  0                   1
@@ -1920,11 +2054,11 @@ already advertized using RAs and those policies are consistent with the network 
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   ---
 </pre>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-nrlp-dhcp-option-format" class="selfRef">NRLP DHCP Option Format</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-3">The fields of the option shown in  <a href="#dhc-format" class="auto internal xref">Figure 4</a> are as follows:<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">The fields of the option shown in  <a href="#dhc-format" class="auto internal xref">Figure 5</a> are as follows:<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.1-4">
           <dt id="section-5.1-4.1">Code:</dt>
           <dd style="margin-left: 1.5em" id="section-5.1-4.2">
@@ -1938,7 +2072,7 @@ already advertized using RAs and those policies are consistent with the network 
           <dd class="break"></dd>
 <dt id="section-5.1-4.5">NRLP Instance Data:</dt>
           <dd style="margin-left: 1.5em" id="section-5.1-4.6">
-            <p id="section-5.1-4.6.1">Includes a network rate-limit policy. The format of this field with only mandatory parameters is shown in <a href="#nrlp-m-format" class="auto internal xref">Figure 5</a>.<a href="#section-5.1-4.6.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-4.6.1">Includes a network rate-limit policy. The format of this field with only mandatory parameters is shown in <a href="#nrlp-m-format" class="auto internal xref">Figure 6</a>.<a href="#section-5.1-4.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.1-4.7"></dt>
@@ -1948,7 +2082,7 @@ already advertized using RAs and those policies are consistent with the network 
         <dd class="break"></dd>
 </dl>
 <span id="name-nrlp-instance-data-format-w"></span><div id="nrlp-m-format">
-<figure id="figure-5">
+<figure id="figure-6">
           <div class="alignCenter art-text artwork" id="section-5.1-5.1">
 <pre>
  0                   1
@@ -1966,13 +2100,13 @@ already advertized using RAs and those policies are consistent with the network 
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-nrlp-instance-data-format-w" class="selfRef">NRLP Instance Data Format with Mandatory Fields</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-6">The format of this field, with optional parameters included, is shown in <a href="#nrlp-m-format" class="auto internal xref">Figure 5</a>.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
+<p id="section-5.1-6">The format of this field, with optional parameters included, is shown in <a href="#nrlp-m-format" class="auto internal xref">Figure 6</a>.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
 <span id="name-nrlp-instance-data-format-wi"></span><div id="nrlp-format">
-<figure id="figure-6">
+<figure id="figure-7">
           <div class="alignCenter art-text artwork" id="section-5.1-7.1">
 <pre>
  0                   1
@@ -2002,11 +2136,11 @@ already advertized using RAs and those policies are consistent with the network 
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ---
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-nrlp-instance-data-format-wi" class="selfRef">NRLP Instance Data Format with Optional Fields Included</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-8">The fields shown in <a href="#nrlp-format" class="auto internal xref">Figure 6</a> are as follows:<a href="#section-5.1-8" class="pilcrow">¶</a></p>
+<p id="section-5.1-8">The fields shown in <a href="#nrlp-format" class="auto internal xref">Figure 7</a> are as follows:<a href="#section-5.1-8" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.1-9">
           <dt id="section-5.1-9.1">NRLP Instance Data Length:</dt>
           <dd style="margin-left: 1.5em" id="section-5.1-9.2">

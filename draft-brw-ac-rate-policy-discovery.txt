@@ -19,9 +19,10 @@ Abstract
 
    Traffic exchanged over an attachment circuit may be subject to rate
    limit policies.  These policies may be intentional policies (e.g.,
-   enforced as part of the activation of the attachment circuit) or be
-   reactive policies (e.g., enforced temporarily to manage an overload
-   or during a DDoS attack mitigation).
+   enforced as part of the activation of the attachment circuit and
+   typically agreed upon service subscription) or be reactive policies
+   (e.g., enforced temporarily to manage an overload or during a DDoS
+   attack mitigation).
 
    Networks already support mechanisms to advertize a set of network
    properties to hosts using Neighbor Discovery options.  Examples of
@@ -145,7 +146,30 @@ Table of Contents
    Enterprise services (e.g., Layer 2 or Layer 3 VPN services).  This
    document *leverages access control, authorization, and authentication
    mechanisms that are already in place for the delivery of services
-   over these attachment circuits*.
+   over these attachment circuits*. An example of an attachment circuit
+   provided over a 3GPP network is depicted in Figure 2.  It is out of
+   the scope of this document to describe all involved components.
+   Readers may refer to [TS-23.501] for more details.
+
+      .-----.  .-----.  .-----.    .-----.  .-----.  .-----.
+      |NSSF |  | NEF |  | NRF |    | PCF |  | UDM |  | AF  |
+      '--+--'  '--+--'  '--+--'    '--+--'  '--+--'  '--+--'
+    Nnssf|    Nnef|    Nnrf|      Npcf|    Nudm|        |Naf
+      ---+--------+--+-----+--+-------+---+----+--------+---
+                Nausf|    Namf|       Nsmf|
+                  .--+--.  .--+--.     .--+------.
+                  │AUSR │  │ AMF │     │   SMF   │
+                  '-----'  '--+--'     '----+----'
+                           ╱  |             |      ╲
+    Control Plane      N1 ╱   |N2           |N4     ╲N4
+    ════════════════════════════════════════════════════════════
+    User Plane          ╱     |             │         ╲
+                    .---.  .-------.  N3 .--+--. N9 .--+--. N6   .--.
+                    |UE +--+ (R)AN +-----+ UPF +----+ UPF +-----( DN )
+                    '---'  '-------'     '-----'    '-----'      '--'
+                       |-------AC----------|
+
+                         Figure 2: 5GS Architecture
 
 1.2.  Networks Are Already Sharing Network Properties with Hosts
 
@@ -447,7 +471,7 @@ Table of Contents
 4.1.  Option Format
 
    The format of the IPv6 RA NRLP option, with only mandatory fields
-   included, is illustrated in Figure 2.
+   included, is illustrated in Figure 3.
 
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -459,10 +483,10 @@ Table of Contents
      |                  Committed Burst Size (CBS)                   |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-             Figure 2: NRLP Option Format with Mandatory Fields
+             Figure 3: NRLP Option Format with Mandatory Fields
 
    The format of the IPv6 RA NRLP option, with optional fields included,
-   is illustrated in Figure 2.
+   is illustrated in Figure 3.
 
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -482,9 +506,9 @@ Table of Contents
      |                  Peak Burst Size (PBS) (Optional)             |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-             Figure 3: NRLP Option Format with Optional Fields
+             Figure 4: NRLP Option Format with Optional Fields
 
-   The fields of the option shown in Figure 3 are as follows:
+   The fields of the option shown in Figure 4 are as follows:
 
    Type:  8-bit identifier of the NRLP option as assigned by IANA
       (TBD1).
@@ -559,7 +583,7 @@ Table of Contents
 
 5.1.  Option Format
 
-   The format of the DHCP NRLP option is illustrated in Figure 4.
+   The format of the DHCP NRLP option is illustrated in Figure 5.
 
                  0                   1
                  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
@@ -573,9 +597,9 @@ Table of Contents
                 ~      NRLP Instance Data #n    ~    |
                 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+   ---
 
-                     Figure 4: NRLP DHCP Option Format
+                     Figure 5: NRLP DHCP Option Format
 
-   The fields of the option shown in Figure 4 are as follows:
+   The fields of the option shown in Figure 5 are as follows:
 
    Code:  OPTION_V4_NRLP (TBD2).
 
@@ -583,7 +607,7 @@ Table of Contents
 
    NRLP Instance Data:  Includes a network rate-limit policy.  The
       format of this field with only mandatory parameters is shown in
-      Figure 5.
+      Figure 6.
 
       When several NRLPs are to be included, the "NRLP Instance Data"
       field is repeated.
@@ -602,10 +626,10 @@ Table of Contents
                      |                               |
                      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-         Figure 5: NRLP Instance Data Format with Mandatory Fields
+         Figure 6: NRLP Instance Data Format with Mandatory Fields
 
    The format of this field, with optional parameters included, is shown
-   in Figure 5.
+   in Figure 6.
 
                     0                   1
                     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
@@ -633,9 +657,9 @@ Table of Contents
                    |                               |  |
                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ ---
 
-     Figure 6: NRLP Instance Data Format with Optional Fields Included
+     Figure 7: NRLP Instance Data Format with Optional Fields Included
 
-   The fields shown in Figure 6 are as follows:
+   The fields shown in Figure 7 are as follows:
 
    NRLP Instance Data Length:  Length of all following data in octets.
       This field is set to '8' when only the nominal bitrate is provided
