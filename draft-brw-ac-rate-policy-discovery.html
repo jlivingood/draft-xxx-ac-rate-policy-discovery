@@ -1618,10 +1618,10 @@ are bound to the same attachment circuit is deployment specific.<a href="#sectio
 <p id="section-1.6-1">Some deployment use cases for NRLP are provided below:<a href="#section-1.6-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1.6-2.1">
-            <p id="section-1.6-2.1.1">A network may advertize an NRLP when it is overloaded, including when it is under attack. The rate limit policy is basically a reactive policy that is meant to adjust the behavior of connected hosts to better control the load during these exceptional events.<a href="#section-1.6-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-1.6-2.1.1">A network may advertize an NRLP when it is overloaded, including when it is under attack. The rate limit policy is basically a reactive policy that is meant to adjust the behavior of connected hosts to better control the load during these exceptional events (issue with RAN resources, for example). The mechanism can also be used to enrich the tools that are already available to better block attack traffic at the source <span>[<a href="#RFC9066" class="cite xref">RFC9066</a>]</span>.<a href="#section-1.6-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.6-2.2">
-            <p id="section-1.6-2.2.1">Discovery of rate limit policy applied on attachment circuits (peering links, CE-PE links, etc.).<a href="#section-1.6-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-1.6-2.2.1">Discovery of rate limit policy applied on attachment circuits (peering links, CE-PE links, etc.) when such information is not made available during the service activation or when network upgrades are performed.<a href="#section-1.6-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.6-2.3">
             <p id="section-1.6-2.3.1">A user may configure policies on the CPE such as securing some resources to a specific internal host used for gaming or video streaming. The CPE can use the NRLP option to share these rate limit policies to connected hosts to adjust their forwarding behavior.<a href="#section-1.6-2.3.1" class="pilcrow">¶</a></p>
@@ -2561,6 +2561,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <dt id="RFC8801">[RFC8801]</dt>
         <dd>
 <span class="refAuthor">Pfister, P.</span>, <span class="refAuthor">Vyncke, É.</span>, <span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Schinazi, D.</span>, and <span class="refAuthor">W. Shao</span>, <span class="refTitle">"Discovering Provisioning Domain Names and Data"</span>, <span class="seriesInfo">RFC 8801</span>, <span class="seriesInfo">DOI 10.17487/RFC8801</span>, <time datetime="2020-07" class="refDate">July 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8801">https://www.rfc-editor.org/rfc/rfc8801</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9066">[RFC9066]</dt>
+        <dd>
+<span class="refAuthor">Reddy.K, T.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, and <span class="refAuthor">J. Shallow</span>, <span class="refTitle">"Distributed Denial-of-Service Open Threat Signaling (DOTS) Signal Channel Call Home"</span>, <span class="seriesInfo">RFC 9066</span>, <span class="seriesInfo">DOI 10.17487/RFC9066</span>, <time datetime="2021-12" class="refDate">December 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9066">https://www.rfc-editor.org/rfc/rfc9066</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9463">[RFC9463]</dt>
         <dd>
