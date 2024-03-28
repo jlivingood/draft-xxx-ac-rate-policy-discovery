@@ -2306,7 +2306,12 @@ already advertized using RAs and those policies are consistent with the network 
 <p id="section-6-2">In contexts where the bitrate policies are known during the establishment of the underlying bearer (e.g., GBR PDU Sessions), sending NRLP signals over the attachment circuit may be redundant and should thus be disabled.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">In contexts where the (average) bitrate policies provided during the establishment of a bearer cannot be refreshed to echo network-specific conditions (e.g., overload) using bearer-specific mechanisms, sending NRLP signals over the attachment circuit would allow control the load at the source.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">When both bearer-specific policies and NRLP signals are communicated to a host, the NRLP signals takes precedence.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">Rate-limit policies enforced at the network are assumed to be consistent with the local jurisdictions.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-5">Rate-limit policies enforced at the network are assumed to be consistent with the local jurisdictions. For example, <span>[<a href="#BEREC" class="cite xref">BEREC</a>]</span> says the following:<a href="#section-6-5" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-6-6.1">
+          <p id="section-6-6.1.1">ISPs are prohibited from blocking or slowing down of Internet traffic, except where necessary. The exceptions are limited to: traffic management to comply with a legal order, to ensure network integrity and security, and to manage congestion, provided that equivalent categories of traffic are treated equally.<a href="#section-6-6.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 </section>
 </div>
 <div id="sec-inc">
@@ -2544,6 +2549,10 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <dt id="app-measurement">[app-measurement]</dt>
         <dd>
 <span class="refAuthor">Gurel, Z.</span> and <span class="refAuthor">A. C. Begen</span>, <span class="refTitle">"Bandwidth measurement for QUIC"</span>, <time datetime="2024" class="refDate">2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/slides-119-moq-bandwidth-measurement-for-quic/">https://datatracker.ietf.org/doc/slides-119-moq-bandwidth-measurement-for-quic/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="BEREC">[BEREC]</dt>
+        <dd>
+<span class="refAuthor">BEREC</span>, <span class="refTitle">"All you need to know about Net Neutrality rules in the EU"</span>, <span>&lt;<a href="https://www.berec.europa.eu/en/all-you-need-to-know-about-net-neutrality-rules-in-the-eu-0">https://www.berec.europa.eu/en/all-you-need-to-know-about-net-neutrality-rules-in-the-eu-0</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-masque-quic-proxy">[I-D.ietf-masque-quic-proxy]</dt>
         <dd>
