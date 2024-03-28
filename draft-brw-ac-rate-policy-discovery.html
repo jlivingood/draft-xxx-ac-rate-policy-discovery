@@ -1193,6 +1193,17 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-deployment-incentives" class="internal xref">Deployment Incentives</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-networks" class="internal xref">Networks</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-applications" class="internal xref">Applications</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="auto internal xref">7.3</a>.  <a href="#name-host-os" class="internal xref">Host OS</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
@@ -1468,6 +1479,11 @@ service offering while a more elaborated set is required for Enterprise services
 <a href="#name-5gs-architecture" class="selfRef">5GS Architecture</a>
           </figcaption></figure>
 </div>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1.1-7.1">
+            <p id="section-1.1-7.1.1">The "AC" mention in <a href="#ex-arch" class="auto internal xref">Figure 2</a> is not present in <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span>. It is added to the figure for the readers convenience to position an attachment circuit.<a href="#section-1.1-7.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
 </section>
 </div>
 <div id="networks-are-already-sharing-network-properties-with-hosts">
@@ -2321,26 +2337,64 @@ already advertized using RAs and those policies are consistent with the network 
       <h2 id="name-deployment-incentives">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-deployment-incentives" class="section-name selfRef">Deployment Incentives</a>
       </h2>
-<p id="section-7-1">Some applications support some forms of bandwidth measurements (e.g., <span>[<a href="#app-measurement" class="cite xref">app-measurement</a>]</span>) which feed
-how the content is accessed to using ABR. Complementing or replacing these measurements with explicit signals
-depends upon:<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="networks">
+<section id="section-7.1">
+        <h3 id="name-networks">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-networks" class="section-name selfRef">Networks</a>
+        </h3>
+<p id="section-7.1-1">There are a set of tradeoffs for networks to deploy NRLP discovery:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-7-2.1">
-          <p id="section-7-2.1.1">The extra cost that is required to support both mechanisms at the application layer.<a href="#section-7-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.1-2.1">
+            <p id="section-7.1-2.1.1">Cost vs. benefit<a href="#section-7.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-7-2.2">
-          <p id="section-7-2.2.1">The complexity balance between performing the measurements vs. consuming the signal.<a href="#section-7-2.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-2.2">
+            <p id="section-7.1-2.2.1">Impact on operations vs incentive to deploy<a href="#section-7.1-2.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-7-2.3">
-          <p id="section-7-2.3.1">Whether the measurements ("assessed property" per <span>[<a href="#RFC9473" class="cite xref">RFC9473</a>]</span>) reflect actual network conditions or severely diverge.<a href="#section-7-2.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-2.3">
+            <p id="section-7.1-2.3.1">Enhanced experience vs. impacts on nominal mode<a href="#section-7.1-2.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-7-2.4">
-          <p id="section-7-2.4.1">The availability of the network signals at the first place: it is unlikely that all networks will support sending the signals. Deployment incentives at the network may vary.<a href="#section-7-2.4.1" class="pilcrow">¶</a></p>
+        </ul>
+<p id="section-7.1-3">The procedure defined in the document provides a mechanism to assist networks managing the load at the source and, thus, contribute to better handle network overloads and optimize the use
+of resources under non nominal conditions. The mechanism allows also to enhance the quality of experience at the LAN by providing a simple tool to communicate local policies to hosts. A minimal change is required to that aim.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
+<p id="section-7.1-4">Networks that throttle bandwidth for reasons that are not compliant with local jurisdictions, not communicated to customers, etc. are unlikely to share NRLP signals. If these signals are shared, it is unlikely that they will mirror the actual network configuration (e.g., application-specific policies).<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="applications">
+<section id="section-7.2">
+        <h3 id="name-applications">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-applications" class="section-name selfRef">Applications</a>
+        </h3>
+<p id="section-7.2-1">Some applications support some forms of bandwidth measurements (e.g., <span>[<a href="#app-measurement" class="cite xref">app-measurement</a>]</span>) which feed
+how the content is accessed to using ABR. Complementing or replacing these measurements with explicit signals
+depends upon:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7.2-2.1">
+            <p id="section-7.2-2.1.1">The extra cost that is required to support both mechanisms at the application layer.<a href="#section-7.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-7-2.5">
-          <p id="section-7-2.5.1">The host support may be variable.<a href="#section-7-2.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.2-2.2">
+            <p id="section-7.2-2.2.1">The complexity balance between performing the measurements vs. consuming the signal.<a href="#section-7.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
+          <li class="normal" id="section-7.2-2.3">
+            <p id="section-7.2-2.3.1">Whether the measurements ("assessed property" per <span>[<a href="#RFC9473" class="cite xref">RFC9473</a>]</span>) reflect actual network conditions or severely diverge.<a href="#section-7.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-7.2-2.4">
+            <p id="section-7.2-2.4.1">The availability of the network signals at the first place: it is unlikely that all networks will support sending the signals. Deployment incentives at the network may vary.<a href="#section-7.2-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-7.2-2.5">
+            <p id="section-7.2-2.5.1">The host support may be variable.<a href="#section-7.2-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-7.2-3">Applications that don't support (embedded) bandwidth measurement schemes will be enriched with the NRLP signals as this will be exposed by an OS API.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="host-os">
+<section id="section-7.3">
+        <h3 id="name-host-os">
+<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-host-os" class="section-name selfRef">Host OS</a>
+        </h3>
+<p id="section-7.3-1">TBC.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="security-considerations">

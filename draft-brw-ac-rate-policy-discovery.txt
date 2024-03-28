@@ -88,6 +88,9 @@ Table of Contents
      5.2.  DHCPv4 Client Behavior
    6.  Operational Considerations
    7.  Deployment Incentives
+     7.1.  Networks
+     7.2.  Applications
+     7.3.  Host OS
    8.  Security Considerations
      8.1.  ND
      8.2.  DHCP
@@ -173,6 +176,10 @@ Table of Contents
                        |-------AC----------|
 
                          Figure 2: 5GS Architecture
+
+      The "AC" mention in Figure 2 is not present in [TS-23.501].  It is
+      added to the figure for the readers convenience to position an
+      attachment circuit.
 
 1.2.  Networks Are Already Sharing Network Properties with Hosts
 
@@ -796,6 +803,32 @@ Table of Contents
 
 7.  Deployment Incentives
 
+7.1.  Networks
+
+   There are a set of tradeoffs for networks to deploy NRLP discovery:
+
+   *  Cost vs. benefit
+
+   *  Impact on operations vs incentive to deploy
+
+   *  Enhanced experience vs. impacts on nominal mode
+
+   The procedure defined in the document provides a mechanism to assist
+   networks managing the load at the source and, thus, contribute to
+   better handle network overloads and optimize the use of resources
+   under non nominal conditions.  The mechanism allows also to enhance
+   the quality of experience at the LAN by providing a simple tool to
+   communicate local policies to hosts.  A minimal change is required to
+   that aim.
+
+   Networks that throttle bandwidth for reasons that are not compliant
+   with local jurisdictions, not communicated to customers, etc. are
+   unlikely to share NRLP signals.  If these signals are shared, it is
+   unlikely that they will mirror the actual network configuration
+   (e.g., application-specific policies).
+
+7.2.  Applications
+
    Some applications support some forms of bandwidth measurements (e.g.,
    [app-measurement]) which feed how the content is accessed to using
    ABR.  Complementing or replacing these measurements with explicit
@@ -815,6 +848,14 @@ Table of Contents
       Deployment incentives at the network may vary.
 
    *  The host support may be variable.
+
+   Applications that don't support (embedded) bandwidth measurement
+   schemes will be enriched with the NRLP signals as this will be
+   exposed by an OS API.
+
+7.3.  Host OS
+
+   TBC.
 
 8.  Security Considerations
 
