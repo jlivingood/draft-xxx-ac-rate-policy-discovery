@@ -1214,6 +1214,9 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
                 <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-dhcp-option" class="internal xref">DHCP Option</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-dhcp-options-permitted-in-t" class="internal xref">DHCP Options Permitted in the RADIUS DHCPv4-Options Attribute</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
@@ -2239,6 +2242,7 @@ already advertized using RAs and those policies are consistent with the network 
         <dd class="break"></dd>
 </dl>
 <p id="section-5.1-10">OPTION_V4_NRLP is a concatenation-requiring option. As such, the mechanism specified in <span>[<a href="#RFC3396" class="cite xref">RFC3396</a>]</span> <span class="bcp14">MUST</span> be used if OPTION_V4_NRLP exceeds the maximum DHCP option size of 255 octets.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
+<p id="section-5.1-11">OPTION_V4_NRLP is permitted to be included in the RADIUS DHCPv4-Options Attribute <span>[<a href="#RFC9445" class="cite xref">RFC9445</a>]</span>.<a href="#section-5.1-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="dhcpv4-client-behavior">
@@ -2388,6 +2392,38 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 </div>
 </section>
 </div>
+<div id="dhcp-options-permitted-in-the-radius-dhcpv4-options-attribute">
+<section id="section-8.3">
+        <h3 id="name-dhcp-options-permitted-in-t">
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-dhcp-options-permitted-in-t" class="section-name selfRef">DHCP Options Permitted in the RADIUS DHCPv4-Options Attribute</a>
+        </h3>
+<p id="section-8.3-1">This document requests IANA to add the following DHCP Option Code to the "DHCP Options Permitted in the RADIUS DHCPv4-Options Attribute" registry maintained at <span>[<a href="#IANA-BOOTP" class="cite xref">IANA-BOOTP</a>]</span>.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
+<span id="name-new-dhcp-option-permitted-i"></span><div id="iana-radius-dhcp">
+<table class="center" id="table-3">
+          <caption>
+<a href="#table-3" class="selfRef">Table 3</a>:
+<a href="#name-new-dhcp-option-permitted-i" class="selfRef">New DHCP Option Permitted in the RADIUS DHCPv4-Options Attribute Registry</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Tag</th>
+              <th class="text-left" rowspan="1" colspan="1">Name</th>
+              <th class="text-left" rowspan="1" colspan="1"> </th>
+              <th class="text-left" rowspan="1" colspan="1">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TBD2</td>
+              <td class="text-left" rowspan="1" colspan="1">OPTION_V4_NRLP</td>
+              <td class="text-left" rowspan="1" colspan="1">This-Document</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+</section>
+</div>
 </section>
 </div>
 <section id="section-9">
@@ -2421,8 +2457,12 @@ Parameters" registry maintained at <span>[<a href="#IANA-ND" class="cite xref">I
 <span class="refAuthor">Narten, T.</span>, <span class="refAuthor">Nordmark, E.</span>, <span class="refAuthor">Simpson, W.</span>, and <span class="refAuthor">H. Soliman</span>, <span class="refTitle">"Neighbor Discovery for IP version 6 (IPv6)"</span>, <span class="seriesInfo">RFC 4861</span>, <span class="seriesInfo">DOI 10.17487/RFC4861</span>, <time datetime="2007-09" class="refDate">September 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4861">https://www.rfc-editor.org/rfc/rfc4861</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9445">[RFC9445]</dt>
+      <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Reddy.K, T.</span>, and <span class="refAuthor">A. DeKok</span>, <span class="refTitle">"RADIUS Extensions for DHCP-Configured Services"</span>, <span class="seriesInfo">RFC 9445</span>, <span class="seriesInfo">DOI 10.17487/RFC9445</span>, <time datetime="2023-08" class="refDate">August 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9445">https://www.rfc-editor.org/rfc/rfc9445</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

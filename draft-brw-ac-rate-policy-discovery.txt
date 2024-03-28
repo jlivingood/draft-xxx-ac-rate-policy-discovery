@@ -95,6 +95,8 @@ Table of Contents
    8.  IANA Considerations
      8.1.  Neighbor Discovery Option
      8.2.  DHCP Option
+     8.3.  DHCP Options Permitted in the RADIUS DHCPv4-Options
+           Attribute
    9.  References
      9.1.  Normative References
      9.2.  Informative References
@@ -720,6 +722,9 @@ Table of Contents
    mechanism specified in [RFC3396] MUST be used if OPTION_V4_NRLP
    exceeds the maximum DHCP option size of 255 octets.
 
+   OPTION_V4_NRLP is permitted to be included in the RADIUS
+   DHCPv4-Options Attribute [RFC9445].
+
 5.2.  DHCPv4 Client Behavior
 
    To discover a network rate-limit policy, the DHCP client includes
@@ -839,6 +844,21 @@ Table of Contents
 
                          Table 2: DHCP NRLP Option
 
+8.3.  DHCP Options Permitted in the RADIUS DHCPv4-Options Attribute
+
+   This document requests IANA to add the following DHCP Option Code to
+   the "DHCP Options Permitted in the RADIUS DHCPv4-Options Attribute"
+   registry maintained at [IANA-BOOTP].
+
+           +======+================+===============+===========+
+           | Tag  | Name           |               | Reference |
+           +======+================+===============+===========+
+           | TBD2 | OPTION_V4_NRLP | This-Document |           |
+           +------+----------------+---------------+-----------+
+
+              Table 3: New DHCP Option Permitted in the RADIUS
+                     DHCPv4-Options Attribute Registry
+
 9.  References
 
 9.1.  Normative References
@@ -873,6 +893,11 @@ Table of Contents
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [RFC9445]  Boucadair, M., Reddy.K, T., and A. DeKok, "RADIUS
+              Extensions for DHCP-Configured Services", RFC 9445,
+              DOI 10.17487/RFC9445, August 2023,
+              <https://www.rfc-editor.org/rfc/rfc9445>.
 
 9.2.  Informative References
 
