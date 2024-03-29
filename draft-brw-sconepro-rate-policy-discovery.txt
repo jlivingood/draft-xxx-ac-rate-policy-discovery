@@ -129,7 +129,7 @@ Table of Contents
    terminating points to a network.
 
    Figure 1 shows an example of a network that connects CEs and hosts
-   (UE, for example).  These CEs are servicing other (internal) hosts.
+   (UE, for example).These CEs are servicing other (internal) hosts.
    The identification of these hosts is hidden to the network.  The
    policies enforced at the network for an AC are per-subscriber, not
    per-host.  Typically, if a CE is provided with a /56 IPv6 prefix,
@@ -279,15 +279,17 @@ Table of Contents
    circuit.  Whether one or multiple services are bound to the same
    attachment circuit is deployment specific.
 
-   Applications will have access to all these NRLPs and will thus adjust
-   their behavior as a function of scope and traffic category indicated
-   in a policy (all traffic, streaming, etc.).  An application that
-   couples multiple flow types will adjust each flow type to be
+   Applications will have access to all these NRLPs and will, thus,
+   adjust their behavior as a function of scope and traffic category
+   indicated in a policy (all traffic, streaming, etc.).  An application
+   that couples multiple flow types will adjust each flow type to be
    consistent with the specific policy for the relevant traffic
-   category.  That's said, this document does not make any
-   recommendation about how a receiving host uses the discovered policy.
-   Readers should refer, e.g., to [I-D.rwbr-tsvwg-signaling-use-cases]
-   for some examples.
+   category.  Likewise, a host with multiple ACs may use the discovered
+   NRLPs AC to decide how to distribute its flows over these ACs (prefer
+   an AC to place an application session, migrate connection, etc.).
+   That's said, this document does not make any recommendation about how
+   a receiving host uses the discovered policy.  Readers should refer,
+   e.g., to [I-D.rwbr-tsvwg-signaling-use-cases] for some examples.
 
    Networks that advertize NLRPs are likely to maintain the policing in
    place within the network because of the trust model (hosts are not
