@@ -9,7 +9,7 @@
 <meta content="Dan Wing" name="author">
 <meta content="Tirumaleswar Reddy" name="author">
 <meta content="
-       Traffic exchanged over an attachment circuit may be subject to rate limit policies.
+       Traffic exchanged over an attachment circuit may be subject to rate-limit policies.
 These policies may be intentional policies (e.g., enforced as part of the activation of the attachment circuit and typically agreed upon service subscription)
 or be reactive policies (e.g., enforced temporarily to manage an overload or during a DDoS attack mitigation). 
        Networks already support mechanisms to advertize a set of network properties to hosts using Neighbor Discovery options. Examples of such
@@ -1075,7 +1075,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Discovery of Network Rate-Limit Policies (NRLPs)</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">Traffic exchanged over an attachment circuit may be subject to rate limit policies.
+<p id="section-abstract-1">Traffic exchanged over an attachment circuit may be subject to rate-limit policies.
 These policies may be intentional policies (e.g., enforced as part of the activation of the attachment circuit and typically agreed upon service subscription)
 or be reactive policies (e.g., enforced temporarily to manage an overload or during a DDoS attack mitigation).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">Networks already support mechanisms to advertize a set of network properties to hosts using Neighbor Discovery options. Examples of such
@@ -1268,91 +1268,100 @@ properties are link MTU (RFC 4861) and PREFIX64 (RFC 8781). This document comple
 <a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-context" class="section-name selfRef">Context</a>
         </h3>
 <p id="section-1.1-1">Connectivity services are provided by networks to customers via
-dedicated terminating points, such as customer edges (CEs) or User Equipment (UE) (see <a href="#ac" class="auto internal xref">Figure 1</a>).
+dedicated terminating points, such as customer edges (CEs) or User Equipment (UE).
 To facilitate data transfer via the provider network, it is assumed that appropriate setup
 is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)),
 allowing successfully data exchange over these links. The required setup is referred to in this document as Attachment Circuits (ACs),
 while the underlying link is referred to as "bearers".<a href="#section-1.1-1" class="pilcrow">¶</a></p>
-<p id="section-1.1-2">The bearer can be a physical or logical link that connects a customer device to a provider network. A bearer can be a wireless or wired link.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">The bearer can be a physical or logical link that connects a customer device to a provider network. A bearer can be a wireless or wired link. The same or multiple bearer technologies can be used to establish the bearer (e.g., WLAN, cellular) to graft customer terminating points to a network.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3"><a href="#ac" class="auto internal xref">Figure 1</a> shows an example of a network that connects CEs and hosts (UE, for example). These CEs are servicing
+other (internal) hosts. The identification of these hosts is hidden to the network. The policies enforced at the network
+for an AC are per-subscriber, not per-host. Typically, if a CE is provided with a /56 IPv6 prefix, policies are enforced
+on that /56 not the individual /64s that will be used by internal hosts. A customer terminating point may be serviced with one (e.g., UE#1, CE#1, and CE#3) or multiple ACs (e.g., CE#2).<a href="#section-1.1-3" class="pilcrow">¶</a></p>
 <span id="name-sample-attachment-circuits"></span><div id="ac">
 <figure id="figure-1">
-          <div id="section-1.1-3.1">
-            <div class="alignCenter art-svg artwork" id="section-1.1-3.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="240" width="528" viewBox="0 0 528 240" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-                <path d="M 8,32 L 8,80" fill="none" stroke="black"></path>
-                <path d="M 8,112 L 8,160" fill="none" stroke="black"></path>
-                <path d="M 72,32 L 72,80" fill="none" stroke="black"></path>
-                <path d="M 72,112 L 72,160" fill="none" stroke="black"></path>
-                <path d="M 128,48 L 128,80" fill="none" stroke="black"></path>
-                <path d="M 128,112 L 128,144" fill="none" stroke="black"></path>
-                <path d="M 208,32 L 208,176" fill="none" stroke="black"></path>
-                <path d="M 304,176 L 304,208" fill="none" stroke="black"></path>
-                <path d="M 376,32 L 376,176" fill="none" stroke="black"></path>
-                <path d="M 456,32 L 456,80" fill="none" stroke="black"></path>
-                <path d="M 456,128 L 456,160" fill="none" stroke="black"></path>
-                <path d="M 496,160 L 496,208" fill="none" stroke="black"></path>
-                <path d="M 520,32 L 520,80" fill="none" stroke="black"></path>
-                <path d="M 520,128 L 520,160" fill="none" stroke="black"></path>
-                <path d="M 8,32 L 72,32" fill="none" stroke="black"></path>
-                <path d="M 208,32 L 376,32" fill="none" stroke="black"></path>
-                <path d="M 456,32 L 520,32" fill="none" stroke="black"></path>
-                <path d="M 72,48 L 128,48" fill="none" stroke="black"></path>
-                <path d="M 376,48 L 400,48" fill="none" stroke="black"></path>
-                <path d="M 424,48 L 456,48" fill="none" stroke="black"></path>
-                <path d="M 376,64 L 400,64" fill="none" stroke="black"></path>
-                <path d="M 424,64 L 456,64" fill="none" stroke="black"></path>
-                <path d="M 8,80 L 72,80" fill="none" stroke="black"></path>
-                <path d="M 128,80 L 152,80" fill="none" stroke="black"></path>
-                <path d="M 176,80 L 208,80" fill="none" stroke="black"></path>
-                <path d="M 456,80 L 520,80" fill="none" stroke="black"></path>
-                <path d="M 8,112 L 72,112" fill="none" stroke="black"></path>
-                <path d="M 128,112 L 152,112" fill="none" stroke="black"></path>
-                <path d="M 176,112 L 208,112" fill="none" stroke="black"></path>
-                <path d="M 456,128 L 520,128" fill="none" stroke="black"></path>
-                <path d="M 72,144 L 128,144" fill="none" stroke="black"></path>
-                <path d="M 376,144 L 400,144" fill="none" stroke="black"></path>
-                <path d="M 424,144 L 456,144" fill="none" stroke="black"></path>
-                <path d="M 8,160 L 72,160" fill="none" stroke="black"></path>
-                <path d="M 456,160 L 520,160" fill="none" stroke="black"></path>
-                <path d="M 208,176 L 376,176" fill="none" stroke="black"></path>
-                <path d="M 304,208 L 392,208" fill="none" stroke="black"></path>
-                <path d="M 416,208 L 496,208" fill="none" stroke="black"></path>
+          <div id="section-1.1-4.1">
+            <div class="alignCenter art-svg artwork" id="section-1.1-4.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="272" width="512" viewBox="0 0 512 272" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,80 L 8,128" fill="none" stroke="black"></path>
+                <path d="M 8,160 L 8,208" fill="none" stroke="black"></path>
+                <path d="M 64,80 L 64,128" fill="none" stroke="black"></path>
+                <path d="M 64,160 L 64,208" fill="none" stroke="black"></path>
+                <path d="M 120,96 L 120,128" fill="none" stroke="black"></path>
+                <path d="M 120,160 L 120,192" fill="none" stroke="black"></path>
+                <path d="M 200,80 L 200,224" fill="none" stroke="black"></path>
+                <path d="M 368,80 L 368,224" fill="none" stroke="black"></path>
+                <path d="M 448,80 L 448,128" fill="none" stroke="black"></path>
+                <path d="M 448,176 L 448,208" fill="none" stroke="black"></path>
+                <path d="M 504,80 L 504,128" fill="none" stroke="black"></path>
+                <path d="M 504,176 L 504,208" fill="none" stroke="black"></path>
+                <path d="M 8,80 L 64,80" fill="none" stroke="black"></path>
+                <path d="M 200,80 L 368,80" fill="none" stroke="black"></path>
+                <path d="M 448,80 L 504,80" fill="none" stroke="black"></path>
+                <path d="M 64,96 L 120,96" fill="none" stroke="black"></path>
+                <path d="M 368,96 L 392,96" fill="none" stroke="black"></path>
+                <path d="M 416,96 L 448,96" fill="none" stroke="black"></path>
+                <path d="M 368,112 L 392,112" fill="none" stroke="black"></path>
+                <path d="M 416,112 L 448,112" fill="none" stroke="black"></path>
+                <path d="M 8,128 L 64,128" fill="none" stroke="black"></path>
+                <path d="M 120,128 L 144,128" fill="none" stroke="black"></path>
+                <path d="M 168,128 L 200,128" fill="none" stroke="black"></path>
+                <path d="M 448,128 L 504,128" fill="none" stroke="black"></path>
+                <path d="M 8,160 L 64,160" fill="none" stroke="black"></path>
+                <path d="M 120,160 L 144,160" fill="none" stroke="black"></path>
+                <path d="M 168,160 L 200,160" fill="none" stroke="black"></path>
+                <path d="M 448,176 L 504,176" fill="none" stroke="black"></path>
+                <path d="M 64,192 L 120,192" fill="none" stroke="black"></path>
+                <path d="M 368,192 L 392,192" fill="none" stroke="black"></path>
+                <path d="M 416,192 L 448,192" fill="none" stroke="black"></path>
+                <path d="M 8,208 L 64,208" fill="none" stroke="black"></path>
+                <path d="M 448,208 L 504,208" fill="none" stroke="black"></path>
+                <path d="M 200,224 L 368,224" fill="none" stroke="black"></path>
                 <g class="text">
-                  <text x="412" y="52">AC</text>
-                  <text x="36" y="68">UE#1</text>
-                  <text x="412" y="68">AC</text>
-                  <text x="484" y="68">CE#2</text>
-                  <text x="164" y="84">AC</text>
-                  <text x="280" y="100">Network</text>
-                  <text x="164" y="116">AC</text>
-                  <text x="36" y="148">CE#1</text>
-                  <text x="412" y="148">AC</text>
-                  <text x="484" y="148">CE#3</text>
-                  <text x="40" y="180">/|\</text>
-                  <text x="24" y="196">O</text>
-                  <text x="40" y="196">O</text>
-                  <text x="56" y="196">O</text>
-                  <text x="40" y="212">Hosts</text>
-                  <text x="404" y="212">AC</text>
+                  <text x="472" y="36">Hosts</text>
+                  <text x="456" y="52">O</text>
+                  <text x="472" y="52">O</text>
+                  <text x="488" y="52">O</text>
+                  <text x="472" y="68">\|/</text>
+                  <text x="404" y="100">AC</text>
+                  <text x="36" y="116">UE#1</text>
+                  <text x="404" y="116">AC</text>
+                  <text x="476" y="116">CE#2</text>
+                  <text x="156" y="132">AC</text>
+                  <text x="272" y="148">Network</text>
+                  <text x="156" y="164">AC</text>
+                  <text x="36" y="196">CE#1</text>
+                  <text x="404" y="196">AC</text>
+                  <text x="476" y="196">CE#3</text>
+                  <text x="40" y="228">/|\</text>
+                  <text x="480" y="228">/|\</text>
+                  <text x="24" y="244">O</text>
+                  <text x="40" y="244">O</text>
+                  <text x="56" y="244">O</text>
+                  <text x="464" y="244">O</text>
+                  <text x="480" y="244">O</text>
+                  <text x="496" y="244">O</text>
+                  <text x="40" y="260">Hosts</text>
+                  <text x="480" y="260">Hosts</text>
                 </g>
-              </svg><a href="#section-1.1-3.1.1" class="pilcrow">¶</a>
+              </svg><a href="#section-1.1-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-sample-attachment-circuits" class="selfRef">Sample Attachment Circuits</a>
           </figcaption></figure>
 </div>
-<p id="section-1.1-4">Customer terminating points are provided with a set of information (e.g., IP address/prefix) to successfully be
+<p id="section-1.1-5">Customer terminating points are provided with a set of information (e.g., IP address/prefix) to successfully be
 able to send and receive traffic over an attachment circuit. A comprehensive list of provisioning parameters that are available on
-the PE-side of an attachment circuit is documented in <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
-<p id="section-1.1-5">The required set of parameters is a function of the service offering. For example, a very limited set of parameters is required for mass-market
+the PE-side of an attachment circuit is documented in <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
+<p id="section-1.1-6">The required set of parameters is a function of the service offering. For example, a very limited set of parameters is required for mass-market
 service offering while a more elaborated set is required for Enterprise services (e.g., Layer 2 VPN <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> or Layer 3 VPN <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>). This document
-<strong>leverages access control, authorization, and authentication mechanisms that are already in place for the delivery of services over these attachment circuits</strong>. An example of an attachment circuit provided over a 3GPP network is depicted in <a href="#ex-arch" class="auto internal xref">Figure 2</a>. It is out of the scope of this document to describe all involved components. Readers may refer to <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span> for more details.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
-<p id="section-1.1-6"><a href="#sec-aaa" class="auto internal xref">Appendix B</a> provides another example of how existing tools can be leveraged for AAA purposes.<a href="#section-1.1-6" class="pilcrow">¶</a></p>
+<strong>leverages access control, authorization, and authentication mechanisms that are already in place for the delivery of services over these attachment circuits</strong>. An example of an attachment circuit provided over a 3GPP network is depicted in <a href="#ex-arch" class="auto internal xref">Figure 2</a>. It is out of the scope of this document to describe all involved components. Readers may refer to <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span> for more details.<a href="#section-1.1-6" class="pilcrow">¶</a></p>
+<p id="section-1.1-7"><a href="#sec-aaa" class="auto internal xref">Appendix B</a> provides another example of how existing tools can be leveraged for AAA purposes.<a href="#section-1.1-7" class="pilcrow">¶</a></p>
 <span id="name-5gs-architecture"></span><div id="ex-arch">
 <figure id="figure-2">
-          <div id="section-1.1-7.1">
-            <div class="alignCenter art-svg artwork" id="section-1.1-7.1.1">
+          <div id="section-1.1-8.1">
+            <div class="alignCenter art-svg artwork" id="section-1.1-8.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="536" viewBox="0 0 536 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 24,32 L 24,64" fill="none" stroke="black"></path>
                 <path d="M 48,64 L 48,96" fill="none" stroke="black"></path>
@@ -1476,7 +1485,7 @@ service offering while a more elaborated set is required for Enterprise services
                   <text x="228" y="292">AC</text>
                   <text x="320" y="292">|</text>
                 </g>
-              </svg><a href="#section-1.1-7.1.1" class="pilcrow">¶</a>
+              </svg><a href="#section-1.1-8.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
@@ -1484,8 +1493,8 @@ service offering while a more elaborated set is required for Enterprise services
           </figcaption></figure>
 </div>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-1.1-8.1">
-            <p id="section-1.1-8.1.1">The "AC" mention in <a href="#ex-arch" class="auto internal xref">Figure 2</a> is not present in <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span>. It is added to the figure for the readers' convenience to position an attachment circuit.<a href="#section-1.1-8.1.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-1.1-9.1">
+            <p id="section-1.1-9.1.1">The "AC" mention in <a href="#ex-arch" class="auto internal xref">Figure 2</a> is not present in <span>[<a href="#TS-23.501" class="cite xref">TS-23.501</a>]</span>. It is added to the figure for the readers' convenience to position an attachment circuit.<a href="#section-1.1-9.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1598,7 +1607,7 @@ are bound to the same attachment circuit is deployment specific.<a href="#sectio
             <p id="section-1.5-5.4.1"><strong>Does not require to reveal the identity of the target server or the application itself</strong> to consume the signal.<a href="#section-1.5-5.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.5-5.5">
-            <p id="section-1.5-5.5.1"><strong>Supports cascaded environments</strong> where multiple levels to enforce rate limiting polices is required (e.g., WAN and LAN shown in <a href="#ac-casc" class="auto internal xref">Figure 3</a>). NRLP signals can be coupled or decoupled as a function of the local policy.<a href="#section-1.5-5.5.1" class="pilcrow">¶</a></p>
+            <p id="section-1.5-5.5.1"><strong>Supports cascaded environments</strong> where multiple levels to enforce rate-limiting polices is required (e.g., WAN and LAN shown in <a href="#ac-casc" class="auto internal xref">Figure 3</a>). NRLP signals can be coupled or decoupled as a function of the local policy.<a href="#section-1.5-5.5.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.5-5.6">
             <p id="section-1.5-5.6.1"><strong>Supports signaling policies bound to one or both traffic directions</strong>.<a href="#section-1.5-5.6.1" class="pilcrow">¶</a></p>
@@ -1689,13 +1698,13 @@ are bound to the same attachment circuit is deployment specific.<a href="#sectio
 <p id="section-1.6-1">Some deployment use cases for NRLP are provided below:<a href="#section-1.6-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1.6-2.1">
-            <p id="section-1.6-2.1.1">A network may advertize an NRLP when it is overloaded, including when it is under attack. The rate limit policy is basically a reactive policy that is meant to adjust the behavior of connected hosts to better control the load during these exceptional events (issue with RAN resources, for example). The mechanism can also be used to enrich the tools that are already available to better handle attack traffic close to the source <span>[<a href="#RFC9066" class="cite xref">RFC9066</a>]</span>.<a href="#section-1.6-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-1.6-2.1.1">A network may advertize an NRLP when it is overloaded, including when it is under attack. The rate-limit policy is basically a reactive policy that is meant to adjust the behavior of connected hosts to better control the load during these exceptional events (issue with RAN resources, for example). The mechanism can also be used to enrich the tools that are already available to better handle attack traffic close to the source <span>[<a href="#RFC9066" class="cite xref">RFC9066</a>]</span>.<a href="#section-1.6-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.6-2.2">
             <p id="section-1.6-2.2.1">Discovery of intentional policy applied on attachment circuits (peering links, CE-PE links, etc.) when such information is not made available during the service activation or when network upgrades are performed.<a href="#section-1.6-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.6-2.3">
-            <p id="section-1.6-2.3.1">A user may configure policies on the CPE such as securing some resources to a specific internal host used for gaming or video streaming. The CPE can use the NRLP option to share these rate limit policies to connected hosts to adjust their forwarding behavior.<a href="#section-1.6-2.3.1" class="pilcrow">¶</a></p>
+            <p id="section-1.6-2.3.1">A user may configure policies on the CPE such as securing some resources to a specific internal host used for gaming or video streaming. The CPE can use the NRLP option to share these rate-limit policies to connected hosts to adjust their forwarding behavior.<a href="#section-1.6-2.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-1.6-3">Operational considerations are discussed in <a href="#sec-ops" class="auto internal xref">Section 6</a>, while deployment incentives are described in <a href="#sec-inc" class="auto internal xref">Section 7</a>.<a href="#section-1.6-3" class="pilcrow">¶</a></p>
@@ -2113,7 +2122,7 @@ in RAs; each with distinct scope and/or application group.<a href="#section-4.2-
 <p id="section-4.2-4">If the receiving host has LAN capabilities (e.g., mobile CE or mobile handset with tethering), the following behavior applies:<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.2-5.1">
-            <p id="section-4.2-5.1.1">If an RA NRLP is advertised from the network, and absent local rate limit policies, the
+            <p id="section-4.2-5.1.1">If an RA NRLP is advertised from the network, and absent local rate-limit policies, the
 device should send RAs to the downstream attached LAN devices with the same NRLP values received from the network.<a href="#section-4.2-5.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.2-5.2">

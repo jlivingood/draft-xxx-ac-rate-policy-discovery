@@ -16,7 +16,7 @@ Expires: 30 September 2024                          Cloud Software Group
 
 Abstract
 
-   Traffic exchanged over an attachment circuit may be subject to rate
+   Traffic exchanged over an attachment circuit may be subject to rate-
    limit policies.  These policies may be intentional policies (e.g.,
    enforced as part of the activation of the attachment circuit and
    typically agreed upon service subscription) or be reactive policies
@@ -114,32 +114,47 @@ Table of Contents
 
    Connectivity services are provided by networks to customers via
    dedicated terminating points, such as customer edges (CEs) or User
-   Equipment (UE) (see Figure 1).  To facilitate data transfer via the
-   provider network, it is assumed that appropriate setup is provisioned
-   over the links that connect customer terminating points and a
-   provider network (usually via a Provider Edge (PE)), allowing
-   successfully data exchange over these links.  The required setup is
-   referred to in this document as Attachment Circuits (ACs), while the
-   underlying link is referred to as "bearers".
+   Equipment (UE).  To facilitate data transfer via the provider
+   network, it is assumed that appropriate setup is provisioned over the
+   links that connect customer terminating points and a provider network
+   (usually via a Provider Edge (PE)), allowing successfully data
+   exchange over these links.  The required setup is referred to in this
+   document as Attachment Circuits (ACs), while the underlying link is
+   referred to as "bearers".
 
    The bearer can be a physical or logical link that connects a customer
    device to a provider network.  A bearer can be a wireless or wired
-   link.
+   link.  The same or multiple bearer technologies can be used to
+   establish the bearer (e.g., WLAN, cellular) to graft customer
+   terminating points to a network.
 
-       .-------.                .--------------------.         .-------.
-       |       +------+         |                    +---AC----+       |
-       | UE#1  |      |         |                    +---AC----+ CE#2  |
-       '-------'      +---AC----+                    |         '-------'
-                                |     Network        |
-       .-------.      .---AC----+                    |
-       |       |      |         |                    |         .-------.
-       | CE#1  +------'         |                    +---AC----+ CE#3  |
-       '-------'                |                    |         '----+--'
-          /|\                   '-----------+--------'              |
-         O O O                              |                       |
-         Hosts                              '-----------AC----------'
+   Figure 1 shows an example of a network that connects CEs and hosts
+   (UE, for example).  These CEs are servicing other (internal) hosts.
+   The identification of these hosts is hidden to the network.  The
+   policies enforced at the network for an AC are per-subscriber, not
+   per-host.  Typically, if a CE is provided with a /56 IPv6 prefix,
+   policies are enforced on that /56 not the individual /64s that will
+   be used by internal hosts.  A customer terminating point may be
+   serviced with one (e.g., UE#1, CE#1, and CE#3) or multiple ACs (e.g.,
+   CE#2).
 
-                   Figure 1: Sample Attachment Circuits
+                                                              Hosts
+                                                              O O O
+                                                               \|/
+      .------.                .--------------------.         .------.
+      |      +------+         |                    +---AC----+      |
+      | UE#1 |      |         |                    +---AC----+ CE#2 |
+      '------'      +---AC----+                    |         '------'
+                              |     Network        |
+      .------.      .---AC----+                    |
+      |      |      |         |                    |         .------.
+      | CE#1 +------'         |                    +---AC----+ CE#3 |
+      '------'                |                    |         '------'
+         /|\                  '--------------------'            /|\
+        O O O                                                  O O O
+        Hosts                                                  Hosts
+
+                    Figure 1: Sample Attachment Circuits
 
    Customer terminating points are provided with a set of information
    (e.g., IP address/prefix) to successfully be able to send and receive
@@ -320,7 +335,7 @@ Table of Contents
       the application itself* to consume the signal.
 
    *  *Supports cascaded environments* where multiple levels to enforce
-      rate limiting polices is required (e.g., WAN and LAN shown in
+      rate-limiting polices is required (e.g., WAN and LAN shown in
       Figure 3).  NRLP signals can be coupled or decoupled as a function
       of the local policy.
 
@@ -383,7 +398,7 @@ Table of Contents
    Some deployment use cases for NRLP are provided below:
 
    *  A network may advertize an NRLP when it is overloaded, including
-      when it is under attack.  The rate limit policy is basically a
+      when it is under attack.  The rate-limit policy is basically a
       reactive policy that is meant to adjust the behavior of connected
       hosts to better control the load during these exceptional events
       (issue with RAN resources, for example).  The mechanism can also
@@ -397,7 +412,7 @@ Table of Contents
 
    *  A user may configure policies on the CPE such as securing some
       resources to a specific internal host used for gaming or video
-      streaming.  The CPE can use the NRLP option to share these rate
+      streaming.  The CPE can use the NRLP option to share these rate-
       limit policies to connected hosts to adjust their forwarding
       behavior.
 
@@ -640,7 +655,7 @@ Table of Contents
    handset with tethering), the following behavior applies:
 
    *  If an RA NRLP is advertised from the network, and absent local
-      rate limit policies, the device should send RAs to the downstream
+      rate-limit policies, the device should send RAs to the downstream
       attached LAN devices with the same NRLP values received from the
       network.
 
