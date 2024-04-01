@@ -906,17 +906,31 @@ Table of Contents
    (active/inactive/background) of applications.  Based on that, the
    host can:
 
-   *  OS can prevent (have a global control) network overload with NRLP
-      signals ensuring more stability.
+   *  Improved Network Performance: The OS can schedule network requests
+      more efficiently, preventing network congestion, and improving
+      overall stability and network performance with NRLP signals.
 
-   *  OS can provide more accurate available bandwidth to applications
-      through the API (as mentioned above), making implementation easier
-      for applications that don't requrie dedicated bandwidth
-      measurement.
+   *  API to facilitate Application Development: OS can provide more
+      accurate available bandwidth to applications through the API (as
+      mentioned above), making implementation easier for applications
+      that don't requrie dedicated bandwidth measurement.
 
-   *  OS can promote fair resource allocation with NRLP signals.  OS can
-      also optimize resource allocation, by deprioritizing background/
+   *  Better Resource Management: The OS can allocate network resources
+      more fairly among different processes, with NRLP signals, ensuring
+      that no single process monopolizes the network.  OS can also
+      optimize resource allocation, by deprioritizing background/
       inactive applications in the event of high network utilization.
+
+   *  Enhanced Security: Awareness of NRLPs can help the OS detect and
+      mitigate network-related security threats, such as denial-of-
+      service (DoS) attacks.
+
+   *  Cost Efficiency: By managing network usage based on rate limits,
+      the OS can help reduce network-related costs.
+
+   *  Improved User Experience: By avoiding network congestion and
+      ensuring fair resource allocation, the OS can provide a smoother,
+      more responsive user experience.
 
 8.  Security Considerations
 
