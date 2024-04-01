@@ -902,10 +902,6 @@ Table of Contents
 
 7.3.  Host OS
 
-   The host OS has information on the type and the state
-   (active/inactive/background) of applications.  Based on that, the
-   host can:
-
    *  Improved Network Performance: The OS can schedule network requests
       more efficiently, preventing network congestion, and improving
       overall stability and network performance with NRLP signals.
