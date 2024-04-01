@@ -911,11 +911,13 @@ Table of Contents
       mentioned above), making implementation easier for applications
       that don't requrie dedicated bandwidth measurement.
 
-   *  Better Resource Management: The OS can allocate network resources
-      more fairly among different processes, with NRLP signals, ensuring
-      that no single process monopolizes the network.  OS can also
-      optimize resource allocation, by deprioritizing background/
-      inactive applications in the event of high network utilization.
+   *  Prevent Abuse: The OS can allocate network resources more fairly
+      among different processes, with NRLP signals, ensuring that no
+      single process monopolizes the network.
+
+   *  Better Resource Management: OS can also optimize resource
+      allocation, by deprioritizing background/inactive applications in
+      the event of high network utilization.
 
    *  Enhanced Security: Awareness of NRLPs can help the OS detect and
       mitigate network-related security threats, such as denial-of-
@@ -927,6 +929,10 @@ Table of Contents
    *  Improved User Experience: By avoiding network congestion and
       ensuring fair resource allocation, the OS can provide a smoother,
       more responsive user experience.
+
+   *  Improved Application Development Efficiency: OS providing rate
+      limits through an API (as mentioned above) can provide the above
+      listed benefits at per application level.
 
 8.  Security Considerations
 
