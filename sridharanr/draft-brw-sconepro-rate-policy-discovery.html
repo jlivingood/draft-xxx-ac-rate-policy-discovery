@@ -2429,7 +2429,15 @@ depends upon:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
         <h3 id="name-host-os">
 <a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-host-os" class="section-name selfRef">Host OS</a>
         </h3>
-<p id="section-7.3-1">TBC.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+<p id="section-7.3-1">The host OS has information on the type and the state (active/inactive/background) of applications. Based on that, the host can:<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7.3-2.1">
+            <p id="section-7.3-2.1.1">Dedicate more bandwidth to an active application compared to inactive one. eg., user switches to streaming application while backup is in progress, the streaming application can get more preference over the backup when the host OS knows about rate constraints. The background/inactive apps can be deprioritized in the event of network overload.<a href="#section-7.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-7.3-2.2">
+            <p id="section-7.3-2.2.1">OS can provide more accurate available bandwidth to applications through the API (as mentioned above), making implementation easier for applications that don't requrie dedicated bandwidth measurement.<a href="#section-7.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
 </section>
 </div>
 </section>
