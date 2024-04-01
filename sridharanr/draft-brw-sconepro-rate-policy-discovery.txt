@@ -471,7 +471,14 @@ Table of Contents
 
       When set to "0", this flag indicates that PIR is not present.
 
-   U:  Unassigned bit.
+   R:  1-bit flag which indicates the type of traffic on which to apply
+      the enclosed policy.
+
+      When set to "1", this flag indicates that this policy is for
+      reliable traffic.
+
+      When set to "0", this flag indicates that this policy is for
+      unreliable traffic.
 
    Scope:  4-bit field which specifies whether the policy is per host,
       per subscriber, etc.
@@ -493,7 +500,7 @@ Table of Contents
 
       *  "1": Streaming
 
-      *  "2": Realtime
+      *  "2": Real-time
 
       *  "3": Bulk traffic
 
@@ -574,7 +581,7 @@ Table of Contents
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Type      |     Length    |D|E|P|U| Scope |      TC       |
+     |     Type      |     Length    |D|E|P|R| Scope |      TC       |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                Committed Information Rate (CIR)               |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -589,7 +596,7 @@ Table of Contents
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Type      |     Length    |D|E|P|U| Scope |      TC       |
+     |     Type      |     Length    |D|E|P|R| Scope |      TC       |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                Committed Information Rate (CIR)               |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -620,7 +627,7 @@ Table of Contents
 
    P:  See Section 3.
 
-   U:  Unassigned bit.
+   R:  See Section 3.
 
    Scope:  See Section 3.
 
@@ -718,7 +725,7 @@ Table of Contents
                      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                      |   NRLP Instance Data Length   |
                      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                     |D|E|P|U| Scope |      TC       |
+                     |D|E|P|R| Scope |      TC       |
                      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                      |  Committed Information Rate   |
                      |              (CIR)            |
@@ -737,7 +744,7 @@ Table of Contents
                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                    |   NRLP Instance Data Length   |
                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                   |D|E|P|U| Scope |      TC       |
+                   |D|E|P|R| Scope |      TC       |
                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                    |  Committed Information Rate   |
                    |              (CIR)            |
@@ -772,7 +779,7 @@ Table of Contents
 
    P:  See Section 3.
 
-   U:  Unassigned bit.
+   U:  See Section 3.
 
    Scope:  See Section 3.
 
