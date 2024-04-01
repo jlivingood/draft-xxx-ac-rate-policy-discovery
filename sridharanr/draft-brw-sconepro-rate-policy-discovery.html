@@ -2432,10 +2432,13 @@ depends upon:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 <p id="section-7.3-1">The host OS has information on the type and the state (active/inactive/background) of applications. Based on that, the host can:<a href="#section-7.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-7.3-2.1">
-            <p id="section-7.3-2.1.1">Dedicate more bandwidth to an active application compared to inactive one. eg., user switches to streaming application while backup is in progress, the streaming application can get more preference over the backup when the host OS knows about rate constraints. The background/inactive apps can be deprioritized in the event of network overload.<a href="#section-7.3-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-7.3-2.1.1">OS can prevent (have a global control) network overload with NRLP signals ensuring more stability.<a href="#section-7.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-7.3-2.2">
             <p id="section-7.3-2.2.1">OS can provide more accurate available bandwidth to applications through the API (as mentioned above), making implementation easier for applications that don't requrie dedicated bandwidth measurement.<a href="#section-7.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-7.3-2.3">
+            <p id="section-7.3-2.3.1">OS can promote fair resource allocation with NRLP signals. OS can also optimize resource allocation, by deprioritizing background/inactive applications in the event of high network utilization.<a href="#section-7.3-2.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
