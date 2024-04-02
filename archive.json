@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-31T01:00:26.128401+00:00",
+  "timestamp": "2024-04-02T00:58:02.294048+00:00",
   "repo": "boucadair/draft-xxx-ac-rate-policy-discovery",
   "labels": [
     {
@@ -342,6 +342,58 @@
       "mergeCommit": {
         "oid": "5b2771b001e3fd47f780445a5dda3805e54c3052"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOLlGZlc5rUMuR",
+      "title": "Comparison with MASQUE proxy",
+      "url": "https://github.com/boucadair/draft-xxx-ac-rate-policy-discovery/pull/10",
+      "state": "OPEN",
+      "author": "tireddy2",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-01T13:19:10Z",
+      "updatedAt": "2024-04-01T13:19:10Z",
+      "baseRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "baseRefName": "main",
+      "baseRefOid": "bcd3ed01a6f90c9c04311e15b97720ea459193d5",
+      "headRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "headRefName": "tireddy2-patch-1",
+      "headRefOid": "2664dc81d9bf7ea38be0a0ca53d06f51107df6fa",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOLlGZlc5rW8K8",
+      "title": "Including reliability bit to NRLP blob + Initial text for host OS incentive",
+      "url": "https://github.com/boucadair/draft-xxx-ac-rate-policy-discovery/pull/11",
+      "state": "OPEN",
+      "author": "sridharangirish91",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Unreliable traffic can have different bandwidth constraints due to no retransmits (and mostly it is fire-and-forget real-time but discardable data) and nature of it means we can have different policies for unreliable traffic during reactive event. Assigning the unassigned bit for this, if it is available.",
+      "createdAt": "2024-04-01T20:45:06Z",
+      "updatedAt": "2024-04-01T21:39:17Z",
+      "baseRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "baseRefName": "main",
+      "baseRefOid": "bcd3ed01a6f90c9c04311e15b97720ea459193d5",
+      "headRepository": "boucadair/draft-xxx-ac-rate-policy-discovery",
+      "headRefName": "sridharanr",
+      "headRefOid": "67333126b84fc0c37c3467a4585c54e81bcaa338",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
