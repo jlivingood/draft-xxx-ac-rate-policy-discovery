@@ -117,7 +117,7 @@ Table of Contents
    Equipment (UE).  To facilitate data transfer via the provider
    network, it is assumed that appropriate setup is provisioned over the
    links that connect customer terminating points and a provider network
-   (usually via a Provider Edge (PE)), allowing successfully data
+   (usually via a Provider Edge (PE)), successfully allowing data
    exchange over these links.  The required setup is referred to in this
    document as Attachment Circuits (ACs), while the underlying link is
    referred to as "bearers".
@@ -130,7 +130,7 @@ Table of Contents
 
    Figure 1 shows an example of a network that connects CEs and hosts
    (UE, for example).These CEs are servicing other (internal) hosts.
-   The identification of these hosts is hidden to the network.  The
+   The identification of these hosts is hidden from the network.  The
    policies enforced at the network for an AC are per-subscriber, not
    per-host.  Typically, if a CE is provided with a /56 IPv6 prefix,
    policies are enforced on that /56 not the individual /64s that will
@@ -300,7 +300,7 @@ Table of Contents
    which such a trust model can be relaxed is out of scope of this
    document.
 
-   This document does not assume nor preclude that other mechanims,
+   This document does not assume nor preclude that other mechanisms,
    e.g., Low Latency, Low Loss, and Scalable Throughput (L4S) [RFC9330],
    are enabled in a bottleneck link.
 
@@ -318,8 +318,8 @@ Table of Contents
    *  Deployability
 
    The solution specified in the document is designed to *ease
-   integration with network managment tools* that are used to manage and
-   expose policies.  It does so by leveraging the policy structure
+   integration with network management tools* that are used to manage
+   and expose policies.  It does so by leveraging the policy structure
    defined in [I-D.ietf-opsawg-ntw-attachment-circuit].  That same
    structure is also used in the context of service activation such as
    Network Slicing [RFC9543]; see the example depicted in Appendix B.5
@@ -344,7 +344,7 @@ Table of Contents
    *  *Supports signaling policies bound to one or both traffic
       directions*.
 
-   *  Is able to *signal wether a policy applies to a specific host or
+   *  Is able to *signal whether a policy applies to a specific host or
       all hosts of a given subscriber*.
 
            .------.                      .--------------------.
@@ -480,7 +480,14 @@ Table of Contents
 
       When set to "0", this flag indicates that PIR is not present.
 
-   U:  Unassigned bit.
+   R:  1-bit flag which indicates the type of traffic on which to apply
+      the enclosed policy.
+
+      When set to "1", this flag indicates that this policy is for
+      reliable traffic.
+
+      When set to "0", this flag indicates that this policy is for
+      unreliable traffic.
 
    Scope:  4-bit field which specifies whether the policy is per host,
       per subscriber, etc.
@@ -502,9 +509,9 @@ Table of Contents
 
       *  "1": Streaming
 
-      *  "2": Realtime
+      *  "2": Real-time
 
-      *  "3": Bulk trafic
+      *  "3": Bulk traffic
 
       *  4-255: Unassigned values
 
@@ -522,7 +529,7 @@ Table of Contents
    Committed Burst Size (CBS) (bytes):  Specifies the maximum burst size
       that can be transmitted at CIR.
 
-      MUST be greated than zero.
+      MUST be greater than zero.
 
       This parameter is mandatory.
 
@@ -540,7 +547,7 @@ Table of Contents
    Excess Burst Size (EBS) (bytes):  MUST be present only if EIR is also
       present.
 
-      Indicates that maximum excess burst size that is allowed while not
+      Indicates the maximum excess burst size that is allowed while not
       complying with the CIR.
 
       MUST be greater than zero, if present.
@@ -583,7 +590,7 @@ Table of Contents
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Type      |     Length    |D|E|P|U| Scope |      TC       |
+     |     Type      |     Length    |D|E|P|R| Scope |      TC       |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                Committed Information Rate (CIR)               |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -598,7 +605,7 @@ Table of Contents
       0                   1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |     Type      |     Length    |D|E|P|U| Scope |      TC       |
+     |     Type      |     Length    |D|E|P|R| Scope |      TC       |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      |                Committed Information Rate (CIR)               |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -629,7 +636,7 @@ Table of Contents
 
    P:  See Section 3.
 
-   U:  Unassigned bit.
+   R:  See Section 3.
 
    Scope:  See Section 3.
 
@@ -727,7 +734,7 @@ Table of Contents
                      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                      |   NRLP Instance Data Length   |
                      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                     |D|E|P|U| Scope |      TC       |
+                     |D|E|P|R| Scope |      TC       |
                      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                      |  Committed Information Rate   |
                      |              (CIR)            |
@@ -746,7 +753,7 @@ Table of Contents
                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                    |   NRLP Instance Data Length   |
                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                   |D|E|P|U| Scope |      TC       |
+                   |D|E|P|R| Scope |      TC       |
                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
                    |  Committed Information Rate   |
                    |              (CIR)            |
@@ -781,7 +788,7 @@ Table of Contents
 
    P:  See Section 3.
 
-   U:  Unassigned bit.
+   U:  See Section 3.
 
    Scope:  See Section 3.
 
@@ -865,7 +872,7 @@ Table of Contents
    The procedure defined in the document provides a mechanism to assist
    networks managing the load at the source and, thus, contribute to
    better handle network overloads and optimize the use of resources
-   under non nominal conditions.  The mechanism allows also to enhance
+   under non nominal conditions.  The mechanism also allows to enhance
    the quality of experience at the LAN by providing a simple tool to
    communicate local policies to hosts.  A minimal change is required to
    that aim.
@@ -904,7 +911,37 @@ Table of Contents
 
 7.3.  Host OS
 
-   TBC.
+   *  Improved Network Performance: The OS can schedule network requests
+      more efficiently, preventing network congestion, and improving
+      overall stability and network performance with NRLP signals.
+
+   *  API to facilitate Application Development: OS can provide more
+      accurate available bandwidth to applications through the API (as
+      mentioned above), making implementation easier for applications
+      that don't requrie dedicated bandwidth measurement.
+
+   *  Prevent Abuse: The OS can allocate network resources more fairly
+      among different processes, with NRLP signals, ensuring that no
+      single process monopolizes the network.
+
+   *  Better Resource Management: OS can also optimize resource
+      allocation, by deprioritizing background/inactive applications in
+      the event of high network utilization.
+
+   *  Enhanced Security: Awareness of NRLPs can help the OS detect and
+      mitigate network-related security threats, such as denial-of-
+      service (DoS) attacks.
+
+   *  Cost Efficiency: By managing network usage based on rate limits,
+      the OS can help reduce network-related costs.
+
+   *  Improved User Experience: By avoiding network congestion and
+      ensuring fair resource allocation, the OS can provide a smoother,
+      more responsive user experience.
+
+   *  Improved Application Development Efficiency: OS providing rate
+      limits through an API (as mentioned above) can provide the above
+      listed benefits at per application level.
 
 8.  Security Considerations
 
@@ -919,8 +956,8 @@ Table of Contents
    that need to be secured independently.
 
    RAs are already used in mobile networks to advertize the link MTU.
-   The same security considerartions for MTU discovery apply for the
-   NRLP discover.
+   The same security considerations for MTU discovery apply for the NRLP
+   discover.
 
    An attacker who has access to the RAs exchanged over an attachment
    circuit may:
@@ -965,7 +1002,7 @@ Table of Contents
 
    This document requests IANA to assign the following new IPv6 Neighbor
    Discovery Option type in the "IPv6 Neighbor Discovery Option Formats"
-   subregistry under the "Internet Control Message Protocol version 6
+   sub-registry under the "Internet Control Message Protocol version 6
    (ICMPv6) Parameters" registry maintained at [IANA-ND].
 
                   +======+=============+===============+
@@ -1250,7 +1287,7 @@ Appendix B.  Example of Authentication, Authorization, and Accounting
 
    Figure 10 provides an example of the exchanges that might occur
    between a DHCP server and an Authentication, Authorization, and
-   Accounting (AAA) server to retrive the per-subscriber NRLPs.
+   Accounting (AAA) server to retrieve the per-subscriber NRLPs.
 
    This example assumes that the Network Access Server (NAS) embeds both
    Remote Authentication Dial-In User Service (RADIUS) [RFC2865] client
