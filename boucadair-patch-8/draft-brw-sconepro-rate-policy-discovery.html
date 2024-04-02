@@ -2381,14 +2381,16 @@ already advertized using RAs and those policies are consistent with the network 
       <h2 id="name-operational-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
       </h2>
-<p id="section-6-1">NRLP senders should be configured with instructions about the type of network rate-limit policies to be shared with requesting hosts. These types can be provided using mechanisms such as <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">In contexts where the bitrate policies are known during the establishment of the underlying bearer (e.g., GBR PDU Sessions), sending NRLP signals over the attachment circuit may be redundant and should thus be disabled.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">In contexts where the (average) bitrate policies provided during the establishment of a bearer cannot be refreshed to echo network-specific conditions (e.g., overload) using bearer-specific mechanisms, sending NRLP signals over the attachment circuit would allow control the load at the source.<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">When both bearer-specific policies and NRLP signals are communicated to a host, the NRLP signals takes precedence.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">Rate-limit policies enforced at the network are assumed to be consistent with the local jurisdictions. For example, <span>[<a href="#BEREC" class="cite xref">BEREC</a>]</span> says the following:<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-1">Sharing NRLP signals are not intended to replace usual actions to soften bottlenck issues (e.g., adequate network dimensioning and upgrades). However, given that such actions may not be always immediately possible or economically justified, NRLP signals can be considered as complementary mitigations to soften these issues by introducing some collaboration between a host and
+its networks to adjust their behaviors.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">NRLP senders should be configured with instructions about the type of network rate-limit policies to be shared with requesting hosts. These types can be provided using mechanisms such as <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">In contexts where the bitrate policies are known during the establishment of the underlying bearer (e.g., GBR PDU Sessions), sending NRLP signals over the attachment circuit may be redundant and should thus be disabled.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">In contexts where the (average) bitrate policies provided during the establishment of a bearer cannot be refreshed to echo network-specific conditions (e.g., overload) using bearer-specific mechanisms, sending NRLP signals over the attachment circuit would allow control the load at the source.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">When both bearer-specific policies and NRLP signals are communicated to a host, the NRLP signals takes precedence.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-6">Rate-limit policies enforced at the network are assumed to be consistent with the local jurisdictions. For example, <span>[<a href="#BEREC" class="cite xref">BEREC</a>]</span> says the following:<a href="#section-6-6" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-6-6.1">
-          <p id="section-6-6.1.1">ISPs are prohibited from blocking or slowing down of Internet traffic, except where necessary. The exceptions are limited to: traffic management to comply with a legal order, to ensure network integrity and security, and to manage congestion, provided that equivalent categories of traffic are treated equally.<a href="#section-6-6.1.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-6-7.1">
+          <p id="section-6-7.1.1">ISPs are prohibited from blocking or slowing down of Internet traffic, except where necessary. The exceptions are limited to: traffic management to comply with a legal order, to ensure network integrity and security, and to manage congestion, provided that equivalent categories of traffic are treated equally.<a href="#section-6-7.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
