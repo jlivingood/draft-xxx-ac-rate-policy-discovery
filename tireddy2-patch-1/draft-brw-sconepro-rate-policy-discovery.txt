@@ -5,10 +5,10 @@
 sconepro                                                    M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                                 D. Wing
-Expires: 3 October 2024                             Cloud Software Group
+Expires: 4 October 2024                             Cloud Software Group
                                                                 T. Reddy
                                                                    Nokia
-                                                            1 April 2024
+                                                            2 April 2024
 
 
             Discovery of Network Rate-Limit Policies (NRLPs)
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 October 2024.
+   This Internet-Draft will expire on 4 October 2024.
 
 Copyright Notice
 
@@ -393,7 +393,7 @@ Table of Contents
       more external IP addresses.
 
    *  *Does not suffer from penalizing the proxy* which could serve both
-      good and bad clients (e.g., launching L7 DDoS attacks).
+      good and bad clients (e.g., launching Layer 7 DDoS attacks).
 
    *  *Does not require manipulating extra steering policies on the
       host* to decide which flows can be forwarded over or outside the
