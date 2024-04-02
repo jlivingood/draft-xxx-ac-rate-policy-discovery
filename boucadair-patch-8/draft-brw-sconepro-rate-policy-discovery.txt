@@ -926,8 +926,8 @@ Table of Contents
 
    API to facilitate Application Development:  An OS can provide more
       accurate available bandwidth to applications through the API (as
-      mentioned above), making implementation easier for applications
-      that don't requrie dedicated bandwidth measurement.
+      mentioned in Section 7.2), making implementation easier for
+      applications that don't requrie dedicated bandwidth measurement.
 
    Prevent Abuse:  The OS can allocate network resources more fairly
       among different processes, with NRLP signals, ensuring that no
@@ -946,8 +946,8 @@ Table of Contents
       more responsive user experience.
 
    Improved Application Development Efficiency:  OS providing rate
-      limits through an API (as mentioned above) can provide the above
-      listed benefits at per application level.
+      limits through an API (as mentioned in Section 7.2) can provide
+      the above listed benefits at per application level.
 
 8.  Security Considerations
 
