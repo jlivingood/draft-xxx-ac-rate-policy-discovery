@@ -5,10 +5,10 @@
 sconepro                                                    M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                                 D. Wing
-Expires: 30 September 2024                          Cloud Software Group
+Expires: 4 October 2024                             Cloud Software Group
                                                                 T. Reddy
                                                                    Nokia
-                                                           29 March 2024
+                                                            2 April 2024
 
 
             Discovery of Network Rate-Limit Policies (NRLPs)
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 September 2024.
+   This Internet-Draft will expire on 4 October 2024.
 
 Copyright Notice
 
@@ -376,6 +376,12 @@ Table of Contents
    *  *Does not suffer from nested congestion control* for tunneled
       proxy mode.
 
+   *  *Does not incur multiple round-trips* in the forwarding mode for
+      the client to start sending Short Header packets.
+
+   *  *Does not incur the overhead of unauthenticated re-encryption of
+      QUIC packets* in the scramble transform of the forwarding mode.
+
    *  *Does not impact the forwarding peformance of network nodes*. For
       example, the proxy forwarded mode [I-D.ietf-masque-quic-proxy]
       requires rewriting connection identifiers; that is, the
@@ -385,6 +391,9 @@ Table of Contents
       [RFC6269]*. Such issues are likely to be experienced for proxy-
       based solutions that multiplex internal connections using one or
       more external IP addresses.
+
+   *  *Does not suffer from penalizing the proxy* which could serve both
+      good and bad clients (e.g., launching Layer 7 DDoS attacks).
 
    *  *Does not require manipulating extra steering policies on the
       host* to decide which flows can be forwarded over or outside the
